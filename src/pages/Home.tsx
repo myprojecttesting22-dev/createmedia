@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import BrandMarquee from "@/components/BrandMarquee";
 
 const Home = () => {
   const services = [
@@ -59,6 +60,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Brand Marquee */}
+      <BrandMarquee />
 
       {/* Services Grid */}
       <section className="py-20 px-6">

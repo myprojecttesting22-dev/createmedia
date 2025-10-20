@@ -166,14 +166,14 @@ All colors MUST be HSL.
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    padding: 5px;
+    padding: 2px;
     background: linear-gradient(
       var(--glow-angle, 0deg),
       transparent 0%,
-      transparent 25%,
-      #00ADF7 45%,
-      #00ADF7 55%,
-      transparent 75%,
+      transparent 20%,
+      #00ADF7 40%,
+      #00ADF7 60%,
+      transparent 80%,
       transparent 100%
     );
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -181,7 +181,7 @@ All colors MUST be HSL.
     mask-composite: exclude;
     animation: corner-glow 4s linear infinite;
     pointer-events: none;
-    filter: drop-shadow(0 0 15px #00ADF7) drop-shadow(0 0 25px rgba(0, 173, 247, 0.5));
+    filter: drop-shadow(0 0 20px #00ADF7) drop-shadow(0 0 35px rgba(0, 173, 247, 0.6));
   }
   
   @keyframes corner-glow {
