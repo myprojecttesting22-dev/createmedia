@@ -14,7 +14,7 @@ const BrandMarquee = () => {
             {client}
           </span>
         ))}
-        {/* Duplicate for seamless loop */}
+        {/* Duplicate for seamless loop - creates continuous effect */}
         {clients.map((client, index) => (
           <span key={`second-${index}`} className="ticker-item">
             {client}
