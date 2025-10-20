@@ -4,10 +4,6 @@ const BrandMarquee = () => {
     "ACTIVE LANES",
     "AMG Realty",
     "Universal Infratech",
-    "Horizon Properties",
-    "Skyline Developers",
-    "Prime Estate",
-    "Metro Builders",
   ];
 
   return (
