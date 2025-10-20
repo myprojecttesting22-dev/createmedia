@@ -33,7 +33,7 @@ const VisionLab = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted">
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted dot-grid-bg">
       <Navigation />
       
       <section className="pt-32 pb-20 px-6">

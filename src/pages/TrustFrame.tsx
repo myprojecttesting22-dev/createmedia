@@ -56,7 +56,7 @@ const TrustFrame = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted">
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted dot-grid-bg">
       <Navigation />
       
       <section className="pt-32 pb-20 px-6">
@@ -73,7 +73,7 @@ const TrustFrame = () => {
             {testimonials.map((testimonial, index) => (
               <Card
                 key={testimonial.name}
-                className="hover-lift animate-slide-up"
+                className="animate-slide-up backdrop-blur-sm bg-card/80 border-border/50 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-card/90"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 <CardContent className="p-6">
