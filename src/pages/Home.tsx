@@ -101,8 +101,8 @@ const Home = () => {
       {/* CTA Section */}
       <section className="py-20 px-6">
         <div className="container mx-auto">
-          <Card className="bg-primary text-primary-foreground border-0">
-            <CardContent className="py-16 text-center">
+          <Card className="liquid-glass text-white border-0">
+            <CardContent className="py-16 text-center relative z-10">
               <h2 className="text-3xl md:text-5xl font-bold mb-4">
                 Ready to elevate your brand?
               </h2>
@@ -110,7 +110,7 @@ const Home = () => {
                 Let's build your next growth system with AI-powered intelligence and
                 automated marketing solutions.
               </p>
-              <Button size="lg" variant="secondary" asChild>
+              <Button size="lg" className="bg-black/60 hover:bg-black/80 text-white border border-white/20" asChild>
                 <Link to="/visionlab">
                   Request Custom Plan <ArrowRight className="ml-2" size={20} />
                 </Link>

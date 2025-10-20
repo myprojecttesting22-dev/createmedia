@@ -48,8 +48,8 @@ const AIEngine = () => {
           </div>
 
           <div className="max-w-4xl mx-auto mb-16 animate-slide-up">
-            <Card className="bg-primary text-primary-foreground border-0">
-              <CardContent className="p-12 text-center">
+            <Card className="liquid-glass text-white border-0">
+              <CardContent className="p-12 text-center relative z-10">
                 <h2 className="text-3xl font-bold mb-4">
                   The Future of Brand Marketing
                 </h2>

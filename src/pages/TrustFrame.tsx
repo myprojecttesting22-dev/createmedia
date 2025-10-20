@@ -100,8 +100,8 @@ const TrustFrame = () => {
           </div>
 
           <div className="mt-16 text-center">
-            <Card className="bg-primary text-primary-foreground border-0 max-w-3xl mx-auto">
-              <CardContent className="py-12">
+            <Card className="liquid-glass text-white border-0 max-w-3xl mx-auto">
+              <CardContent className="py-12 relative z-10">
                 <h2 className="text-3xl font-bold mb-4">Join Our Success Stories</h2>
                 <p className="text-lg opacity-90 mb-6">
                   Ready to transform your brand with AI-powered content and automated
