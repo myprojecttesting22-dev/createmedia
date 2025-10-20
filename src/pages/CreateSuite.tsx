@@ -12,12 +12,12 @@ const CreateSuite = () => {
       title: "CineFlow",
       tagline: "Smooth editing experience",
       description:
-        "Transform raw footage into compelling visual stories. Our editing team brings precision, creativity, and technical excellence to every project, ensuring your content captures attention and drives engagement.",
+        "Transform raw footage into clear and engaging videos. Ensure your content captures attention and communicates your message effectively.",
       features: [
-        "Professional video editing and post-production",
-        "Color grading and visual effects",
-        "Motion graphics and animations",
-        "Sound design and audio mixing",
+        "Video editing and post-production",
+        "Color adjustments",
+        "Audio mixing",
+        "Visual enhancements",
       ],
     },
     {
@@ -25,12 +25,12 @@ const CreateSuite = () => {
       title: "BrandSync",
       tagline: "Aligned visual and voice identity",
       description:
-        "Create a cohesive brand presence across all touchpoints. We ensure your visual identity and messaging remain consistent, building recognition and trust with your audience.",
+        "Maintain a consistent brand presence across all touchpoints. Enable content repurposing for LinkedIn, Instagram, YouTube Shorts, and Twitter.",
       features: [
         "Brand strategy and positioning",
-        "Visual identity system development",
+        "Visual identity development",
         "Content style guide creation",
-        "Multi-platform brand consistency",
+        "Multi-platform content repurposing",
       ],
     },
     {
@@ -38,12 +38,12 @@ const CreateSuite = () => {
       title: "ReachLift",
       tagline: "Elevates engagement organically",
       description:
-        "Expand your audience reach through strategic content distribution. We optimize your content for maximum visibility and engagement across all relevant platforms.",
+        "Expand your reach and improve audience interaction with your content. Optimize visibility to ensure your message reaches the right audience.",
       features: [
-        "Content distribution strategy",
-        "SEO and organic reach optimization",
-        "Social media growth tactics",
-        "Audience engagement analysis",
+        "Content distribution planning",
+        "Platform optimization",
+        "Audience engagement tracking",
+        "Analytics and performance review",
       ],
     },
     {
