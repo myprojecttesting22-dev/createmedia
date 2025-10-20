@@ -238,4 +238,63 @@ All colors MUST be HSL.
       transform: translateY(0);
     }
   }
+  
+  /* Brand Ticker */
+  .brand-ticker {
+    overflow: hidden;
+    width: 100%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    padding: 3rem 0;
+  }
+  
+  .ticker-track {
+    display: inline-flex;
+    white-space: nowrap;
+    animation: scroll-left 20s linear infinite;
+    align-items: center;
+    gap: 3rem;
+  }
+  
+  .ticker-item {
+    color: #00ADF7;
+    font-family: 'Inter', 'SF Pro', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+  
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  /* Pause on hover */
+  .brand-ticker:hover .ticker-track {
+    animation-play-state: paused;
+  }
+  
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .ticker-track {
+      animation: none;
+    }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .ticker-track {
+      animation-duration: 15s;
+      gap: 2rem;
+    }
+    
+    .ticker-item {
+      font-size: 1.125rem;
+    }
+  }
 }
