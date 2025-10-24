@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Star } from "lucide-react";
 
 const TrustFrame = () => {
@@ -97,6 +98,31 @@ const TrustFrame = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          <div className="mt-20 mb-16">
+            <div className="max-w-5xl mx-auto">
+              <Card className="backdrop-blur-sm bg-card/80 border-border/50 shadow-2xl overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="grid md:grid-cols-1 gap-0">
+                    <div className="p-8 md:p-12">
+                      <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg overflow-hidden shadow-lg">
+                        <iframe
+                          src="https://www.youtube.com/embed/oc4uk_fTdO8"
+                          title="Active Lanes Testimonial"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          className="w-full h-full"
+                        />
+                      </AspectRatio>
+                      <h3 className="text-2xl md:text-3xl font-bold mt-8 text-center leading-relaxed">
+                        Trusted by High-Impact Innovators — Harman, Founder of Active Lanes
+                      </h3>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
 
           <div className="mt-16 text-center">
