@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Phone, MapPin, Linkedin, Twitter, Instagram } from "lucide-react";
+import { Mail, Calendar, Linkedin, Twitter, Instagram } from "lucide-react";
 
 const Connect = () => {
   const { toast } = useToast();
@@ -64,10 +64,10 @@ const Connect = () => {
                       <div>
                         <h3 className="font-semibold mb-1">Email</h3>
                         <a
-                          href="mailto:hello@createmedia.com"
+                          href="mailto:vansh@createmedia.pro"
                           className="text-muted-foreground hover:text-primary transition-colors"
                         >
-                          hello@createmedia.com
+                          vansh@createmedia.pro
                         </a>
                       </div>
                     </div>
@@ -78,34 +78,18 @@ const Connect = () => {
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
                       <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <Phone className="text-primary" size={24} />
+                        <Calendar className="text-primary" size={24} />
                       </div>
                       <div>
-                        <h3 className="font-semibold mb-1">Phone</h3>
+                        <h3 className="font-semibold mb-1">Schedule a Meeting</h3>
                         <a
-                          href="tel:+1234567890"
+                          href="https://calendly.com/createmedia22/appointment"
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="text-muted-foreground hover:text-primary transition-colors"
                         >
-                          +1 (234) 567-890
+                          Book an appointment
                         </a>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <MapPin className="text-primary" size={24} />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold mb-1">Office</h3>
-                        <p className="text-muted-foreground">
-                          123 Innovation Drive
-                          <br />
-                          San Francisco, CA 94105
-                        </p>
                       </div>
                     </div>
                   </CardContent>

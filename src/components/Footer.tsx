@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, Linkedin, Twitter, Instagram } from "lucide-react";
+import { Mail, Linkedin, Twitter, Instagram } from "lucide-react";
 import logo from "@/assets/create-media-logo.png";
 
 const Footer = () => {
@@ -74,14 +74,8 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Mail size={16} />
-                <a href="mailto:hello@createmedia.com" className="hover:text-primary transition-colors">
-                  hello@createmedia.com
-                </a>
-              </li>
-              <li className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Phone size={16} />
-                <a href="tel:+1234567890" className="hover:text-primary transition-colors">
-                  +1 (234) 567-890
+                <a href="mailto:vansh@createmedia.pro" className="hover:text-primary transition-colors">
+                  vansh@createmedia.pro
                 </a>
               </li>
             </ul>
