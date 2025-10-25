@@ -54,7 +54,7 @@ const WorkflowAnimation = () => {
             <div className="relative w-full">
               <svg
                 className="absolute inset-0 w-full h-full pointer-events-none"
-                viewBox="0 0 300 900"
+                viewBox="0 0 300 1200"
                 preserveAspectRatio="xMidYMid meet"
               >
                 <defs>
@@ -81,7 +81,7 @@ const WorkflowAnimation = () => {
 
                 {/* Main vertical path connecting the 4 nodes */}
                 <path
-                  d="M 150 60 L 150 220 L 150 380 L 150 540"
+                  d="M 150 72 L 150 330 L 150 588 L 150 846"
                   stroke="#2E5CE6"
                   strokeWidth="2"
                   fill="none"
@@ -90,19 +90,21 @@ const WorkflowAnimation = () => {
                   filter="url(#glow)"
                 />
 
-                {/* OmniReach Hub to distribution nodes - centered grid */}
-                <path d="M 150 540 L 150 600" stroke="#2E5CE6" strokeWidth="2" fill="none" opacity="0.4" filter="url(#glow)" />
-                <path d="M 150 600 L 75 680" stroke="#2E5CE6" strokeWidth="2" fill="none" opacity="0.4" filter="url(#glow)" />
-                <path d="M 150 600 L 225 680" stroke="#2E5CE6" strokeWidth="2" fill="none" opacity="0.4" filter="url(#glow)" />
-                <path d="M 150 600 L 75 760" stroke="#2E5CE6" strokeWidth="2" fill="none" opacity="0.4" filter="url(#glow)" />
-                <path d="M 150 600 L 225 760" stroke="#2E5CE6" strokeWidth="2" fill="none" opacity="0.4" filter="url(#glow)" />
+                {/* OmniReach Hub to junction point */}
+                <path d="M 150 846 L 150 946" stroke="#2E5CE6" strokeWidth="2" fill="none" opacity="0.4" filter="url(#glow)" />
+                
+                {/* Junction to distribution nodes - 2x2 grid */}
+                <path d="M 150 946 L 98 966" stroke="#2E5CE6" strokeWidth="2" fill="none" opacity="0.4" filter="url(#glow)" />
+                <path d="M 150 946 L 202 966" stroke="#2E5CE6" strokeWidth="2" fill="none" opacity="0.4" filter="url(#glow)" />
+                <path d="M 150 946 L 98 1086" stroke="#2E5CE6" strokeWidth="2" fill="none" opacity="0.4" filter="url(#glow)" />
+                <path d="M 150 946 L 202 1086" stroke="#2E5CE6" strokeWidth="2" fill="none" opacity="0.4" filter="url(#glow)" />
 
                 {/* Animated glowing orb */}
                 <circle r="6" fill="url(#orbGlow)" filter="url(#glow)">
                   <animateMotion
                     dur="8s"
                     repeatCount="indefinite"
-                    path="M 150 60 L 150 220 L 150 380 L 150 540 L 150 600 L 75 680 L 150 600 L 225 680 L 150 600 L 75 760 L 150 600 L 225 760"
+                    path="M 150 72 L 150 330 L 150 588 L 150 846 L 150 946 L 98 966 L 150 946 L 202 966 L 150 946 L 98 1086 L 150 946 L 202 1086"
                   />
                 </circle>
 
@@ -110,7 +112,7 @@ const WorkflowAnimation = () => {
                   <animateMotion
                     dur="8s"
                     repeatCount="indefinite"
-                    path="M 150 60 L 150 220 L 150 380 L 150 540 L 150 600 L 75 680 L 150 600 L 225 680 L 150 600 L 75 760 L 150 600 L 225 760"
+                    path="M 150 72 L 150 330 L 150 588 L 150 846 L 150 946 L 98 966 L 150 946 L 202 966 L 150 946 L 98 1086 L 150 946 L 202 1086"
                   />
                 </circle>
               </svg>
