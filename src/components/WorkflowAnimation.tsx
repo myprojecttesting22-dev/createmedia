@@ -37,18 +37,18 @@ const WorkflowAnimation = () => {
   ];
 
   return (
-    <section className="py-20 px-6 overflow-hidden bg-[#0a0a0a] dot-grid-bg">
+    <section className="py-20 px-6 overflow-hidden bg-background dot-grid-bg">
       <div className="container mx-auto max-w-4xl">
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-foreground">
             How CreateMedia Automates Real Estate Growth
           </h2>
-          <p className="text-lg text-white/70 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             From creation to automation — your brand's energy flows through every stage.
           </p>
         </div>
 
-        <Card className="relative bg-[#0f0f0f] border-[#2E5CE6]/30 shadow-2xl overflow-hidden">
+        <Card className="relative bg-card border-primary/30 shadow-2xl overflow-hidden">
           <CardContent className="p-8 md:p-12">
             {/* Mobile-First Layout */}
             <div className="relative w-full">
@@ -83,21 +83,21 @@ const WorkflowAnimation = () => {
                 <path
                   d="M 150 72 L 150 330 L 150 588 L 150 846"
                   stroke="#2E5CE6"
-                  strokeWidth="2"
+                  strokeWidth="3"
                   fill="none"
                   strokeLinecap="round"
-                  opacity="0.5"
+                  opacity="1"
                   filter="url(#glow)"
                 />
 
                 {/* OmniReach Hub to junction point */}
-                <path d="M 150 846 L 150 946" stroke="#2E5CE6" strokeWidth="2" fill="none" opacity="0.4" filter="url(#glow)" />
+                <path d="M 150 846 L 150 946" stroke="#2E5CE6" strokeWidth="3" fill="none" opacity="0.8" filter="url(#glow)" />
                 
                 {/* Junction to distribution nodes - 2x2 grid */}
-                <path d="M 150 946 L 98 966" stroke="#2E5CE6" strokeWidth="2" fill="none" opacity="0.4" filter="url(#glow)" />
-                <path d="M 150 946 L 202 966" stroke="#2E5CE6" strokeWidth="2" fill="none" opacity="0.4" filter="url(#glow)" />
-                <path d="M 150 946 L 98 1086" stroke="#2E5CE6" strokeWidth="2" fill="none" opacity="0.4" filter="url(#glow)" />
-                <path d="M 150 946 L 202 1086" stroke="#2E5CE6" strokeWidth="2" fill="none" opacity="0.4" filter="url(#glow)" />
+                <path d="M 150 946 L 98 966" stroke="#2E5CE6" strokeWidth="2.5" fill="none" opacity="0.7" filter="url(#glow)" />
+                <path d="M 150 946 L 202 966" stroke="#2E5CE6" strokeWidth="2.5" fill="none" opacity="0.7" filter="url(#glow)" />
+                <path d="M 150 946 L 98 1086" stroke="#2E5CE6" strokeWidth="2.5" fill="none" opacity="0.7" filter="url(#glow)" />
+                <path d="M 150 946 L 202 1086" stroke="#2E5CE6" strokeWidth="2.5" fill="none" opacity="0.7" filter="url(#glow)" />
 
                 {/* Animated glowing orb */}
                 <circle r="6" fill="url(#orbGlow)" filter="url(#glow)">
@@ -133,22 +133,22 @@ const WorkflowAnimation = () => {
                             <div
                               className={`
                                 w-20 h-20 rounded-2xl
-                                bg-[#0C1A3E] border-2 border-[#2E5CE6]/40
+                                bg-secondary border-2 border-primary/40
                                 flex items-center justify-center
                                 transition-all duration-300
-                                ${hoveredNode === node.id ? "scale-110 shadow-[0_0_30px_rgba(46,92,230,0.6)] border-[#2E5CE6]" : "shadow-lg shadow-[#2E5CE6]/20"}
+                                ${hoveredNode === node.id ? "scale-110 shadow-[0_0_30px_hsl(var(--primary)/0.6)] border-primary" : "shadow-lg shadow-primary/20"}
                               `}
                             >
                               <NodeIcon 
-                                className="w-9 h-9 text-[#2E5CE6]" 
+                                className="w-9 h-9 text-primary" 
                                 strokeWidth={2}
                               />
                             </div>
                             <div className="text-center">
-                              <h3 className="text-base font-bold text-white mb-1">
+                              <h3 className="text-base font-bold text-foreground mb-1">
                                 {node.label}
                               </h3>
-                              <p className="text-sm text-white/60 max-w-[220px]">
+                              <p className="text-sm text-muted-foreground max-w-[220px]">
                                 {node.description}
                               </p>
                             </div>
@@ -156,7 +156,7 @@ const WorkflowAnimation = () => {
                         </TooltipTrigger>
                         <TooltipContent
                           side="right"
-                          className="bg-[#0C1A3E] border-[#2E5CE6]/50 text-white"
+                          className="bg-secondary border-primary/50 text-foreground"
                         >
                           <p className="text-sm">{node.description}</p>
                         </TooltipContent>
@@ -179,25 +179,25 @@ const WorkflowAnimation = () => {
                               <div
                                 className={`
                                   w-14 h-14 rounded-xl
-                                  bg-[#0C1A3E]/60 border border-[#2E5CE6]/30
+                                  bg-secondary/60 border border-primary/30
                                   flex items-center justify-center
                                   transition-all duration-300
-                                  ${hoveredNode === node.id ? "scale-110 shadow-[0_0_20px_rgba(46,92,230,0.5)] border-[#2E5CE6]/70" : ""}
+                                  ${hoveredNode === node.id ? "scale-110 shadow-[0_0_20px_hsl(var(--primary)/0.5)] border-primary/70" : ""}
                                 `}
                               >
                                 <NodeIcon 
-                                  className="w-6 h-6 text-[#2E5CE6]/90" 
+                                  className="w-6 h-6 text-primary/90" 
                                   strokeWidth={2}
                                 />
                               </div>
-                              <span className="text-xs font-semibold text-white/70">
+                              <span className="text-xs font-semibold text-muted-foreground">
                                 {node.label}
                               </span>
                             </div>
                           </TooltipTrigger>
                           <TooltipContent
                             side="bottom"
-                            className="bg-[#0C1A3E] border-[#2E5CE6]/50 text-white"
+                            className="bg-secondary border-primary/50 text-foreground"
                           >
                             <p className="text-xs">Distribute to {node.label}</p>
                           </TooltipContent>
