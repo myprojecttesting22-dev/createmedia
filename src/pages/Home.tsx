@@ -5,7 +5,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BrandMarquee from "@/components/BrandMarquee";
-import WorkflowAnimation from "@/components/WorkflowAnimation";
 
 const Home = () => {
   const services = [
@@ -64,9 +63,6 @@ const Home = () => {
 
       {/* Brand Marquee */}
       <BrandMarquee />
-
-      {/* Workflow Animation */}
-      <WorkflowAnimation />
 
       {/* Services Grid */}
       <section className="py-20 px-6">
