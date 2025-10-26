@@ -1,1 +1,7 @@
 project_id = "cxpluwwplpgzetxhkrgs"
+
+[functions.send-visionlab-request]
+verify_jwt = false
+
+[functions.send-connect-message]
+verify_jwt = false

@@ -7,6 +7,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
+
+const formSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  company: z.string().trim().min(1, "Company is required").max(100, "Company must be less than 100 characters"),
+  description: z.string().trim().min(1, "Description is required").max(2000, "Description must be less than 2000 characters"),
+});
 
 const VisionLab = () => {
   const { toast } = useToast();
@@ -16,14 +25,42 @@ const VisionLab = () => {
     company: "",
     description: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Request Submitted!",
-      description: "We'll contact you shortly to discuss your custom plan.",
-    });
-    setFormData({ name: "", email: "", company: "", description: "" });
+    setIsSubmitting(true);
+
+    try {
+      // Validate form data
+      const validatedData = formSchema.parse(formData);
+
+      // Call the edge function
+      const { data, error } = await supabase.functions.invoke('send-visionlab-request', {
+        body: validatedData,
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      toast({
+        title: "Request Submitted!",
+        description: "We'll contact you shortly to discuss your custom plan.",
+      });
+      setFormData({ name: "", email: "", company: "", description: "" });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast({
+        title: "Error",
+        description: error instanceof z.ZodError 
+          ? error.errors[0].message 
+          : "Failed to submit request. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -140,8 +177,8 @@ const VisionLab = () => {
                     />
                   </div>
 
-                  <Button type="submit" size="lg" className="w-full">
-                    Submit Request
+                  <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                    {isSubmitting ? "Submitting..." : "Submit Request"}
                   </Button>
                 </form>
               </CardContent>
