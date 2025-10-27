@@ -158,11 +158,12 @@ const AIEngine = () => {
             <div className="space-y-6">
               <Card>
                 <CardContent className="p-6">
+                  <h3 className="text-2xl font-bold mb-4">AI-Powered Content Creation</h3>
                   <div className="aspect-video w-full">
                     <iframe
                       className="w-full h-full rounded-lg"
                       src="https://www.youtube.com/embed/h44f2F-Exlk"
-                      title="YouTube video 1"
+                      title="AI-Powered Content Creation"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                     />
@@ -172,11 +173,12 @@ const AIEngine = () => {
 
               <Card>
                 <CardContent className="p-6">
+                  <h3 className="text-2xl font-bold mb-4">Brand Automation Systems</h3>
                   <div className="aspect-video w-full">
                     <iframe
                       className="w-full h-full rounded-lg"
                       src="https://www.youtube.com/embed/Fx5zzSHWuSk"
-                      title="YouTube video 2"
+                      title="Brand Automation Systems"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                     />
