@@ -41,10 +41,47 @@ const AIEngine = () => {
         <div className="container mx-auto">
           <div className="text-center mb-16 animate-fade-in">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">AI Engine</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12">
               AI-powered marketing and brand acceleration systems that scale your presence
               and amplify your impact
             </p>
+          </div>
+
+          {/* Video Showcase Section */}
+          <div className="max-w-4xl mx-auto mb-16 animate-slide-up">
+            <h2 className="text-3xl font-bold text-center mb-8">See AI in Action</h2>
+            
+            <div className="space-y-6">
+              <Card>
+                <CardContent className="p-6">
+                  <h3 className="text-2xl font-bold mb-4">AI-Powered Content Creation</h3>
+                  <div className="aspect-video w-full">
+                    <iframe
+                      className="w-full h-full rounded-lg"
+                      src="https://www.youtube.com/embed/h44f2F-Exlk"
+                      title="AI-Powered Content Creation"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="p-6">
+                  <h3 className="text-2xl font-bold mb-4">Brand Automation Systems</h3>
+                  <div className="aspect-video w-full">
+                    <iframe
+                      className="w-full h-full rounded-lg"
+                      src="https://www.youtube.com/embed/Fx5zzSHWuSk"
+                      title="Brand Automation Systems"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
 
           <div className="max-w-4xl mx-auto mb-16 animate-slide-up">
@@ -149,43 +186,6 @@ const AIEngine = () => {
                 </div>
               </CardContent>
             </Card>
-          </div>
-
-          {/* Video Showcase Section */}
-          <div className="mt-16 max-w-4xl mx-auto animate-slide-up">
-            <h2 className="text-3xl font-bold text-center mb-8">See AI in Action</h2>
-            
-            <div className="space-y-6">
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="text-2xl font-bold mb-4">AI-Powered Content Creation</h3>
-                  <div className="aspect-video w-full">
-                    <iframe
-                      className="w-full h-full rounded-lg"
-                      src="https://www.youtube.com/embed/h44f2F-Exlk"
-                      title="AI-Powered Content Creation"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="text-2xl font-bold mb-4">Brand Automation Systems</h3>
-                  <div className="aspect-video w-full">
-                    <iframe
-                      className="w-full h-full rounded-lg"
-                      src="https://www.youtube.com/embed/Fx5zzSHWuSk"
-                      title="Brand Automation Systems"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
           </div>
         </div>
       </section>
