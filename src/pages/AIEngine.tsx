@@ -150,6 +150,41 @@ const AIEngine = () => {
               </CardContent>
             </Card>
           </div>
+
+          {/* Video Showcase Section */}
+          <div className="mt-16 max-w-4xl mx-auto animate-slide-up">
+            <h2 className="text-3xl font-bold text-center mb-8">See AI in Action</h2>
+            
+            <div className="space-y-6">
+              <Card>
+                <CardContent className="p-6">
+                  <div className="aspect-video w-full">
+                    <iframe
+                      className="w-full h-full rounded-lg"
+                      src="https://www.youtube.com/embed/h44f2F-Exlk"
+                      title="YouTube video 1"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="p-6">
+                  <div className="aspect-video w-full">
+                    <iframe
+                      className="w-full h-full rounded-lg"
+                      src="https://www.youtube.com/embed/Fx5zzSHWuSk"
+                      title="YouTube video 2"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </div>
       </section>
 
