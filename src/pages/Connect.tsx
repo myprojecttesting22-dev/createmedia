@@ -92,45 +92,49 @@ const Connect = () => {
               </p>
 
               <div className="space-y-6">
-                <Card>
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <Mail className="text-primary" size={24} />
+                <a 
+                  href="mailto:vansh@createmedia.pro"
+                  className="block transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)]"
+                >
+                  <Card className="cursor-pointer">
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                          <Mail className="text-primary" size={24} />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold mb-1">Email</h3>
+                          <p className="text-muted-foreground">
+                            vansh@createmedia.pro
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="font-semibold mb-1">Email</h3>
-                        <a
-                          href="mailto:vansh@createmedia.pro"
-                          className="text-muted-foreground hover:text-primary transition-colors"
-                        >
-                          vansh@createmedia.pro
-                        </a>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </a>
 
-                <Card>
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <Calendar className="text-primary" size={24} />
+                <a
+                  href="https://calendly.com/createmedia22/appointment"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)]"
+                >
+                  <Card className="cursor-pointer">
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                          <Calendar className="text-primary" size={24} />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold mb-1">Schedule a Meeting</h3>
+                          <p className="text-muted-foreground">
+                            Book an appointment
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="font-semibold mb-1">Schedule a Meeting</h3>
-                        <a
-                          href="https://calendly.com/createmedia22/appointment"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-primary transition-colors"
-                        >
-                          Book an appointment
-                        </a>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </a>
 
                 <div>
                   <h3 className="font-semibold mb-4">Follow Us</h3>
