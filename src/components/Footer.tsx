@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Linkedin, Twitter, Instagram } from "lucide-react";
+import { Mail, Linkedin, Twitter, Instagram, Youtube } from "lucide-react";
 import logo from "@/assets/create-media-logo.png";
 
 const Footer = () => {
@@ -88,6 +88,9 @@ const Footer = () => {
               </a>
               <a href="https://www.instagram.com/createmedia22?igsh=MThnemR0MTV5bTNrdQ==" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                 <Instagram size={20} />
+              </a>
+              <a href="https://www.youtube.com/@CREATEMEDIA-cd6wx" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                <Youtube size={20} />
               </a>
             </div>
           </div>
