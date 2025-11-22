@@ -1,6 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,151 +8,99 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 96%;
-    --foreground: 0 0% 9%;
+    --background: 0 0% 6%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 98%;
-    --card-foreground: 0 0% 9%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 89%;
-    --popover-foreground: 0 0% 9%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 20 90% 48%;
-    --primary-foreground: 33 100% 96%;
+    --primary: 198 100% 48%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 32%;
+    --secondary: 198 50% 15%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 0 0% 63%;
-    --muted-foreground: 0 0% 9%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 47 100% 96%;
-    --accent-foreground: 37 92% 50%;
+    --accent: 198 50% 15%;
+    --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 72% 50%;
-    --destructive-foreground: 0 85% 97%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 83%;
-    --input: 0 0% 83%;
-    --ring: 20 90% 48%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 198 100% 48%;
 
     --radius: 0.75rem;
-
+    
     --dark-blue: 223 65% 14%;
     --dark-gray: 0 0% 17%;
-
+    
     --gradient-primary: linear-gradient(135deg, hsl(198 100% 48%), hsl(198 100% 58%));
     --gradient-subtle: linear-gradient(180deg, hsl(0 0% 6%), hsl(198 50% 8%));
     --gradient-frosted: linear-gradient(135deg, hsla(0, 0%, 8%, 0.7), hsla(198, 100%, 48%, 0.1));
-
+    
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 
     --sidebar-background: 0 0% 98%;
 
-    --sidebar-foreground: 0 0% 9%;
+    --sidebar-foreground: 240 5.3% 26.1%;
 
-    --sidebar-primary: 20 90% 48%;
+    --sidebar-primary: 240 5.9% 10%;
 
-    --sidebar-primary-foreground: 33 100% 96%;
+    --sidebar-primary-foreground: 0 0% 98%;
 
-    --sidebar-accent: 0 0% 32%;
+    --sidebar-accent: 240 4.8% 95.9%;
 
-    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
 
-    --sidebar-border: 0 0% 83%;
+    --sidebar-border: 220 13% 91%;
 
-    --sidebar-ring: 20 90% 48%;
-
-    --chart-1: 27 95% 60%;
-
-    --chart-2: 43 96% 56%;
-
-    --chart-3: 47 95% 53%;
-
-    --chart-4: 24 94% 53%;
-
-    --chart-5: 0 0% 45%;
-
-    --sidebar: 0 0% 98%;
-
-    --font-sans: 'Roboto', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
-
-    --font-serif: 'Libre Caslon Text', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
-
-    --font-mono: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-
-    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-
-    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-
-    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
-
-    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
-
-    --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
-
-    --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
-
-    --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
-
-    --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
-
-    --tracking-normal: 0em;
-
-    --spacing: 0.25rem;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 0 0% 9%;
+    --background: 0 0% 6%;
     --foreground: 0 0% 98%;
 
-    --card: 0 0% 14%;
+    --card: 0 0% 8%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 25%;
+    --popover: 0 0% 8%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 27 95% 60%;
-    --primary-foreground: 12 81% 14%;
+    --primary: 198 100% 48%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 45%;
+    --secondary: 198 50% 15%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 0 0% 45%;
-    --muted-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 20 91% 14%;
-    --accent-foreground: 43 96% 56%;
+    --accent: 198 50% 15%;
+    --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 85% 97%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 32%;
-    --input: 0 0% 32%;
-    --ring: 27 95% 60%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 198 100% 48%;
     --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 27 95% 60%;
-    --sidebar-primary-foreground: 12 81% 14%;
-    --sidebar-accent: 43 96% 56%;
-    --sidebar-accent-foreground: 20 91% 14%;
-    --sidebar-border: 0 0% 32%;
-    --sidebar-ring: 27 95% 60%;
-    --chart-1: 30 97% 72%;
-    --chart-2: 45 96% 64%;
-    --chart-3: 48 96% 76%;
-    --chart-4: 27 95% 60%;
-    --chart-5: 0 0% 45%;
-    --sidebar: 0 0% 14%;
-    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
-    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
-    --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
-    --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
-    --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
-    --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -170,7 +115,7 @@ All colors MUST be HSL.
     background: linear-gradient(135deg, hsl(0, 0%, 6%) 0%, hsl(198, 50%, 8%) 100%);
     position: relative;
   }
-
+  
   body::before {
     content: '';
     position: fixed;
@@ -184,23 +129,23 @@ All colors MUST be HSL.
     pointer-events: none;
     z-index: -1;
   }
-
+  
   html {
     scroll-behavior: smooth;
   }
-
+  
   .dot-grid-bg {
     background-image: radial-gradient(circle, hsl(var(--primary) / 0.08) 1px, transparent 1px);
     background-size: 24px 24px;
   }
-
+  
   .glass-section {
     background: linear-gradient(135deg, hsla(0, 0%, 8%, 0.6), hsla(198, 100%, 48%, 0.05));
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid hsla(198, 100%, 48%, 0.1);
   }
-
+  
   .liquid-glass {
     background: linear-gradient(
       135deg,
@@ -215,7 +160,7 @@ All colors MUST be HSL.
     position: relative;
     overflow: hidden;
   }
-
+  
   .liquid-glass::before {
     content: '';
     position: absolute;
@@ -238,7 +183,7 @@ All colors MUST be HSL.
     pointer-events: none;
     filter: drop-shadow(0 0 20px #00ADF7) drop-shadow(0 0 35px rgba(0, 173, 247, 0.6));
   }
-
+  
   @keyframes corner-glow {
     0% {
       --glow-angle: 0deg;
@@ -247,7 +192,7 @@ All colors MUST be HSL.
       --glow-angle: 360deg;
     }
   }
-
+  
   @property --glow-angle {
     syntax: '<angle>';
     initial-value: 0deg;
@@ -259,19 +204,19 @@ All colors MUST be HSL.
   .animate-fade-in {
     animation: fade-in 0.6s ease-out;
   }
-
+  
   .animate-slide-up {
     animation: slide-up 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
-
+  
   .hover-lift {
     transition: var(--transition-smooth);
   }
-
+  
   .hover-lift:hover {
     transform: translateY(-4px);
   }
-
+  
   @keyframes fade-in {
     from {
       opacity: 0;
@@ -282,7 +227,7 @@ All colors MUST be HSL.
       transform: translateY(0);
     }
   }
-
+  
   @keyframes slide-up {
     from {
       opacity: 0;
@@ -293,7 +238,7 @@ All colors MUST be HSL.
       transform: translateY(0);
     }
   }
-
+  
   /* Brand Ticker */
   .brand-ticker {
     overflow: hidden;
@@ -303,7 +248,7 @@ All colors MUST be HSL.
     align-items: center;
     padding: 3rem 0;
   }
-
+  
   .ticker-track {
     display: inline-flex;
     white-space: nowrap;
@@ -311,7 +256,7 @@ All colors MUST be HSL.
     align-items: center;
     gap: 3rem;
   }
-
+  
   .ticker-item {
     color: #00ADF7;
     font-family: 'Inter', 'SF Pro', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -319,7 +264,7 @@ All colors MUST be HSL.
     font-size: 1.5rem;
     line-height: 1;
   }
-
+  
   @keyframes scroll-left {
     0% {
       transform: translateX(-50%);
@@ -328,31 +273,31 @@ All colors MUST be HSL.
       transform: translateX(0);
     }
   }
-
+  
   /* Pause on hover */
   .brand-ticker:hover .ticker-track {
     animation-play-state: paused;
   }
-
+  
   /* Respect reduced motion preference */
   @media (prefers-reduced-motion: reduce) {
     .ticker-track {
       animation: none;
     }
   }
-
+  
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .ticker-track {
       animation-duration: 15s;
       gap: 2rem;
     }
-
+    
     .ticker-item {
       font-size: 1.125rem;
     }
   }
-
+  
   /* Liquid Glass Navigation */
   .navbar-liquid {
     background: hsla(0, 0%, 100%, 0.08);
@@ -362,25 +307,13 @@ All colors MUST be HSL.
     border-bottom: 1px solid hsla(0, 0%, 100%, 0.25);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   }
-
+  
   .nav-link-liquid {
     transition: background 0.3s ease, transform 0.1s ease;
   }
-
+  
   .nav-link-liquid:hover {
     background: hsla(0, 0%, 100%, 0.15);
     transform: scale(1.05);
-  }
-}
-
-/* ---break---
-*/
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
   }
 }
