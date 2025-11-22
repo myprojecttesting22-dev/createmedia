@@ -50,7 +50,7 @@ export default {
   					transform: 'translateY(0)'
   				}
   			},
-  			'float': {
+  			float: {
   				'0%, 100%': {
   					transform: 'translateY(0)'
   				},
@@ -114,9 +114,42 @@ export default {
   			'accordion-up': 'accordion-up 0.2s ease-out',
   			'fade-in': 'fade-in 0.6s ease-out',
   			'slide-up': 'slide-up 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)',
-  			'float': 'float 3s ease-in-out infinite'
+  			float: 'float 3s ease-in-out infinite'
   		},
-  		fontFamily: {}
+  		fontFamily: {
+  			sans: [
+  				'Roboto',
+  				'ui-sans-serif',
+  				'system-ui',
+  				'-apple-system',
+  				'BlinkMacSystemFont',
+  				'Segoe UI',
+  				'Helvetica Neue',
+  				'Arial',
+  				'Noto Sans',
+  				'sans-serif'
+  			],
+  			serif: [
+  				'Libre Caslon Text',
+  				'ui-serif',
+  				'Georgia',
+  				'Cambria',
+  				'Times New Roman',
+  				'Times',
+  				'serif'
+  			],
+  			mono: [
+  				'Roboto Mono',
+  				'ui-monospace',
+  				'SFMono-Regular',
+  				'Menlo',
+  				'Monaco',
+  				'Consolas',
+  				'Liberation Mono',
+  				'Courier New',
+  				'monospace'
+  			]
+  		}
   	}
   },
   plugins: [require("tailwindcss-animate")],
