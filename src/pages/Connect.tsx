@@ -140,19 +140,25 @@ const Connect = () => {
                   <h3 className="font-semibold mb-4">Follow Us</h3>
                   <div className="flex gap-4">
                     <a
-                      href="#"
+                      href="https://www.linkedin.com/company/createmedia-pro/"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
                     >
                       <Linkedin size={20} />
                     </a>
                     <a
-                      href="#"
+                      href="https://x.com/CREATEMEDIA225"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
                     >
                       <Twitter size={20} />
                     </a>
                     <a
-                      href="#"
+                      href="https://www.instagram.com/createmedia22?igsh=MThnemR0MTV5bTNrdQ=="
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
                     >
                       <Instagram size={20} />

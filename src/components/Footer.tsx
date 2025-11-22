@@ -80,10 +80,10 @@ const Footer = () => {
               </li>
             </ul>
             <div className="flex gap-4 mt-4">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://www.linkedin.com/company/createmedia-pro/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                 <Linkedin size={20} />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://x.com/CREATEMEDIA225" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                 <Twitter size={20} />
               </a>
               <a href="https://www.instagram.com/createmedia22?igsh=MThnemR0MTV5bTNrdQ==" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
