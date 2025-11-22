@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import { Button } from "./ui/button";
 import logo from "@/assets/create-media-logo.png";
 
 const Navigation = () => {
@@ -28,13 +27,7 @@ const Navigation = () => {
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-background/80 backdrop-blur-lg border-b border-border shadow-sm"
-          : "bg-transparent"
-      }`}
-    >
+    <nav className="fixed top-0 left-0 right-0 z-50 navbar-liquid">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 hover-lift">
@@ -48,18 +41,21 @@ const Navigation = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
+                className={`text-sm font-medium nav-link-liquid px-4 py-2 rounded-xl ${
                   location.pathname === link.path
-                    ? "text-primary"
-                    : "text-muted-foreground"
+                    ? "text-foreground"
+                    : "text-foreground/80"
                 }`}
               >
                 {link.name}
               </Link>
             ))}
-            <Button variant="default" size="sm" asChild>
-              <Link to="/visionlab">Get Started</Link>
-            </Button>
+            <Link 
+              to="/visionlab" 
+              className="text-sm font-semibold px-5 py-2 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition-all"
+            >
+              Get Started
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -80,20 +76,22 @@ const Navigation = () => {
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-sm font-medium transition-colors hover:text-primary ${
+                  className={`text-sm font-medium nav-link-liquid px-4 py-2 rounded-xl ${
                     location.pathname === link.path
-                      ? "text-primary"
-                      : "text-muted-foreground"
+                      ? "text-foreground"
+                      : "text-foreground/80"
                   }`}
                 >
                   {link.name}
                 </Link>
               ))}
-              <Button variant="default" size="sm" asChild className="w-full">
-                <Link to="/visionlab" onClick={() => setIsMobileMenuOpen(false)}>
-                  Get Started
-                </Link>
-              </Button>
+              <Link 
+                to="/visionlab" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-sm font-semibold px-5 py-2 rounded-xl bg-primary text-primary-foreground text-center hover:bg-primary/90 transition-all"
+              >
+                Get Started
+              </Link>
             </div>
           </div>
         )}

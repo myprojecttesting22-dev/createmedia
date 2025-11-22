@@ -297,4 +297,23 @@ All colors MUST be HSL.
       font-size: 1.125rem;
     }
   }
+  
+  /* Liquid Glass Navigation */
+  .navbar-liquid {
+    background: hsla(0, 0%, 100%, 0.08);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    filter: url(#liquid-distortion);
+    border-bottom: 1px solid hsla(0, 0%, 100%, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+  
+  .nav-link-liquid {
+    transition: background 0.3s ease, transform 0.1s ease;
+  }
+  
+  .nav-link-liquid:hover {
+    background: hsla(0, 0%, 100%, 0.15);
+    transform: scale(1.05);
+  }
 }
