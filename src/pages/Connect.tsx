@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Calendar, Linkedin, Twitter, Instagram } from "lucide-react";
+import { Mail, Calendar, Linkedin, Twitter, Instagram, Youtube } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
 
@@ -162,6 +162,14 @@ const Connect = () => {
                       className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
                     >
                       <Instagram size={20} />
+                    </a>
+                    <a
+                      href="https://www.youtube.com/@CREATEMEDIA-cd6wx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
+                    >
+                      <Youtube size={20} />
                     </a>
                   </div>
                 </div>
