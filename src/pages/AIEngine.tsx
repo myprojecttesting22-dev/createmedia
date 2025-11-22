@@ -166,63 +166,81 @@ const AIEngine = () => {
           </div>
 
           {/* Create IQ AI Section */}
-          <div className="max-w-4xl mx-auto animate-slide-up">
-            <Card className="border-2 border-primary">
+          <div className="max-w-6xl mx-auto animate-slide-up">
+            <Card className="border-2 border-primary/20">
               <CardContent className="p-12">
-                <div className="flex items-center gap-3 mb-6">
+                <div className="flex items-center gap-3 mb-8">
                   <div className="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center">
                     <TrendingUp className="text-primary" size={32} />
                   </div>
                   <div>
-                    <h2 className="text-3xl font-bold">Create IQ AI</h2>
-                    <p className="text-primary font-medium">
-                      AI-powered intelligence for brand growth
+                    <h2 className="text-4xl font-bold">Create IQ AI</h2>
+                    <p className="text-primary font-medium text-lg">
+                      Premium intelligence for real estate dominance
                     </p>
                   </div>
                 </div>
 
-                <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                  Create IQ AI is our flagship artificial intelligence system designed
-                  specifically for launching projects and scaling real estate brands. It
-                  combines advanced machine learning algorithms with deep industry knowledge
-                  to deliver intelligent automation and strategic insights.
+                <p className="text-xl text-foreground mb-12 leading-relaxed max-w-3xl">
+                  Built for brands that refuse to blend in. Create IQ AI transforms how real estate leaders launch, scale, and dominate their markets. Pure intelligence. Zero compromise.
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                  <div className="p-4 bg-muted rounded-lg">
-                    <h3 className="font-semibold mb-2">Project Launch Intelligence</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Automated systems that handle project launches from content creation
-                      to distribution, ensuring maximum impact from day one.
-                    </p>
+                {/* Product Pillars */}
+                <div className="space-y-8">
+                  {/* Human Clone Studio */}
+                  <div className="p-8 rounded-xl bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/20 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-primary/5 blur-3xl" />
+                    <div className="relative z-10">
+                      <h3 className="text-3xl font-bold mb-4" style={{ textShadow: '0 0 20px rgba(59, 130, 246, 0.4)' }}>
+                        HUMAN CLONE STUDIO
+                      </h3>
+                      <p className="text-lg text-foreground/90 leading-relaxed">
+                        Photorealistic AI avatars with voice cloning technology. Your presence, multiplied across every platform, building trust at scale.
+                      </p>
+                    </div>
                   </div>
 
-                  <div className="p-4 bg-muted rounded-lg">
-                    <h3 className="font-semibold mb-2">Brand Scaling Automation</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Intelligent workflows that grow your brand presence exponentially
-                      while maintaining quality and consistency.
-                    </p>
+                  {/* Follow-Through Automation */}
+                  <div className="p-8 rounded-xl bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/20 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-primary/5 blur-3xl" />
+                    <div className="relative z-10">
+                      <h3 className="text-3xl font-bold mb-4" style={{ textShadow: '0 0 20px rgba(59, 130, 246, 0.4)' }}>
+                        FOLLOW-THROUGH AUTOMATION
+                      </h3>
+                      <p className="text-lg text-foreground/90 leading-relaxed">
+                        Intelligent message campaigns that never miss. Precision follow-ups that convert prospects into clients while you focus on closing.
+                      </p>
+                    </div>
                   </div>
 
-                  <div className="p-4 bg-muted rounded-lg">
-                    <h3 className="font-semibold mb-2">Content Ecosystem Management</h3>
-                    <p className="text-sm text-muted-foreground">
-                      AI-driven systems that create, distribute, and optimize content across
-                      your entire digital ecosystem.
-                    </p>
+                  {/* Creator Distribution Network */}
+                  <div className="p-8 rounded-xl bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/20 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-primary/5 blur-3xl" />
+                    <div className="relative z-10">
+                      <h3 className="text-3xl font-bold mb-4" style={{ textShadow: '0 0 20px rgba(59, 130, 246, 0.4)' }}>
+                        CREATOR DISTRIBUTION NETWORK
+                      </h3>
+                      <p className="text-lg text-foreground/90 leading-relaxed">
+                        Exclusive access to elite content creators and clippers. Strategic distribution that protects your brand while maximizing reach.
+                      </p>
+                    </div>
                   </div>
 
-                  <div className="p-4 bg-muted rounded-lg">
-                    <h3 className="font-semibold mb-2">Performance Optimization</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Continuous learning algorithms that analyze results and automatically
-                      optimize your marketing strategies.
-                    </p>
+                  {/* Visual Intelligence Suite */}
+                  <div className="p-8 rounded-xl bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/20 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-primary/5 blur-3xl" />
+                    <div className="relative z-10">
+                      <h3 className="text-3xl font-bold mb-4" style={{ textShadow: '0 0 20px rgba(59, 130, 246, 0.4)' }}>
+                        VISUAL INTELLIGENCE SUITE
+                      </h3>
+                      <p className="text-lg text-foreground/90 leading-relaxed">
+                        Full-spectrum AI content generation: 3D renders, cinematic video, infographics, social posts. Every visual engineered for brand impact.
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="text-center">
+                <div className="text-center mt-12">
                   <Button size="lg" asChild>
                     <Link to="/visionlab">
                       Explore Create IQ AI <ArrowRight className="ml-2" size={20} />
