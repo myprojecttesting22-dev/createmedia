@@ -149,15 +149,15 @@ const AIEngine = () => {
             {features.map((feature, index) => (
               <Card
                 key={feature.title}
-                className="hover-lift animate-slide-up"
+                className="liquid-glass-element liquid-glass-element--dark hover-lift animate-slide-up"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <CardContent className="p-8">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <div className="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center mb-4">
                     <feature.icon className="text-primary" size={24} />
                   </div>
                   <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-foreground/80 leading-relaxed">
                     {feature.description}
                   </p>
                 </CardContent>
@@ -188,10 +188,9 @@ const AIEngine = () => {
                 {/* Product Pillars */}
                 <div className="space-y-8">
                   {/* Human Clone Studio */}
-                  <div className="p-8 rounded-xl bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/20 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-primary/5 blur-3xl" />
+                  <div className="p-8 rounded-xl liquid-glass-element liquid-glass-element--dark border border-primary/20 relative overflow-hidden hover-lift">
                     <div className="relative z-10">
-                      <h3 className="text-3xl font-bold mb-4" style={{ textShadow: '0 0 20px rgba(59, 130, 246, 0.4)' }}>
+                      <h3 className="text-3xl font-bold mb-4" style={{ textShadow: '0 0 20px rgba(59, 130, 246, 0.4)', color: '#FFFFFF' }}>
                         HUMAN CLONE STUDIO
                       </h3>
                       <p className="text-lg text-foreground/90 leading-relaxed">
@@ -201,10 +200,9 @@ const AIEngine = () => {
                   </div>
 
                   {/* Follow-Through Automation */}
-                  <div className="p-8 rounded-xl bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/20 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-primary/5 blur-3xl" />
+                  <div className="p-8 rounded-xl liquid-glass-element liquid-glass-element--dark border border-primary/20 relative overflow-hidden hover-lift">
                     <div className="relative z-10">
-                      <h3 className="text-3xl font-bold mb-4" style={{ textShadow: '0 0 20px rgba(59, 130, 246, 0.4)' }}>
+                      <h3 className="text-3xl font-bold mb-4" style={{ textShadow: '0 0 20px rgba(59, 130, 246, 0.4)', color: '#FFFFFF' }}>
                         FOLLOW-THROUGH AUTOMATION
                       </h3>
                       <p className="text-lg text-foreground/90 leading-relaxed">
@@ -214,10 +212,9 @@ const AIEngine = () => {
                   </div>
 
                   {/* Creator Distribution Network */}
-                  <div className="p-8 rounded-xl bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/20 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-primary/5 blur-3xl" />
+                  <div className="p-8 rounded-xl liquid-glass-element liquid-glass-element--dark border border-primary/20 relative overflow-hidden hover-lift">
                     <div className="relative z-10">
-                      <h3 className="text-3xl font-bold mb-4" style={{ textShadow: '0 0 20px rgba(59, 130, 246, 0.4)' }}>
+                      <h3 className="text-3xl font-bold mb-4" style={{ textShadow: '0 0 20px rgba(59, 130, 246, 0.4)', color: '#FFFFFF' }}>
                         CREATOR DISTRIBUTION NETWORK
                       </h3>
                       <p className="text-lg text-foreground/90 leading-relaxed">
@@ -227,10 +224,9 @@ const AIEngine = () => {
                   </div>
 
                   {/* Visual Intelligence Suite */}
-                  <div className="p-8 rounded-xl bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/20 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-primary/5 blur-3xl" />
+                  <div className="p-8 rounded-xl liquid-glass-element liquid-glass-element--dark border border-primary/20 relative overflow-hidden hover-lift">
                     <div className="relative z-10">
-                      <h3 className="text-3xl font-bold mb-4" style={{ textShadow: '0 0 20px rgba(59, 130, 246, 0.4)' }}>
+                      <h3 className="text-3xl font-bold mb-4" style={{ textShadow: '0 0 20px rgba(59, 130, 246, 0.4)', color: '#FFFFFF' }}>
                         VISUAL INTELLIGENCE SUITE
                       </h3>
                       <p className="text-lg text-foreground/90 leading-relaxed">
@@ -241,7 +237,7 @@ const AIEngine = () => {
                 </div>
 
                 <div className="text-center mt-12">
-                  <Button size="lg" asChild>
+                  <Button size="lg" variant="liquid-glass" asChild>
                     <Link to="/visionlab">
                       Explore Create IQ AI <ArrowRight className="ml-2" size={20} />
                     </Link>
