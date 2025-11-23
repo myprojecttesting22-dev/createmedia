@@ -4,25 +4,8 @@ import { Menu, X } from "lucide-react";
 import logo from "@/assets/create-media-logo.png";
 
 const Navigation = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDarkText, setIsDarkText] = useState(false);
   const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-      
-      // Adaptive contrast: detect light sections
-      // This is a simplified approach - detects if we're past a certain scroll threshold
-      // You can enhance this by checking actual section backgrounds
-      const lightSectionThreshold = window.innerHeight * 0.8;
-      setIsDarkText(window.scrollY > lightSectionThreshold);
-    };
-    
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -35,12 +18,12 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 navbar-liquid navbar-wrapper ${isDarkText ? 'text-dark' : ''}`}>
+    <nav className="fixed top-0 left-0 right-0 z-50 navbar-liquid navbar-wrapper">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 hover-lift">
             <img src={logo} alt="CREATE MEDIA" className="h-12 w-12 rounded-full" />
-            <span className="text-xl font-bold text-foreground">CREATE MEDIA</span>
+            <span className="text-xl font-bold nav-brand">CREATE MEDIA</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -49,11 +32,7 @@ const Navigation = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm font-medium nav-link-liquid px-4 py-2 rounded-xl ${
-                  location.pathname === link.path
-                    ? "text-foreground"
-                    : "text-foreground/80"
-                }`}
+                className="text-sm font-medium nav-link-liquid px-4 py-2 rounded-xl"
               >
                 {link.name}
               </Link>
@@ -84,11 +63,7 @@ const Navigation = () => {
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-sm font-medium nav-link-liquid px-4 py-2 rounded-xl ${
-                    location.pathname === link.path
-                      ? "text-foreground"
-                      : "text-foreground/80"
-                  }`}
+                  className="text-sm font-medium nav-link-liquid px-4 py-2 rounded-xl"
                 >
                   {link.name}
                 </Link>
