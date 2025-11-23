@@ -94,25 +94,25 @@ const VisionLab = () => {
               </p>
               
               <div className="space-y-4">
-                <div className="p-4 bg-card rounded-lg border border-border">
+                <div className="p-4 liquid-glass-element liquid-glass-element--dark rounded-lg border border-primary/20">
                   <h3 className="font-semibold mb-2">Tailored Solutions</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-foreground/80">
                     Custom content strategies designed around your brand's goals and
                     target audience.
                   </p>
                 </div>
                 
-                <div className="p-4 bg-card rounded-lg border border-border">
+                <div className="p-4 liquid-glass-element liquid-glass-element--dark rounded-lg border border-primary/20">
                   <h3 className="font-semibold mb-2">Expert Collaboration</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-foreground/80">
                     Work directly with our creative team to develop innovative solutions
                     for your brand.
                   </p>
                 </div>
                 
-                <div className="p-4 bg-card rounded-lg border border-border">
+                <div className="p-4 liquid-glass-element liquid-glass-element--dark rounded-lg border border-primary/20">
                   <h3 className="font-semibold mb-2">End-to-End Support</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-foreground/80">
                     From concept to execution, we guide you through every step of your
                     custom project.
                   </p>
@@ -120,7 +120,7 @@ const VisionLab = () => {
               </div>
             </div>
 
-            <Card className="animate-slide-up">
+            <Card className="liquid-glass-element liquid-glass-element--dark animate-slide-up">
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold mb-6">Request Your Custom Plan</h3>
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -177,7 +177,7 @@ const VisionLab = () => {
                     />
                   </div>
 
-                  <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                  <Button type="submit" size="lg" variant="liquid-glass" className="w-full" disabled={isSubmitting}>
                     {isSubmitting ? "Submitting..." : "Submit Request"}
                   </Button>
                 </form>

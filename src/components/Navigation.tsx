@@ -39,7 +39,7 @@ const Navigation = () => {
             ))}
             <Link 
               to="/visionlab" 
-              className="text-sm font-semibold px-5 py-2 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition-all"
+              className="text-sm font-semibold px-5 py-2 rounded-xl liquid-glass-element liquid-glass-element--blue border border-primary/20 hover:bg-primary/30 transition-all"
             >
               Get Started
             </Link>
@@ -71,7 +71,7 @@ const Navigation = () => {
               <Link 
                 to="/visionlab" 
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-sm font-semibold px-5 py-2 rounded-xl bg-primary text-primary-foreground text-center hover:bg-primary/90 transition-all"
+                className="text-sm font-semibold px-5 py-2 rounded-xl text-center liquid-glass-element liquid-glass-element--blue border border-primary/20 hover:bg-primary/30 transition-all"
               >
                 Get Started
               </Link>

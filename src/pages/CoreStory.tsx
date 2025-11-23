@@ -29,39 +29,39 @@ const CoreStory = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card className="hover-lift">
+              <Card className="liquid-glass-element liquid-glass-element--dark hover-lift">
                 <CardContent className="pt-6">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <div className="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center mb-4">
                     <Target className="text-primary" size={24} />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Strategic Vision</h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-foreground/80">
                     We develop comprehensive content strategies tailored to your brand's
                     unique voice and goals.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="hover-lift">
+              <Card className="liquid-glass-element liquid-glass-element--dark hover-lift">
                 <CardContent className="pt-6">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <div className="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center mb-4">
                     <Lightbulb className="text-primary" size={24} />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Creative Innovation</h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-foreground/80">
                     Combining human creativity with AI-driven insights to produce content
                     that resonates.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="hover-lift">
+              <Card className="liquid-glass-element liquid-glass-element--dark hover-lift">
                 <CardContent className="pt-6">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <div className="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center mb-4">
                     <Rocket className="text-primary" size={24} />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Scalable Growth</h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-foreground/80">
                     Automated systems that grow with your business, keeping you visible
                     everywhere.
                   </p>
@@ -85,30 +85,30 @@ const CoreStory = () => {
             <div>
               <h2 className="text-3xl font-bold mb-4">Our Approach</h2>
               <div className="space-y-4">
-                <div className="p-6 bg-card rounded-lg border border-border">
+                <div className="p-6 liquid-glass-element liquid-glass-element--dark rounded-lg border border-primary/20">
                   <h3 className="text-xl font-semibold mb-2">1. Understand</h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-foreground/80">
                     We dive deep into your brand identity, target audience, and business
                     goals to create a foundation for success.
                   </p>
                 </div>
-                <div className="p-6 bg-card rounded-lg border border-border">
+                <div className="p-6 liquid-glass-element liquid-glass-element--dark rounded-lg border border-primary/20">
                   <h3 className="text-xl font-semibold mb-2">2. Create</h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-foreground/80">
                     Our team produces high-impact content that captures attention and
                     drives engagement across all platforms.
                   </p>
                 </div>
-                <div className="p-6 bg-card rounded-lg border border-border">
+                <div className="p-6 liquid-glass-element liquid-glass-element--dark rounded-lg border border-primary/20">
                   <h3 className="text-xl font-semibold mb-2">3. Amplify</h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-foreground/80">
                     Using AI-driven repurposing and automated distribution, we ensure
                     your content reaches the right audience at the right time.
                   </p>
                 </div>
-                <div className="p-6 bg-card rounded-lg border border-border">
+                <div className="p-6 liquid-glass-element liquid-glass-element--dark rounded-lg border border-primary/20">
                   <h3 className="text-xl font-semibold mb-2">4. Optimize</h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-foreground/80">
                     Continuous analysis and refinement ensure your content strategy
                     evolves with your business and market trends.
                   </p>
