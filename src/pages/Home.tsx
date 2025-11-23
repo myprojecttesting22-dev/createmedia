@@ -48,12 +48,12 @@ const Home = () => {
               and automated marketing systems.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" asChild>
+              <Button size="lg" variant="liquid-glass" asChild>
                 <Link to="/visionlab">
                   Start Your Project <ArrowRight className="ml-2" size={20} />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" asChild>
+              <Button size="lg" variant="liquid-glass" asChild>
                 <Link to="/core-story">Learn More</Link>
               </Button>
             </div>
@@ -78,22 +78,22 @@ const Home = () => {
             {services.map((service, index) => (
               <Card
                 key={service.title}
-                className="hover-lift border-border bg-card"
+                className="liquid-glass-element liquid-glass-element--dark hover-lift border-border"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <CardContent className="pt-6">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <div className="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center mb-4">
                     <service.icon className="text-primary" size={24} />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                  <p className="text-muted-foreground">{service.description}</p>
+                  <p className="text-foreground/80">{service.description}</p>
                 </CardContent>
               </Card>
             ))}
           </div>
 
           <div className="text-center mt-12">
-            <Button variant="outline" size="lg" asChild>
+            <Button variant="liquid-glass" size="lg" asChild>
               <Link to="/create-suite">
                 Explore All Services <ArrowRight className="ml-2" size={20} />
               </Link>
@@ -114,7 +114,7 @@ const Home = () => {
                 Let's build your next growth system with AI-powered intelligence and
                 automated marketing solutions.
               </p>
-              <Button size="lg" className="bg-black/60 hover:bg-black/80 text-white border border-white/20" asChild>
+              <Button size="lg" variant="liquid-glass" asChild>
                 <Link to="/visionlab">
                   Request Custom Plan <ArrowRight className="ml-2" size={20} />
                 </Link>

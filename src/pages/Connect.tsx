@@ -96,15 +96,15 @@ const Connect = () => {
                   href="mailto:vansh@createmedia.pro"
                   className="block transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)]"
                 >
-                  <Card className="cursor-pointer">
+                  <Card className="liquid-glass-element liquid-glass-element--dark cursor-pointer border-primary/20">
                     <CardContent className="p-6">
                       <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <div className="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
                           <Mail className="text-primary" size={24} />
                         </div>
                         <div>
                           <h3 className="font-semibold mb-1">Email</h3>
-                          <p className="text-muted-foreground">
+                          <p className="text-foreground/80">
                             vansh@createmedia.pro
                           </p>
                         </div>
@@ -119,15 +119,15 @@ const Connect = () => {
                   rel="noopener noreferrer"
                   className="block transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)]"
                 >
-                  <Card className="cursor-pointer">
+                  <Card className="liquid-glass-element liquid-glass-element--dark cursor-pointer border-primary/20">
                     <CardContent className="p-6">
                       <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <div className="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
                           <Calendar className="text-primary" size={24} />
                         </div>
                         <div>
                           <h3 className="font-semibold mb-1">Schedule a Meeting</h3>
-                          <p className="text-muted-foreground">
+                          <p className="text-foreground/80">
                             Book an appointment
                           </p>
                         </div>
@@ -176,7 +176,7 @@ const Connect = () => {
               </div>
             </div>
 
-            <Card className="animate-slide-up">
+            <Card className="liquid-glass-element liquid-glass-element--dark animate-slide-up">
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold mb-6">Send Us a Message</h3>
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -233,7 +233,7 @@ const Connect = () => {
                     />
                   </div>
 
-                  <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                  <Button type="submit" size="lg" variant="liquid-glass" className="w-full" disabled={isSubmitting}>
                     {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>

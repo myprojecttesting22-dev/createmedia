@@ -74,7 +74,7 @@ const TrustFrame = () => {
             {testimonials.map((testimonial, index) => (
               <Card
                 key={testimonial.name}
-                className="animate-slide-up backdrop-blur-sm bg-card/80 border-border/50 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-card/90"
+                className="liquid-glass-element liquid-glass-element--dark animate-slide-up hover-lift border-primary/20 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 <CardContent className="p-6">
@@ -84,7 +84,7 @@ const TrustFrame = () => {
                     ))}
                   </div>
                   
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                  <p className="text-foreground/80 mb-6 leading-relaxed">
                     "{testimonial.content}"
                   </p>
                   
@@ -102,7 +102,7 @@ const TrustFrame = () => {
 
           <div className="mt-20 mb-16">
             <div className="max-w-5xl mx-auto">
-              <Card className="backdrop-blur-sm bg-card/80 border-border/50 shadow-2xl overflow-hidden">
+              <Card className="liquid-glass-element liquid-glass-element--dark border-primary/20 shadow-2xl overflow-hidden">
                 <CardContent className="p-0">
                   <div className="grid md:grid-cols-1 gap-0">
                     <div className="p-8 md:p-12">

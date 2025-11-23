@@ -92,13 +92,13 @@ const CreateSuite = () => {
             {services.map((service, index) => (
               <Card
                 key={service.title}
-                className="hover-lift animate-slide-up"
+                className="liquid-glass-element liquid-glass-element--dark hover-lift animate-slide-up"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <CardContent className="p-8 md:p-12">
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <div className="lg:col-span-1">
-                      <div className="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                      <div className="w-16 h-16 rounded-lg bg-primary/20 flex items-center justify-center mb-4">
                         <service.icon className="text-primary" size={32} />
                       </div>
                       <h2 className="text-3xl font-bold mb-2">{service.title}</h2>
@@ -106,7 +106,7 @@ const CreateSuite = () => {
                     </div>
                     
                     <div className="lg:col-span-2">
-                      <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                      <p className="text-lg text-foreground/80 mb-6 leading-relaxed">
                         {service.description}
                       </p>
                       
@@ -115,7 +115,7 @@ const CreateSuite = () => {
                         {service.features.map((feature) => (
                           <li key={feature} className="flex items-start gap-2">
                             <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2" />
-                            <span className="text-muted-foreground">{feature}</span>
+                            <span className="text-foreground/80">{feature}</span>
                           </li>
                         ))}
                       </ul>
@@ -127,7 +127,7 @@ const CreateSuite = () => {
           </div>
 
           <div className="text-center mt-12">
-            <Button size="lg" asChild>
+            <Button size="lg" variant="liquid-glass" asChild>
               <Link to="/visionlab">
                 Request Custom Plan <ArrowRight className="ml-2" size={20} />
               </Link>
