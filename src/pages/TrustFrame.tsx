@@ -3,8 +3,11 @@ import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Star } from "lucide-react";
+import { useState } from "react";
 
 const TrustFrame = () => {
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  
   const testimonials = [
     {
       name: "Sarah Mitchell",
@@ -105,17 +108,36 @@ const TrustFrame = () => {
               <Card className="liquid-glass-element liquid-glass-element--dark border-primary/20 shadow-2xl overflow-hidden">
                 <CardContent className="p-0">
                   <div className="grid md:grid-cols-1 gap-0">
-                  <div className="p-8 md:p-12">
-                      <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg overflow-hidden shadow-lg relative">
-                        <iframe
-                          src="https://www.youtube.com/embed/oc4uk_fTdO8?rel=0&modestbranding=1&showinfo=0"
-                          title="Active Lanes Testimonial"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                          loading="lazy"
-                          className="w-full h-full"
-                          style={{ border: 'none' }}
-                        />
+                    <div className="p-8 md:p-12">
+                      <AspectRatio 
+                        ratio={16 / 9} 
+                        className="bg-muted rounded-lg overflow-hidden shadow-lg relative group cursor-pointer"
+                        onClick={() => setIsVideoPlaying(true)}
+                      >
+                        {!isVideoPlaying ? (
+                          <>
+                            <img 
+                              src="https://img.youtube.com/vi/oc4uk_fTdO8/maxresdefault.jpg"
+                              alt="Active Lanes Testimonial Video Thumbnail"
+                              className="w-full h-full object-cover"
+                              loading="eager"
+                            />
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors">
+                              <div className="w-20 h-20 rounded-full bg-primary/90 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <div className="w-0 h-0 border-l-[20px] border-l-white border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1"></div>
+                              </div>
+                            </div>
+                          </>
+                        ) : (
+                          <iframe
+                            src="https://www.youtube.com/embed/oc4uk_fTdO8?autoplay=1&rel=0&modestbranding=1"
+                            title="Active Lanes Testimonial"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            className="absolute inset-0 w-full h-full"
+                            style={{ border: 'none' }}
+                          />
+                        )}
                       </AspectRatio>
                       <h3 className="text-2xl md:text-3xl font-bold mt-8 text-center leading-relaxed">
                         Trusted by High-Impact Innovators — Harman, Founder of Active Lanes
