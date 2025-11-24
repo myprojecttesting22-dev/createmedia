@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BrandMarquee from "@/components/BrandMarquee";
+import StatCircle from "@/components/StatCircle";
 
 const Home = () => {
   const services = [
@@ -63,6 +64,42 @@ const Home = () => {
 
       {/* Brand Marquee */}
       <BrandMarquee />
+
+      {/* Trust Bar - Statistics */}
+      <section className="py-20 px-6 bg-gradient-to-b from-background to-muted/50">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">Trust Bar</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Real numbers, real impact, real results for our clients
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+            <StatCircle
+              value="34+"
+              label="Clients Served"
+              percentage={75}
+              color="blue"
+              delay={0}
+            />
+            <StatCircle
+              value="22M+"
+              label="Views Generated"
+              percentage={90}
+              color="purple"
+              delay={200}
+            />
+            <StatCircle
+              value="104K+"
+              label="Revenue Growth"
+              percentage={85}
+              color="cyan"
+              delay={400}
+            />
+          </div>
+        </div>
+      </section>
 
       {/* Services Grid */}
       <section className="py-20 px-6">
