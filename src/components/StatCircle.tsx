@@ -48,7 +48,10 @@ const StatCircle = ({ value, label, percentage, color, delay = 0 }: StatCirclePr
   useEffect(() => {
     if (!isVisible) return;
 
-    const targetNumber = parseInt(value.replace(/\D/g, ""));
+    // Extract just the numbers from the value string
+    const numericValue = value.replace(/\D/g, "");
+    const targetNumber = parseInt(numericValue);
+    
     const duration = 2000;
     const steps = 60;
     const increment = targetNumber / steps;
@@ -68,11 +71,12 @@ const StatCircle = ({ value, label, percentage, color, delay = 0 }: StatCirclePr
   }, [isVisible, value]);
 
   const formatCount = (num: number) => {
+    // Check the original value string for suffix type
     if (value.includes("M")) {
-      return `${(num / 1000000).toFixed(1)}M+`;
+      return `${num}M+`;
     }
     if (value.includes("K")) {
-      return `${(num / 1000).toFixed(0)}K+`;
+      return `${num}K+`;
     }
     return `${num}+`;
   };
