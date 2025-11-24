@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Mail, Calendar, Linkedin, Twitter, Instagram, Youtube } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
 
 const formSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
@@ -234,7 +235,14 @@ const Connect = () => {
                   </div>
 
                   <Button type="submit" size="lg" variant="liquid-glass" className="w-full" disabled={isSubmitting}>
-                    {isSubmitting ? "Sending..." : "Send Message"}
+                    {isSubmitting ? (
+                      <>
+                        <LoadingSpinner size="sm" className="mr-2" />
+                        Sending...
+                      </>
+                    ) : (
+                      "Send Message"
+                    )}
                   </Button>
                 </form>
               </CardContent>

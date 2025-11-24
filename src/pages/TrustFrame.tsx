@@ -105,14 +105,16 @@ const TrustFrame = () => {
               <Card className="liquid-glass-element liquid-glass-element--dark border-primary/20 shadow-2xl overflow-hidden">
                 <CardContent className="p-0">
                   <div className="grid md:grid-cols-1 gap-0">
-                    <div className="p-8 md:p-12">
-                      <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg overflow-hidden shadow-lg">
+                  <div className="p-8 md:p-12">
+                      <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg overflow-hidden shadow-lg relative">
                         <iframe
-                          src="https://www.youtube.com/embed/oc4uk_fTdO8"
+                          src="https://www.youtube.com/embed/oc4uk_fTdO8?rel=0&modestbranding=1&showinfo=0"
                           title="Active Lanes Testimonial"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                           allowFullScreen
+                          loading="lazy"
                           className="w-full h-full"
+                          style={{ border: 'none' }}
                         />
                       </AspectRatio>
                       <h3 className="text-2xl md:text-3xl font-bold mt-8 text-center leading-relaxed">

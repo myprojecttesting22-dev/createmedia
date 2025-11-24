@@ -9,6 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
 
 const formSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
@@ -178,7 +179,14 @@ const VisionLab = () => {
                   </div>
 
                   <Button type="submit" size="lg" variant="liquid-glass" className="w-full" disabled={isSubmitting}>
-                    {isSubmitting ? "Submitting..." : "Submit Request"}
+                    {isSubmitting ? (
+                      <>
+                        <LoadingSpinner size="sm" className="mr-2" />
+                        Submitting...
+                      </>
+                    ) : (
+                      "Submit Request"
+                    )}
                   </Button>
                 </form>
               </CardContent>
