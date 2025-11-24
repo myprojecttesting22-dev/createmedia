@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Star } from "lucide-react";
 import { useState } from "react";
+import StatCircle from "@/components/StatCircle";
 
 const TrustFrame = () => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -71,6 +72,33 @@ const TrustFrame = () => {
               Success stories from real estate brands that trust us to amplify their
               presence and drive growth
             </p>
+          </div>
+
+          {/* Trust Bar - Circular Stats */}
+          <div className="mb-20">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+              <StatCircle 
+                value="34" 
+                label="Clients Served" 
+                percentage={75}
+                color="blue"
+                delay={0}
+              />
+              <StatCircle 
+                value="22M" 
+                label="Views Generated" 
+                percentage={90}
+                color="purple"
+                delay={200}
+              />
+              <StatCircle 
+                value="104K" 
+                label="Revenue Growth" 
+                percentage={85}
+                color="cyan"
+                delay={400}
+              />
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
