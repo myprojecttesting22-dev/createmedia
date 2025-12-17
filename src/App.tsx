@@ -10,6 +10,7 @@ import VisionLab from "./pages/VisionLab";
 import TrustFrame from "./pages/TrustFrame";
 import AIEngine from "./pages/AIEngine";
 import Connect from "./pages/Connect";
+import SnapCuts from "./pages/SnapCuts";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/trust-frame" element={<TrustFrame />} />
           <Route path="/ai-engine" element={<AIEngine />} />
           <Route path="/connect" element={<Connect />} />
+          <Route path="/snapcuts" element={<SnapCuts />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
