@@ -45,7 +45,7 @@ const SnapCuts = () => {
     },
     {
       icon: DollarSign,
-      title: "Earn per SnapCut™",
+      title: "Earn per SnapCut",
       description: "Get paid for each piece plus performance boosts.",
     },
     {
@@ -76,13 +76,13 @@ const SnapCuts = () => {
     },
     {
       step: 2,
-      title: "Craft SnapCuts™",
-      description: "You turn moments into SnapCuts™ optimized for speed and attention.",
+      title: "Craft SnapCuts",
+      description: "You turn moments into SnapCuts optimized for speed and attention.",
     },
     {
       step: 3,
       title: "Get Paid",
-      description: "SnapCuts™ get distributed across our network — and you get paid.",
+      description: "SnapCuts get distributed across our network — and you get paid.",
     },
   ];
 
@@ -106,13 +106,13 @@ const SnapCuts = () => {
         
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
-            SnapCuts™ — Powering Real Estate's
+            SnapCuts: Powering Real Estate's
             <br />
             <span className="text-primary">Fastest Rising Brands</span>
           </h1>
           
           <p className="text-lg md:text-xl text-[#B4B4B4] max-w-3xl mx-auto mb-10 leading-relaxed">
-            Join the Snapper™ network — a high-performance group turning raw moments into feeds that attract buyers, build authority, and generate momentum daily.
+            Join the Snapper network — a high-performance group turning raw moments into feeds that attract buyers, build authority, and generate momentum daily.
           </p>
 
           <a
@@ -159,10 +159,10 @@ const SnapCuts = () => {
             <div className="relative z-10">
               <p className="text-xl md:text-2xl text-[#B4B4B4] leading-relaxed mb-6">
                 Real estate needs constant visibility — more reach, more inquiries, more trust.
-                <span className="text-white font-medium"> SnapCuts™</span> help brokers and agents stay active in the feed every day, driving attention that turns into real sales.
+                <span className="text-white font-medium"> SnapCuts</span> help brokers and agents stay active in the feed every day, driving attention that turns into real sales.
               </p>
               <p className="text-xl md:text-2xl text-primary font-semibold">
-                Snappers™ become the force behind that growth.
+                Snappers become the force behind that growth.
               </p>
             </div>
           </div>
@@ -180,7 +180,7 @@ const SnapCuts = () => {
       >
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-4">
-            Why Join the <span className="text-primary">Snapper™</span> Network
+            Why Join the <span className="text-primary">Snapper</span> Network
           </h2>
           <p className="text-[#B4B4B4] text-center mb-16 text-lg">
             Built for those who move fast and deliver impact.
@@ -231,7 +231,7 @@ const SnapCuts = () => {
       >
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-4">
-            How <span className="text-primary">SnapCuts™</span> Works
+            How <span className="text-primary">SnapCuts</span> Works
           </h2>
           <p className="text-[#B4B4B4] text-center mb-16 text-lg">
             Three steps. Zero complexity.
@@ -284,7 +284,7 @@ const SnapCuts = () => {
       >
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            Who Can Become a <span className="text-primary">Snapper™</span>
+            Who Can Become a <span className="text-primary">Snapper</span>
           </h2>
           <p className="text-[#B4B4B4] mb-12 text-lg">
             If you cut fast and think in attention spans, you belong here.
@@ -336,10 +336,10 @@ const SnapCuts = () => {
             
             <div className="relative z-10">
               <p className="text-2xl md:text-4xl font-light text-white leading-relaxed mb-6">
-                <span className="text-primary font-semibold">SnapCuts™</span> turn raw footage into energy.
+                <span className="text-primary font-semibold">SnapCuts</span> turn raw footage into energy.
               </p>
               <p className="text-2xl md:text-4xl font-light text-white leading-relaxed">
-                <span className="text-primary font-semibold">Snappers™</span> turn that energy into reach, influence, and inbound demand.
+                <span className="text-primary font-semibold">Snappers</span> turn that energy into reach, influence, and inbound demand.
               </p>
             </div>
           </div>
@@ -366,7 +366,7 @@ const SnapCuts = () => {
             }}
           >
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-8">
-              Ready to join the <span className="text-primary">Snapper™</span> network?
+              Ready to join the <span className="text-primary">Snapper</span> network?
             </h3>
 
             <a

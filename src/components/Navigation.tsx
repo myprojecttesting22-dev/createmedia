@@ -14,6 +14,7 @@ const Navigation = () => {
     { name: "VisionLab", path: "/visionlab" },
     { name: "Trust Frame", path: "/trust-frame" },
     { name: "AI Engine", path: "/ai-engine" },
+    { name: "SnapCuts", path: "/snapcuts" },
     { name: "Connect Line", path: "/connect" },
   ];
 
