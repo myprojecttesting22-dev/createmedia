@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BrandMarquee from "@/components/BrandMarquee";
+import SystemFlowCards from "@/components/SystemFlowCards";
 
 const Home = () => {
   const services = [
@@ -63,6 +64,9 @@ const Home = () => {
 
       {/* Brand Marquee */}
       <BrandMarquee />
+
+      {/* System Flow Cards */}
+      <SystemFlowCards />
 
       {/* Services Grid */}
       <section className="py-20 px-6">
