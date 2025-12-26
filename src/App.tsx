@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ScrollArrow from "@/components/ScrollArrow";
 import Home from "./pages/Home";
 import CoreStory from "./pages/CoreStory";
 import CreateSuite from "./pages/CreateSuite";
@@ -21,6 +22,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollArrow />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/core-story" element={<CoreStory />} />
