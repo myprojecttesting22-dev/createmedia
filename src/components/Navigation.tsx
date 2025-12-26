@@ -48,7 +48,7 @@ const Navigation = () => {
             
             {/* Create Suite Dropdown */}
             <div 
-              className="relative"
+              className="relative group"
               onMouseEnter={() => setIsCreateSuiteOpen(true)}
               onMouseLeave={() => setIsCreateSuiteOpen(false)}
             >
@@ -61,17 +61,19 @@ const Navigation = () => {
               </button>
               
               {isCreateSuiteOpen && (
-                <div className="absolute top-full left-0 mt-2 min-w-[160px] rounded-xl bg-background/95 backdrop-blur-xl border border-border/50 shadow-lg z-50 overflow-hidden">
-                  {createSuiteDropdown.map((item) => (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      className="block px-4 py-3 text-sm font-medium text-foreground hover:bg-primary/10 transition-colors"
-                      onClick={() => setIsCreateSuiteOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
+                <div className="absolute top-full left-0 pt-2 min-w-[160px] z-50">
+                  <div className="rounded-xl bg-background/95 backdrop-blur-xl border border-border/50 shadow-lg overflow-hidden">
+                    {createSuiteDropdown.map((item) => (
+                      <Link
+                        key={item.path}
+                        to={item.path}
+                        className="block px-4 py-3 text-sm font-medium text-foreground hover:bg-primary/10 transition-colors"
+                        onClick={() => setIsCreateSuiteOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
