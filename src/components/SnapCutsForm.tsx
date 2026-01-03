@@ -1,10 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Check, Sparkles } from "lucide-react";
+import { ArrowRight, Check, X } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+import createMediaLogo from "@/assets/create-media-logo-2.png";
 
-const DISCORD_INVITE_URL = "https://discord.gg/your-invite-link"; // Replace with actual Discord invite
-const WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/your-webhook"; // Replace with actual webhook
+const DISCORD_INVITE_URL = "https://discord.com/channels/1243996870943182911/1243996871433785375";
 
 interface Question {
   id: string;
@@ -13,7 +14,7 @@ interface Question {
   type: "single" | "multi";
   options: string[];
   required?: boolean;
-  blockIfNot?: string; // Block submission unless this option is selected
+  blockIfNot?: string;
 }
 
 const questions: Question[] = [
@@ -92,18 +93,45 @@ const questions: Question[] = [
   },
 ];
 
+interface BasicsData {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  email: string;
+}
+
 type Answers = Record<string, string | string[]>;
 
-const SnapCutsForm = () => {
-  const [step, setStep] = useState<"intro" | number | "submitting" | "complete">("intro");
+type Step = "intro" | "basics" | number | "submitting" | "complete";
+
+interface SnapCutsFormProps {
+  onClose?: () => void;
+}
+
+const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
+  const [step, setStep] = useState<Step>("intro");
+  const [basics, setBasics] = useState<BasicsData>({ firstName: "", lastName: "", phone: "", email: "" });
   const [answers, setAnswers] = useState<Answers>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [flickerPhase, setFlickerPhase] = useState<"none" | "first" | "second">("none");
 
   const currentQuestion = typeof step === "number" ? questions[step] : null;
-  const totalQuestions = questions.length;
+  const totalSteps = questions.length + 1; // +1 for basics
+
+  const getCurrentStepNumber = () => {
+    if (step === "basics") return 1;
+    if (typeof step === "number") return step + 2;
+    return 0;
+  };
+
+  const canProceedBasics = () => {
+    return basics.firstName.trim() && basics.lastName.trim() && basics.phone.trim() && basics.email.trim();
+  };
 
   const canProceed = useCallback(() => {
     if (step === "intro") return true;
+    if (step === "basics") return canProceedBasics();
     if (typeof step !== "number") return false;
 
     const question = questions[step];
@@ -113,12 +141,17 @@ const SnapCutsForm = () => {
       return Array.isArray(answer) && answer.length > 0;
     }
     return !!answer;
-  }, [step, answers]);
+  }, [step, answers, basics]);
 
   const handleNext = useCallback(() => {
     if (!canProceed()) return;
 
     if (step === "intro") {
+      setStep("basics");
+      return;
+    }
+
+    if (step === "basics") {
       setStep(0);
       return;
     }
@@ -126,7 +159,6 @@ const SnapCutsForm = () => {
     if (typeof step === "number") {
       const question = questions[step];
 
-      // Check for blockIfNot condition
       if (question.blockIfNot) {
         const answer = answers[question.id];
         if (answer !== question.blockIfNot) {
@@ -135,18 +167,20 @@ const SnapCutsForm = () => {
         }
       }
 
-      if (step < totalQuestions - 1) {
+      if (step < questions.length - 1) {
         setStep(step + 1);
       } else {
         handleSubmit();
       }
     }
-  }, [step, canProceed, answers, totalQuestions]);
+  }, [step, canProceed, answers]);
 
   const handleBack = () => {
     if (typeof step === "number" && step > 0) {
       setStep(step - 1);
     } else if (step === 0) {
+      setStep("basics");
+    } else if (step === "basics") {
       setStep("intro");
     }
   };
@@ -161,7 +195,34 @@ const SnapCutsForm = () => {
         : [...current, option];
       setAnswers({ ...answers, [currentQuestion.id]: updated });
     } else {
+      // Single select with double flicker and auto-advance
+      setSelectedOption(option);
+      setFlickerPhase("first");
       setAnswers({ ...answers, [currentQuestion.id]: option });
+
+      // First flicker (answer captured)
+      setTimeout(() => {
+        setFlickerPhase("second");
+        
+        // Second flicker (transition cue) then advance
+        setTimeout(() => {
+          setFlickerPhase("none");
+          setSelectedOption(null);
+          
+          // Check if we can proceed and auto-advance
+          const question = questions[step as number];
+          if (question.blockIfNot && option !== question.blockIfNot) {
+            toast.error("You must agree to continue.");
+            return;
+          }
+          
+          if ((step as number) < questions.length - 1) {
+            setStep((step as number) + 1);
+          } else {
+            handleSubmit();
+          }
+        }, 150);
+      }, 150);
     }
   };
 
@@ -172,23 +233,34 @@ const SnapCutsForm = () => {
     try {
       const payload = {
         timestamp: new Date().toISOString(),
-        page: "SnapCuts",
-        ...answers,
+        source: "SnapCuts",
+        firstName: basics.firstName,
+        lastName: basics.lastName,
+        phone: basics.phone,
+        email: basics.email,
+        role: answers.role || "",
+        experience: answers.experience || "",
+        tools: Array.isArray(answers.tools) ? answers.tools.join(", ") : answers.tools || "",
+        niche_experience: answers.niche_experience || "",
+        motivation: answers.motivation || "",
+        integrity: answers.integrity || "",
+        agreement: answers.agreement || "",
       };
 
-      // Send to webhook
-      await fetch(WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-        mode: "no-cors", // For cross-origin webhooks
+      // Send to edge function
+      const { error } = await supabase.functions.invoke("submit-snapcuts-application", {
+        body: payload,
       });
+
+      if (error) {
+        throw error;
+      }
 
       setStep("complete");
     } catch (error) {
       console.error("Submission error:", error);
       toast.error("Something went wrong. Please try again.");
-      setStep(totalQuestions - 1);
+      setStep(questions.length - 1);
     } finally {
       setIsSubmitting(false);
     }
@@ -201,57 +273,63 @@ const SnapCutsForm = () => {
   // Keyboard support
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Enter" && canProceed()) {
+      if (e.key === "Enter" && canProceed() && step !== "intro") {
         e.preventDefault();
-        handleNext();
+        if (step === "basics" || (typeof step === "number" && currentQuestion?.type === "multi")) {
+          handleNext();
+        }
+      }
+      if (e.key === "Escape" && onClose) {
+        onClose();
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [canProceed, handleNext]);
+  }, [canProceed, handleNext, step, currentQuestion, onClose]);
 
   const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 100 : -100,
-      opacity: 0,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-    },
-    exit: (direction: number) => ({
-      x: direction < 0 ? 100 : -100,
-      opacity: 0,
-    }),
+    enter: { x: 100, opacity: 0 },
+    center: { x: 0, opacity: 1 },
+    exit: { x: -100, opacity: 0 },
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
-      <div className="w-full max-w-2xl">
+    <div className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+      {/* Close button */}
+      {onClose && (
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 md:top-6 md:right-6 p-2 rounded-full bg-card/50 border border-border text-muted-foreground hover:text-foreground hover:bg-card transition-colors z-50"
+        >
+          <X className="w-5 h-5" />
+        </button>
+      )}
+
+      <div className="w-full max-w-2xl my-auto">
         {/* Progress Indicator */}
-        {typeof step === "number" && (
+        {(step === "basics" || typeof step === "number") && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             className="mb-8"
           >
             <div className="flex items-center justify-between text-muted-foreground text-sm mb-3">
-              <span>Question {step + 1} of {totalQuestions}</span>
-              <span>{Math.round(((step + 1) / totalQuestions) * 100)}%</span>
+              <span>Step {getCurrentStepNumber()} of {totalSteps}</span>
+              <span>{Math.round((getCurrentStepNumber() / totalSteps) * 100)}%</span>
             </div>
             <div className="h-1 bg-muted rounded-full overflow-hidden">
               <motion.div
                 className="h-full bg-primary rounded-full"
                 initial={{ width: 0 }}
-                animate={{ width: `${((step + 1) / totalQuestions) * 100}%` }}
+                animate={{ width: `${(getCurrentStepNumber() / totalSteps) * 100}%` }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
               />
             </div>
           </motion.div>
         )}
 
-        <AnimatePresence mode="wait" custom={1}>
+        <AnimatePresence mode="wait">
           {/* Intro Screen */}
           {step === "intro" && (
             <motion.div
@@ -266,10 +344,14 @@ const SnapCutsForm = () => {
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                  className="w-20 h-20 mx-auto mb-8 rounded-2xl bg-primary/10 flex items-center justify-center"
+                  transition={{ delay: 0.2, type: "spring" as const, stiffness: 200 }}
+                  className="w-24 h-24 mx-auto mb-8"
                 >
-                  <Sparkles className="w-10 h-10 text-primary" />
+                  <img 
+                    src={createMediaLogo} 
+                    alt="CREATE MEDIA" 
+                    className="w-full h-full object-contain rounded-2xl"
+                  />
                 </motion.div>
 
                 <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
@@ -298,11 +380,105 @@ const SnapCutsForm = () => {
             </motion.div>
           )}
 
+          {/* Basics Step */}
+          {step === "basics" && (
+            <motion.div
+              key="basics"
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="liquid-glass rounded-3xl p-8 md:p-12"
+            >
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+                Basics
+              </h2>
+              <p className="text-muted-foreground mb-8">
+                Ensure these are correct, or you won't be able to join the community.
+              </p>
+
+              <div className="space-y-5 mb-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">First Name *</label>
+                    <input
+                      type="text"
+                      value={basics.firstName}
+                      onChange={(e) => setBasics({ ...basics, firstName: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-card/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                      placeholder="John"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">Last Name *</label>
+                    <input
+                      type="text"
+                      value={basics.lastName}
+                      onChange={(e) => setBasics({ ...basics, lastName: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-card/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                      placeholder="Doe"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">Phone Number *</label>
+                  <input
+                    type="tel"
+                    value={basics.phone}
+                    onChange={(e) => setBasics({ ...basics, phone: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl bg-card/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                    placeholder="+1 (555) 123-4567"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">Email *</label>
+                  <input
+                    type="email"
+                    value={basics.email}
+                    onChange={(e) => setBasics({ ...basics, email: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl bg-card/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                    placeholder="john@example.com"
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <button
+                  onClick={handleBack}
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  ← Back
+                </button>
+
+                <motion.button
+                  onClick={handleNext}
+                  disabled={!canProceedBasics()}
+                  whileHover={canProceedBasics() ? { scale: 1.02 } : {}}
+                  whileTap={canProceedBasics() ? { scale: 0.98 } : {}}
+                  className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
+                    canProceedBasics()
+                      ? "bg-primary text-primary-foreground hover:shadow-[0_0_30px_hsl(var(--primary)/0.4)]"
+                      : "bg-muted text-muted-foreground cursor-not-allowed"
+                  }`}
+                >
+                  Continue
+                  <ArrowRight className="w-5 h-5" />
+                </motion.button>
+              </div>
+
+              <p className="text-center text-muted-foreground/60 text-sm mt-6">
+                Press <kbd className="px-2 py-1 bg-muted rounded text-xs">Enter ↵</kbd> to continue
+              </p>
+            </motion.div>
+          )}
+
           {/* Question Screens */}
           {typeof step === "number" && currentQuestion && (
             <motion.div
               key={step}
-              custom={1}
               variants={slideVariants}
               initial="enter"
               animate="center"
@@ -325,18 +501,24 @@ const SnapCutsForm = () => {
                       ? ((answers[currentQuestion.id] as string[]) || []).includes(option)
                       : answers[currentQuestion.id] === option;
 
+                  const isFlickering = selectedOption === option && flickerPhase !== "none";
+
                   return (
                     <motion.button
                       key={option}
                       onClick={() => handleSelect(option)}
                       initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
+                      animate={{ 
+                        opacity: 1, 
+                        x: 0,
+                        scale: isFlickering ? (flickerPhase === "first" ? 1.02 : 0.98) : 1,
+                      }}
                       transition={{ delay: index * 0.05 }}
                       className={`w-full text-left p-5 rounded-xl border transition-all duration-200 flex items-center gap-4 ${
                         isSelected
                           ? "bg-primary/10 border-primary text-foreground"
                           : "bg-card/50 border-border hover:border-primary/50 text-foreground hover:bg-card"
-                      }`}
+                      } ${isFlickering ? "ring-2 ring-primary ring-offset-2 ring-offset-background" : ""}`}
                     >
                       <div
                         className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all ${
@@ -359,25 +541,29 @@ const SnapCutsForm = () => {
                   ← Back
                 </button>
 
-                <motion.button
-                  onClick={handleNext}
-                  disabled={!canProceed()}
-                  whileHover={canProceed() ? { scale: 1.02 } : {}}
-                  whileTap={canProceed() ? { scale: 0.98 } : {}}
-                  className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
-                    canProceed()
-                      ? "bg-primary text-primary-foreground hover:shadow-[0_0_30px_hsl(var(--primary)/0.4)]"
-                      : "bg-muted text-muted-foreground cursor-not-allowed"
-                  }`}
-                >
-                  {step === totalQuestions - 1 ? "Submit" : "Continue"}
-                  <ArrowRight className="w-5 h-5" />
-                </motion.button>
+                {currentQuestion.type === "multi" && (
+                  <motion.button
+                    onClick={handleNext}
+                    disabled={!canProceed()}
+                    whileHover={canProceed() ? { scale: 1.02 } : {}}
+                    whileTap={canProceed() ? { scale: 0.98 } : {}}
+                    className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
+                      canProceed()
+                        ? "bg-primary text-primary-foreground hover:shadow-[0_0_30px_hsl(var(--primary)/0.4)]"
+                        : "bg-muted text-muted-foreground cursor-not-allowed"
+                    }`}
+                  >
+                    {step === questions.length - 1 ? "Submit" : "Continue"}
+                    <ArrowRight className="w-5 h-5" />
+                  </motion.button>
+                )}
               </div>
 
-              <p className="text-center text-muted-foreground/60 text-sm mt-6">
-                Press <kbd className="px-2 py-1 bg-muted rounded text-xs">Enter ↵</kbd> to continue
-              </p>
+              {currentQuestion.type === "multi" && (
+                <p className="text-center text-muted-foreground/60 text-sm mt-6">
+                  Press <kbd className="px-2 py-1 bg-muted rounded text-xs">Enter ↵</kbd> to continue
+                </p>
+              )}
             </motion.div>
           )}
 
@@ -409,7 +595,7 @@ const SnapCutsForm = () => {
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                  transition={{ delay: 0.2, type: "spring" as const, stiffness: 200 }}
                   className="w-20 h-20 mx-auto mb-8 rounded-full bg-primary/20 flex items-center justify-center"
                 >
                   <Check className="w-10 h-10 text-primary" />
