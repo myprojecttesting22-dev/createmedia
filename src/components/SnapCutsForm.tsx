@@ -395,7 +395,7 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
               transition={{ duration: 0.4 }}
               className="text-center"
             >
-              <div className="liquid-glass rounded-3xl p-8 md:p-12 lg:p-16 max-w-xl mx-auto">
+              <div className="liquid-glass rounded-3xl p-8 md:p-12 lg:p-16">
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
@@ -409,11 +409,11 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
                   />
                 </motion.div>
 
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 whitespace-nowrap">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
                   Welcome to <span className="text-primary">CREATE MEDIA</span>
                 </h1>
 
-                <p className="text-base md:text-lg lg:text-xl text-muted-foreground mb-10">
+                <p className="text-base md:text-lg text-muted-foreground mb-10">
                   SnapCuts – Join Network <span className="text-muted-foreground/60">(I promise this is short)</span>
                 </p>
 
