@@ -2,8 +2,9 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Check, X } from "lucide-react";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
 import createMediaLogo from "@/assets/create-media-logo-2.png";
+
+const WEBHOOK_URL = "https://auto-n8n.createmedia.pro/webhook-test/3d625327-069a-438c-8d34-47913e9062cf";
 
 const DISCORD_INVITE_URL = "https://discord.com/channels/1243996870943182911/1243996871433785375";
 
@@ -247,14 +248,15 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
         agreement: answers.agreement || "",
       };
 
-      // Send to edge function
-      const { error } = await supabase.functions.invoke("submit-snapcuts-application", {
-        body: payload,
+      // Send to n8n webhook
+      await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "no-cors",
+        body: JSON.stringify(payload),
       });
-
-      if (error) {
-        throw error;
-      }
 
       setStep("complete");
     } catch (error) {
