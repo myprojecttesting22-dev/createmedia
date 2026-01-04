@@ -6,7 +6,20 @@ import createMediaLogo from "@/assets/create-media-logo-2.png";
 
 const WEBHOOK_URL = "https://auto-n8n.createmedia.pro/webhook-test/3d625327-069a-438c-8d34-47913e9062cf";
 
-const DISCORD_INVITE_URL = "https://discord.com/channels/1243996870943182911/1243996871433785375";
+const DISCORD_INVITE_URL = "https://discord.gg/uGfXtEmZfm";
+
+// Validation helpers
+const isValidEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  return emailRegex.test(email.trim());
+};
+
+const isValidPhone = (phone: string): boolean => {
+  // Remove all non-digit characters except + at start
+  const cleaned = phone.replace(/[^\d+]/g, '');
+  const digitsOnly = cleaned.replace(/\D/g, '');
+  return digitsOnly.length >= 8;
+};
 
 interface Question {
   id: string;
@@ -116,7 +129,7 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [flickerPhase, setFlickerPhase] = useState<"none" | "first" | "second">("none");
-
+  const [validationErrors, setValidationErrors] = useState<{ email?: string; phone?: string }>({});
   const currentQuestion = typeof step === "number" ? questions[step] : null;
   const totalSteps = questions.length + 1; // +1 for basics
 
@@ -127,7 +140,47 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
   };
 
   const canProceedBasics = () => {
-    return basics.firstName.trim() && basics.lastName.trim() && basics.phone.trim() && basics.email.trim();
+    const hasAllFields = basics.firstName.trim() && basics.lastName.trim() && basics.phone.trim() && basics.email.trim();
+    const emailValid = isValidEmail(basics.email);
+    const phoneValid = isValidPhone(basics.phone);
+    return hasAllFields && emailValid && phoneValid;
+  };
+
+  const validateBasicsFields = () => {
+    const errors: { email?: string; phone?: string } = {};
+    
+    if (basics.email.trim() && !isValidEmail(basics.email)) {
+      errors.email = "Please enter a valid email address";
+    }
+    
+    if (basics.phone.trim() && !isValidPhone(basics.phone)) {
+      errors.phone = "Please enter a valid phone number (minimum 8 digits)";
+    }
+    
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  // Validate on input change
+  const handleBasicsChange = (field: keyof BasicsData, value: string) => {
+    setBasics({ ...basics, [field]: value });
+    
+    // Clear error when user starts typing valid input
+    if (field === "email" && validationErrors.email && isValidEmail(value)) {
+      setValidationErrors((prev) => ({ ...prev, email: undefined }));
+    }
+    if (field === "phone" && validationErrors.phone && isValidPhone(value)) {
+      setValidationErrors((prev) => ({ ...prev, phone: undefined }));
+    }
+  };
+
+  const handleBasicsBlur = (field: "email" | "phone") => {
+    if (field === "email" && basics.email.trim() && !isValidEmail(basics.email)) {
+      setValidationErrors((prev) => ({ ...prev, email: "Please enter a valid email address" }));
+    }
+    if (field === "phone" && basics.phone.trim() && !isValidPhone(basics.phone)) {
+      setValidationErrors((prev) => ({ ...prev, phone: "Please enter a valid phone number (minimum 8 digits)" }));
+    }
   };
 
   const canProceed = useCallback(() => {
@@ -342,7 +395,7 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
               transition={{ duration: 0.4 }}
               className="text-center"
             >
-              <div className="liquid-glass rounded-3xl p-10 md:p-16">
+              <div className="liquid-glass rounded-3xl p-8 md:p-12 lg:p-16 max-w-xl mx-auto">
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
@@ -356,11 +409,11 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
                   />
                 </motion.div>
 
-                <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 whitespace-nowrap">
                   Welcome to <span className="text-primary">CREATE MEDIA</span>
                 </h1>
 
-                <p className="text-lg md:text-xl text-muted-foreground mb-10">
+                <p className="text-base md:text-lg lg:text-xl text-muted-foreground mb-10">
                   SnapCuts – Join Network <span className="text-muted-foreground/60">(I promise this is short)</span>
                 </p>
 
@@ -407,7 +460,7 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
                     <input
                       type="text"
                       value={basics.firstName}
-                      onChange={(e) => setBasics({ ...basics, firstName: e.target.value })}
+                      onChange={(e) => handleBasicsChange("firstName", e.target.value)}
                       className="w-full px-4 py-3 rounded-xl bg-card/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                       placeholder="John"
                     />
@@ -417,7 +470,7 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
                     <input
                       type="text"
                       value={basics.lastName}
-                      onChange={(e) => setBasics({ ...basics, lastName: e.target.value })}
+                      onChange={(e) => handleBasicsChange("lastName", e.target.value)}
                       className="w-full px-4 py-3 rounded-xl bg-card/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                       placeholder="Doe"
                     />
@@ -429,10 +482,16 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
                   <input
                     type="tel"
                     value={basics.phone}
-                    onChange={(e) => setBasics({ ...basics, phone: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-card/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                    onChange={(e) => handleBasicsChange("phone", e.target.value)}
+                    onBlur={() => handleBasicsBlur("phone")}
+                    className={`w-full px-4 py-3 rounded-xl bg-card/50 border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all ${
+                      validationErrors.phone ? "border-red-500" : "border-border"
+                    }`}
                     placeholder="+1 (555) 123-4567"
                   />
+                  {validationErrors.phone && (
+                    <p className="text-red-500 text-sm mt-1">{validationErrors.phone}</p>
+                  )}
                 </div>
 
                 <div>
@@ -440,10 +499,16 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
                   <input
                     type="email"
                     value={basics.email}
-                    onChange={(e) => setBasics({ ...basics, email: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-card/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                    onChange={(e) => handleBasicsChange("email", e.target.value)}
+                    onBlur={() => handleBasicsBlur("email")}
+                    className={`w-full px-4 py-3 rounded-xl bg-card/50 border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all ${
+                      validationErrors.email ? "border-red-500" : "border-border"
+                    }`}
                     placeholder="john@example.com"
                   />
+                  {validationErrors.email && (
+                    <p className="text-red-500 text-sm mt-1">{validationErrors.email}</p>
+                  )}
                 </div>
               </div>
 

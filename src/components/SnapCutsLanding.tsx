@@ -10,12 +10,12 @@ const SnapCutsLanding = ({ onJoinClick }: SnapCutsLandingProps) => {
     {
       icon: <Users className="w-6 h-6" />,
       title: "Join the Snapper Network",
-      description: "Connect with video editors, short-form creators, and real estate content specialists who actually deliver."
+      description: "Join a network focused on distribution, not just file delivery. Snappers share standards and a deep understanding of how short-form attention works."
     },
     {
       icon: <Zap className="w-6 h-6" />,
       title: "Real Opportunities",
-      description: "Get access to paid gigs, client referrals, and projects that help you build a portfolio that matters."
+      description: "Connect with real demand, active campaigns, and consistent needs. For serious snappers, this is the path to stability and long-term momentum."
     },
     {
       icon: <Target className="w-6 h-6" />,
@@ -30,12 +30,13 @@ const SnapCutsLanding = ({ onJoinClick }: SnapCutsLandingProps) => {
   ];
 
   const benefits = [
-    "Access to exclusive editing opportunities",
-    "Direct connections with real estate professionals",
-    "Portfolio reviews and constructive feedback",
-    "Industry insights and trend updates",
-    "Community support from fellow creators",
-    "Resources and templates to boost your workflow"
+    "Money to pay the rent (and stop being broke)",
+    "Opportunities tied to real content needs",
+    "Clear quality standards",
+    "Feedback that sharpens decision-making",
+    "A network built on consistency",
+    "Exposure to diverse formats",
+    "Resources for faster workflows"
   ];
 
   return (
@@ -68,8 +69,7 @@ const SnapCutsLanding = ({ onJoinClick }: SnapCutsLandingProps) => {
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
-              A curated community of video editors and content creators who take their craft seriously. 
-              No fluff. No gatekeeping. Just real opportunities and real growth.
+              SnapCuts is built on snapping. We take high-impact moments from long-form content and shape them into clips that travel. It's not just about editing; it's about understanding content and pushing it where the attention lives.
             </p>
 
             <motion.button
@@ -102,17 +102,10 @@ const SnapCutsLanding = ({ onJoinClick }: SnapCutsLandingProps) => {
               What is <span className="text-primary">SnapCuts</span>?
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-              SnapCuts is the creator arm of CREATE MEDIA — a network designed for video editors and 
-              short-form content creators who want more than random gigs on freelance platforms.
-            </p>
-            <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-              We connect skilled editors with real estate professionals, personal brands, and businesses 
-              who need consistent, high-quality content. If you're tired of chasing clients and want to 
-              be part of something bigger, this is your entry point.
+              SnapCuts is the creator network for CREATE MEDIA.
             </p>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              Whether you're a seasoned pro or a hungry beginner, we value <span className="text-foreground font-medium">work ethic, 
-              integrity, and craftsmanship</span> over everything else.
+              Snapping is our system: find the moments that hold attention, shape them for the feed, and publish for reach. We don't execute this randomly. We do it consistently.
             </p>
           </motion.div>
 
@@ -151,7 +144,7 @@ const SnapCutsLanding = ({ onJoinClick }: SnapCutsLandingProps) => {
               Who is SnapCuts For?
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              We're looking for creators who are serious about their craft and ready to grow.
+              For those who understand content—or want to master it—and want to earn money through consistent, high-quality execution.
             </p>
           </motion.div>
 
@@ -220,7 +213,7 @@ const SnapCutsLanding = ({ onJoinClick }: SnapCutsLandingProps) => {
               Ready to Join?
             </h2>
             <p className="text-muted-foreground text-lg mb-8 max-w-xl mx-auto">
-              The application takes less than 2 minutes. We just need to know you're serious.
+              If you are serious about snapping and want a system where effort compounds, you belong here. The application is short. The standards aren't.
             </p>
             <motion.button
               onClick={onJoinClick}
