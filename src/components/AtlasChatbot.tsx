@@ -1,8 +1,10 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send, Loader2 } from "lucide-react";
+import { MessageCircle, X, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import atlasFirstResponseSound from "@/assets/atlas-first-response.mp3";
+import atlasThinkingSound from "@/assets/atlas-thinking.mp3";
 
 type Message = {
   role: "user" | "assistant";
@@ -10,15 +12,25 @@ type Message = {
 };
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/atlas-chat`;
+const SESSION_KEY = "atlas-session-started";
 
 const AtlasChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isThinking, setIsThinking] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  
+  const firstResponseAudioRef = useRef<HTMLAudioElement | null>(null);
+  const thinkingAudioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    firstResponseAudioRef.current = new Audio(atlasFirstResponseSound);
+    thinkingAudioRef.current = new Audio(atlasThinkingSound);
+  }, []);
 
   useEffect(() => {
     if (isOpen && inputRef.current) {
@@ -29,6 +41,38 @@ const AtlasChatbot = () => {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  const playFirstResponseSound = useCallback(() => {
+    const hasSessionStarted = sessionStorage.getItem(SESSION_KEY);
+    if (!hasSessionStarted && firstResponseAudioRef.current) {
+      firstResponseAudioRef.current.play().catch(console.error);
+      sessionStorage.setItem(SESSION_KEY, "true");
+    }
+  }, []);
+
+  const playThinkingSound = useCallback(() => {
+    if (thinkingAudioRef.current) {
+      thinkingAudioRef.current.currentTime = 0;
+      thinkingAudioRef.current.play().catch(console.error);
+    }
+  }, []);
+
+  const stopThinkingSound = useCallback(() => {
+    if (thinkingAudioRef.current) {
+      thinkingAudioRef.current.pause();
+      thinkingAudioRef.current.currentTime = 0;
+    }
+  }, []);
+
+  const isNavigationRequest = (content: string): boolean => {
+    const navKeywords = [
+      "take me to", "go to", "open", "show me", "navigate",
+      "snapcuts", "core story", "trust frame", "ai engine",
+      "connect", "visionlab", "home", "create suite", "get started"
+    ];
+    const lowerContent = content.toLowerCase();
+    return navKeywords.some(keyword => lowerContent.includes(keyword));
+  };
 
   const parseNavigationButtons = (content: string) => {
     const regex = /\[Navigate to: (\/[^\]]*)\]/g;
@@ -136,16 +180,40 @@ const AtlasChatbot = () => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
 
-    const userMsg: Message = { role: "user", content: input.trim() };
+    const userInput = input.trim();
+    const userMsg: Message = { role: "user", content: userInput };
     const newMessages = [...messages, userMsg];
+    const isFirstMessage = messages.length === 0;
+    const isNavRequest = isNavigationRequest(userInput);
+    
     setMessages(newMessages);
     setInput("");
     setIsLoading(true);
 
+    // Play first response sound if this is the first message of the session
+    if (isFirstMessage) {
+      playFirstResponseSound();
+    }
+
     try {
+      // If navigation request, show thinking state with sound
+      if (isNavRequest) {
+        setIsThinking(true);
+        playThinkingSound();
+        
+        // Wait for minimum thinking duration (1.5-2.5 seconds)
+        const thinkingDuration = 1500 + Math.random() * 1000;
+        await new Promise(resolve => setTimeout(resolve, thinkingDuration));
+        
+        stopThinkingSound();
+        setIsThinking(false);
+      }
+
       await streamChat(newMessages);
     } catch (error) {
       console.error("Chat error:", error);
+      stopThinkingSound();
+      setIsThinking(false);
       setMessages((prev) => [
         ...prev,
         { role: "assistant", content: "I apologize, but I encountered an error. Please try again." },
@@ -187,8 +255,8 @@ const AtlasChatbot = () => {
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-muted/50">
               <div>
-                <h3 className="font-semibold text-foreground">Atlas</h3>
-                <p className="text-xs text-muted-foreground">CREATE MEDIA Concierge</p>
+                <h3 className="font-semibold text-primary drop-shadow-[0_0_10px_hsl(var(--primary))]">ATLAS</h3>
+                <p className="text-[10px] text-muted-foreground/60 tracking-wide">CREATE MEDIA Concierge</p>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
@@ -200,11 +268,9 @@ const AtlasChatbot = () => {
 
             {/* Messages */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4">
-              {messages.length === 0 && (
-                <div className="text-center text-muted-foreground text-sm py-8">
-                  <p className="font-medium text-foreground mb-2">Welcome to CREATE MEDIA</p>
-                  <p>Atlas is thinking...</p>
-                  <p className="mt-4">Ask me anything about our services, SnapCuts Network, or how to get started.</p>
+              {messages.length === 0 && !isThinking && (
+                <div className="flex items-center justify-center h-full">
+                  <p className="text-sm font-medium text-foreground tracking-wide">WELCOME TO CREATE MEDIA</p>
                 </div>
               )}
               {messages.map((msg, i) => (
@@ -243,11 +309,14 @@ const AtlasChatbot = () => {
                   </div>
                 </div>
               ))}
-              {isLoading && messages[messages.length - 1]?.role === "user" && (
-                <div className="flex justify-start">
-                  <div className="bg-muted text-muted-foreground px-4 py-2 rounded-2xl rounded-bl-md text-sm">
-                    Atlas is thinking...
-                  </div>
+              {/* Thinking state - subtle UI shift only */}
+              {isThinking && (
+                <div className="flex justify-center">
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="w-full h-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent"
+                  />
                 </div>
               )}
               <div ref={messagesEndRef} />
@@ -261,7 +330,7 @@ const AtlasChatbot = () => {
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Ask Atlas..."
+                  placeholder="Ask Atlas"
                   disabled={isLoading}
                   className="flex-1 bg-background border border-border rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                 />
@@ -271,11 +340,7 @@ const AtlasChatbot = () => {
                   disabled={isLoading || !input.trim()}
                   className="shrink-0"
                 >
-                  {isLoading ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                  ) : (
-                    <Send className="w-4 h-4" />
-                  )}
+                  <Send className="w-4 h-4" />
                 </Button>
               </div>
             </form>
