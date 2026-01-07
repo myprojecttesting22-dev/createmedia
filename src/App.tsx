@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollArrow from "@/components/ScrollArrow";
+import AtlasChatbot from "@/components/AtlasChatbot";
 import Home from "./pages/Home";
 import CoreStory from "./pages/CoreStory";
 import CreateSuite from "./pages/CreateSuite";
@@ -23,6 +24,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollArrow />
+        <AtlasChatbot />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/core-story" element={<CoreStory />} />
