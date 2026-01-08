@@ -13,6 +13,31 @@ type Message = {
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/atlas-chat`;
 const SESSION_KEY = "atlas-session-started";
+const THINKING_MIN_DURATION = 1800; // 1.8 seconds minimum
+
+// Animated dots component for thinking state
+const ThinkingDots = () => {
+  return (
+    <div className="flex items-center gap-1.5">
+      {[0, 1, 2].map((i) => (
+        <motion.span
+          key={i}
+          className="w-2 h-2 bg-white rounded-full"
+          animate={{
+            scale: [1, 1.4, 1],
+            opacity: [0.7, 1, 0.7],
+          }}
+          transition={{
+            duration: 0.8,
+            repeat: Infinity,
+            delay: i * 0.15,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </div>
+  );
+};
 
 const AtlasChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,7 +72,9 @@ const AtlasChatbot = () => {
     if (!hasSessionStarted && firstResponseAudioRef.current) {
       firstResponseAudioRef.current.play().catch(console.error);
       sessionStorage.setItem(SESSION_KEY, "true");
+      return true;
     }
+    return false;
   }, []);
 
   const playThinkingSound = useCallback(() => {
@@ -66,7 +93,7 @@ const AtlasChatbot = () => {
 
   const isNavigationRequest = (content: string): boolean => {
     const navKeywords = [
-      "take me to", "go to", "open", "show me", "navigate",
+      "take me to", "go to", "open", "show me", "navigate", "redirect",
       "snapcuts", "core story", "trust frame", "ai engine",
       "connect", "visionlab", "home", "create suite", "get started"
     ];
@@ -190,19 +217,22 @@ const AtlasChatbot = () => {
     setInput("");
     setIsLoading(true);
 
-    // Play first response sound if this is the first message of the session
-    if (isFirstMessage) {
-      playFirstResponseSound();
-    }
-
     try {
-      // If navigation request, show thinking state with sound
+      // Handle first message sound (plays before thinking sound if both apply)
+      const playedFirstSound = isFirstMessage && playFirstResponseSound();
+      
+      // If navigation request, show thinking state with sound and forced delay
       if (isNavRequest) {
+        // Small delay if first response sound was played to avoid overlap
+        if (playedFirstSound) {
+          await new Promise(resolve => setTimeout(resolve, 500));
+        }
+        
         setIsThinking(true);
         playThinkingSound();
         
-        // Wait for minimum thinking duration (1.5-2.5 seconds)
-        const thinkingDuration = 1500 + Math.random() * 1000;
+        // Force minimum thinking duration (1.8-2.5 seconds)
+        const thinkingDuration = THINKING_MIN_DURATION + Math.random() * 700;
         await new Promise(resolve => setTimeout(resolve, thinkingDuration));
         
         stopThinkingSound();
@@ -250,17 +280,46 @@ const AtlasChatbot = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-3rem)] h-[500px] max-h-[calc(100vh-6rem)] bg-background border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+            className="fixed bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-3rem)] h-[500px] max-h-[calc(100vh-6rem)] flex flex-col overflow-hidden"
+            style={{
+              borderRadius: "22px",
+              background: "linear-gradient(180deg, hsl(0 0% 10%) 0%, hsl(0 0% 6%) 100%)",
+              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 hsla(0, 0%, 100%, 0.05)",
+              border: "1px solid hsla(0, 0%, 100%, 0.08)",
+            }}
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-muted/50">
-              <div>
-                <h3 className="font-semibold text-primary drop-shadow-[0_0_10px_hsl(var(--primary))]">ATLAS</h3>
-                <p className="text-[10px] text-muted-foreground/60 tracking-wide">CREATE MEDIA Concierge</p>
+            <div 
+              className="flex items-center justify-between px-5 py-4"
+              style={{
+                borderBottom: "1px solid hsla(0, 0%, 100%, 0.08)",
+                background: "linear-gradient(180deg, hsla(0, 0%, 12%, 0.8) 0%, transparent 100%)",
+              }}
+            >
+              <div className="flex flex-col gap-0.5 pl-1">
+                <h3 
+                  className="font-semibold text-[15px] tracking-wide"
+                  style={{ 
+                    color: "hsl(198 100% 48%)",
+                    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif",
+                  }}
+                >
+                  ATLAS
+                </h3>
+                <p 
+                  className="text-[10px] tracking-wider"
+                  style={{ 
+                    color: "hsla(0, 0%, 100%, 0.5)",
+                    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif",
+                    fontWeight: 400,
+                  }}
+                >
+                  CREATE MEDIA Concierge
+                </p>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="text-muted-foreground hover:text-foreground transition-colors p-1 rounded-lg hover:bg-white/5"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -270,19 +329,28 @@ const AtlasChatbot = () => {
             <div className="flex-1 overflow-y-auto p-4 space-y-4">
               {messages.length === 0 && !isThinking && (
                 <div className="flex items-center justify-center h-full">
-                  <p className="text-sm font-medium text-foreground tracking-wide">WELCOME TO CREATE MEDIA</p>
+                  <p 
+                    className="text-sm font-medium tracking-widest"
+                    style={{ 
+                      color: "hsla(0, 0%, 100%, 0.9)",
+                      fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif",
+                    }}
+                  >
+                    WELCOME TO CREATE MEDIA
+                  </p>
                 </div>
               )}
+              
               {messages.map((msg, i) => (
                 <div
                   key={i}
                   className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                 >
                   <div
-                    className={`max-w-[85%] px-4 py-2 rounded-2xl text-sm ${
+                    className={`max-w-[85%] px-4 py-2.5 text-sm ${
                       msg.role === "user"
-                        ? "bg-primary text-primary-foreground rounded-br-md"
-                        : "bg-muted text-foreground rounded-bl-md"
+                        ? "bg-primary text-primary-foreground rounded-2xl rounded-br-md"
+                        : "bg-white/10 text-foreground rounded-2xl rounded-bl-md"
                     }`}
                   >
                     {msg.role === "assistant" ? (
@@ -296,7 +364,7 @@ const AtlasChatbot = () => {
                               size="sm"
                               variant="outline"
                               onClick={() => handleNavigate(part.path)}
-                              className="mt-2 w-full"
+                              className="mt-2 w-full bg-primary/10 border-primary/30 hover:bg-primary/20"
                             >
                               {part.label}
                             </Button>
@@ -309,21 +377,43 @@ const AtlasChatbot = () => {
                   </div>
                 </div>
               ))}
-              {/* Thinking state - subtle UI shift only */}
+              
+              {/* Thinking state - centered with text and animated dots */}
               {isThinking && (
-                <div className="flex justify-center">
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="w-full h-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent"
-                  />
-                </div>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="flex flex-col items-center justify-center py-8 gap-3"
+                  style={{
+                    background: "radial-gradient(circle at center, hsla(198, 100%, 48%, 0.05) 0%, transparent 70%)",
+                  }}
+                >
+                  <p 
+                    className="text-sm"
+                    style={{ 
+                      color: "hsla(0, 0%, 100%, 0.92)",
+                      fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif",
+                    }}
+                  >
+                    Atlas is thinking
+                  </p>
+                  <ThinkingDots />
+                </motion.div>
               )}
+              
               <div ref={messagesEndRef} />
             </div>
 
             {/* Input */}
-            <form onSubmit={handleSubmit} className="p-3 border-t border-border bg-muted/30">
+            <form 
+              onSubmit={handleSubmit} 
+              className="p-3"
+              style={{
+                borderTop: "1px solid hsla(0, 0%, 100%, 0.08)",
+                background: "hsla(0, 0%, 8%, 0.5)",
+              }}
+            >
               <div className="flex gap-2">
                 <input
                   ref={inputRef}
@@ -332,13 +422,16 @@ const AtlasChatbot = () => {
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask Atlas"
                   disabled={isLoading}
-                  className="flex-1 bg-background border border-border rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 placeholder:text-white/40"
+                  style={{
+                    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif",
+                  }}
                 />
                 <Button
                   type="submit"
                   size="icon"
                   disabled={isLoading || !input.trim()}
-                  className="shrink-0"
+                  className="shrink-0 rounded-xl"
                 >
                   <Send className="w-4 h-4" />
                 </Button>
