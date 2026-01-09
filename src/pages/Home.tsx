@@ -12,25 +12,25 @@ const Home = () => {
       icon: Target,
       step: "01",
       title: "The Foundation",
-      description: "We identify and lock onto your exact borrower or realtor niche. No guessing. No broad targeting. Precision from day one.",
+      description: "Lock onto your exact niche. No guessing. Precision from day one.",
     },
     {
       icon: Film,
       step: "02",
       title: "The Pre-Hype",
-      description: "We cut cinematic trailers before your content drops. Hooks, thumbnails, and pacing engineered to seed curiosity.",
+      description: "Cinematic trailers before launch. Hooks that seed curiosity.",
     },
     {
       icon: Share2,
       step: "03",
       title: "Shadow Distribution",
-      description: "We manufacture organic buzz through fan pages and viral curator networks. Engineered reach at scale.",
+      description: "Fan pages. Curator networks. Engineered reach at scale.",
     },
     {
       icon: Rocket,
       step: "04",
       title: "The Multiplier",
-      description: "We leverage established real estate theme pages for immediate attention spikes instead of slow growth.",
+      description: "Leverage existing audiences. Immediate spikes, not slow growth.",
     },
   ];
 
@@ -71,19 +71,16 @@ const Home = () => {
       {/* System Introduction */}
       <section className="py-20 px-6">
         <div className="container mx-auto">
-          <div className="text-center mb-6">
-            <p className="text-primary font-medium tracking-wide uppercase text-sm mb-4">
-              Distribution-First Growth System
-            </p>
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              We don't just edit content.
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">
+              We don't hope for attention
               <br />
-              We engineer attention.
+              <span className="text-primary">We control it</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Most creators upload and hope. We operate a proven 4-step system that has generated 
-              millions of views for real estate podcasts and personal brands. Content is the asset. 
-              Distribution is the weapon.
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              A proven 4-step system behind millions of views
+              <br />
+              for real estate podcasts and brands.
             </p>
           </div>
         </div>
@@ -99,15 +96,15 @@ const Home = () => {
                 className="liquid-glass-element liquid-glass-element--dark hover-lift border-border"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <CardContent className="pt-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center">
-                      <step.icon className="text-primary" size={24} />
+                <CardContent className="pt-8 pb-8">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                      <step.icon className="text-primary" size={20} />
                     </div>
-                    <span className="text-primary/60 font-mono text-sm">{step.step}</span>
+                    <span className="text-primary/40 font-mono text-xs">{step.step}</span>
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                  <p className="text-foreground/80">{step.description}</p>
+                  <h3 className="text-2xl font-bold mb-3">{step.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{step.description}</p>
                 </CardContent>
               </Card>
             ))}
