@@ -5,3 +5,18 @@ verify_jwt = false
 
 [functions.send-connect-message]
 verify_jwt = false
+
+[functions.serve-private-image]
+verify_jwt = false
+
+[functions.admin-setup-totp]
+verify_jwt = false
+
+[functions.admin-verify-totp]
+verify_jwt = false
+
+[functions.admin-upload-image]
+verify_jwt = false
+
+[functions.admin-revoke-image]
+verify_jwt = false
