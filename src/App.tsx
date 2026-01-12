@@ -14,6 +14,7 @@ import AIEngine from "./pages/AIEngine";
 import Connect from "./pages/Connect";
 import SnapCuts from "./pages/SnapCuts";
 import NotFound from "./pages/NotFound";
+import AdminAssets from "./pages/AdminAssets";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/ai-engine" element={<AIEngine />} />
           <Route path="/connect" element={<Connect />} />
           <Route path="/snapcuts" element={<SnapCuts />} />
+          <Route path="/admin-assets" element={<AdminAssets />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
