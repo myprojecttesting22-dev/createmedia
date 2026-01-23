@@ -21,17 +21,17 @@ export function useAdminAuth() {
 
   const checkAdminStatus = useCallback(async (user: User) => {
     try {
-      // Check if user has admin role - we need to use edge function for this
-      const { data: roleData, error: roleError } = await supabase
-        .from('user_roles')
-        .select('role')
-        .eq('user_id', user.id)
-        .eq('role', 'admin')
-        .maybeSingle();
+      // IMPORTANT: Do NOT query user_roles directly from the client.
+      // RLS intentionally blocks non-admins from selecting this table.
+      // Use the security-definer function instead.
+      const { data: isAdmin, error: roleError } = await supabase.rpc('has_role', {
+        _user_id: user.id,
+        _role: 'admin',
+      });
 
-      const isAdmin = !!roleData && !roleError;
+      const hasAdminRole = isAdmin === true && !roleError;
 
-      if (!isAdmin) {
+      if (!hasAdminRole) {
         setState({
           user,
           isAdmin: false,
@@ -117,10 +117,18 @@ export function useAdminAuth() {
     });
   };
 
+  const refresh = useCallback(async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session?.user) {
+      await checkAdminStatus(session.user);
+    }
+  }, [checkAdminStatus]);
+
   return {
     ...state,
     set2FAVerified,
     signIn,
     signOut,
+    refresh,
   };
 }

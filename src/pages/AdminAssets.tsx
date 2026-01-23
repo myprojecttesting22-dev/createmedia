@@ -7,6 +7,7 @@ import { ImageUploader } from '@/components/admin/ImageUploader';
 import { ImageList } from '@/components/admin/ImageList';
 import { Button } from '@/components/ui/button';
 import { Loader2, LogOut, Shield } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
 
 export default function AdminAssets() {
   const { 
@@ -17,9 +18,12 @@ export default function AdminAssets() {
     isLoading, 
     set2FAVerified, 
     signIn, 
-    signOut 
+    signOut,
+    refresh,
   } = useAdminAuth();
   const [refreshTrigger, setRefreshTrigger] = useState(0);
+  const [bootstrapLoading, setBootstrapLoading] = useState(false);
+  const [bootstrapError, setBootstrapError] = useState<string | null>(null);
 
   // Loading state
   if (isLoading) {
@@ -37,12 +41,52 @@ export default function AdminAssets() {
 
   // Logged in but not admin
   if (!isAdmin) {
+    const canBootstrap = (user?.email || '').toLowerCase() === 'vansh@createmedia.pro'.toLowerCase();
+
+    const bootstrapFirstAdmin = async () => {
+      setBootstrapLoading(true);
+      setBootstrapError(null);
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session) {
+          setBootstrapError('You are signed out. Please sign in again.');
+          return;
+        }
+
+        const res = await supabase.functions.invoke('admin-bootstrap-first-admin', {
+          headers: {
+            Authorization: `Bearer ${session.access_token}`,
+          },
+        });
+
+        if (res.error) {
+          setBootstrapError(res.error.message || 'Failed to enable admin access.');
+          return;
+        }
+
+        await refresh();
+      } catch {
+        setBootstrapError('Failed to enable admin access.');
+      } finally {
+        setBootstrapLoading(false);
+      }
+    };
+
     return (
       <div className="min-h-screen flex items-center justify-center bg-background p-4">
         <div className="text-center space-y-4">
           <Shield className="w-12 h-12 mx-auto text-muted-foreground" />
           <h1 className="text-xl font-semibold">Access Denied</h1>
           <p className="text-muted-foreground">You do not have admin privileges.</p>
+          {bootstrapError && (
+            <p className="text-sm text-destructive">{bootstrapError}</p>
+          )}
+          {canBootstrap && (
+            <Button onClick={bootstrapFirstAdmin} disabled={bootstrapLoading}>
+              {bootstrapLoading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+              Enable Admin Access
+            </Button>
+          )}
           <Button onClick={signOut}>Sign Out</Button>
         </div>
       </div>
