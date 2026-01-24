@@ -83,9 +83,22 @@ export function ImageUploader({ onUploadComplete }: ImageUploaderProps) {
 
       const { publicUrl } = response.data;
       
-      // Copy URL to clipboard
-      await navigator.clipboard.writeText(publicUrl);
-      toast.success('Image uploaded! URL copied to clipboard');
+      // Try to copy URL to clipboard with fallback
+      try {
+        await navigator.clipboard.writeText(publicUrl);
+        toast.success('Image uploaded! URL copied to clipboard');
+      } catch (clipboardErr) {
+        // Clipboard failed (permissions), show URL in toast for manual copy
+        console.warn('Clipboard access denied, showing URL in toast');
+        toast.success(
+          <div className="space-y-2">
+            <p>Image uploaded successfully!</p>
+            <code className="block p-2 bg-muted rounded text-xs break-all select-all">{publicUrl}</code>
+            <p className="text-xs text-muted-foreground">Select and copy the URL above</p>
+          </div>,
+          { duration: 10000 }
+        );
+      }
       
       // Reset form
       setSelectedFile(null);
