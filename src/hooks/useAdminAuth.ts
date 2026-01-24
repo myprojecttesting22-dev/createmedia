@@ -2,6 +2,48 @@ import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { User } from '@supabase/supabase-js';
 
+const TOTP_VERIFIED_KEY = 'admin_2fa_verified';
+const TOTP_EXPIRY_KEY = 'admin_2fa_expiry';
+const TOTP_SESSION_HOURS = 8; // 2FA session lasts 8 hours
+
+function get2FASessionValid(userId: string): boolean {
+  try {
+    const storedUserId = sessionStorage.getItem(TOTP_VERIFIED_KEY);
+    const expiry = sessionStorage.getItem(TOTP_EXPIRY_KEY);
+    if (storedUserId === userId && expiry) {
+      const expiryTime = parseInt(expiry, 10);
+      if (Date.now() < expiryTime) {
+        return true;
+      }
+      // Expired - clear storage
+      sessionStorage.removeItem(TOTP_VERIFIED_KEY);
+      sessionStorage.removeItem(TOTP_EXPIRY_KEY);
+    }
+  } catch {
+    // sessionStorage not available
+  }
+  return false;
+}
+
+function set2FASession(userId: string) {
+  try {
+    const expiryTime = Date.now() + TOTP_SESSION_HOURS * 60 * 60 * 1000;
+    sessionStorage.setItem(TOTP_VERIFIED_KEY, userId);
+    sessionStorage.setItem(TOTP_EXPIRY_KEY, expiryTime.toString());
+  } catch {
+    // sessionStorage not available
+  }
+}
+
+function clear2FASession() {
+  try {
+    sessionStorage.removeItem(TOTP_VERIFIED_KEY);
+    sessionStorage.removeItem(TOTP_EXPIRY_KEY);
+  } catch {
+    // sessionStorage not available
+  }
+}
+
 interface AdminAuthState {
   user: User | null;
   isAdmin: boolean;
@@ -49,11 +91,14 @@ export function useAdminAuth() {
         .eq('user_id', user.id)
         .maybeSingle();
 
+      // Check if 2FA was already verified this session
+      const sessionVerified = get2FASessionValid(user.id);
+
       setState({
         user,
         isAdmin: true,
         has2FA: !!totpData?.is_verified,
-        is2FAVerified: false, // Will be set after 2FA verification
+        is2FAVerified: sessionVerified, // Restore from session if valid
         isLoading: false,
       });
     } catch (error) {
@@ -98,8 +143,13 @@ export function useAdminAuth() {
   }, [checkAdminStatus]);
 
   const set2FAVerified = useCallback((verified: boolean) => {
+    if (verified && state.user) {
+      set2FASession(state.user.id);
+    } else {
+      clear2FASession();
+    }
     setState(prev => ({ ...prev, is2FAVerified: verified }));
-  }, []);
+  }, [state.user]);
 
   const signIn = async (email: string, password: string) => {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
@@ -107,6 +157,7 @@ export function useAdminAuth() {
   };
 
   const signOut = async () => {
+    clear2FASession();
     await supabase.auth.signOut();
     setState({
       user: null,
