@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BrandMarquee from "@/components/BrandMarquee";
+import ScrollFrameAnimation from "@/components/ScrollFrameAnimation";
 
 const Home = () => {
   const systemSteps = [
@@ -39,7 +40,7 @@ const Home = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6">
+      <section className="pt-32 pb-8 px-6">
         <div className="container mx-auto text-center">
           <div className="animate-fade-in">
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
@@ -51,7 +52,7 @@ const Home = () => {
               Keeping your real estate brand visible everywhere with AI-driven content
               and automated marketing systems.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button size="lg" variant="liquid-glass" asChild>
                 <Link to="/visionlab">
                   Start Your Project <ArrowRight className="ml-2" size={20} />
@@ -62,6 +63,13 @@ const Home = () => {
               </Button>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Scroll Frame Animation Section */}
+      <section className="px-6 pb-12">
+        <div className="container mx-auto max-w-5xl">
+          <ScrollFrameAnimation className="rounded-2xl overflow-hidden shadow-2xl shadow-primary/10" />
         </div>
       </section>
 
