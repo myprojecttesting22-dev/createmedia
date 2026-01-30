@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 
-const FRAME_BASE_URL = 'http://213.199.54.102/frames/ezgif-frame-';
+// Use the proxy edge function for secure HTTPS delivery
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const FRAME_PROXY_URL = `${SUPABASE_URL}/functions/v1/serve-frame`;
 const TOTAL_FRAMES = 240;
 const MOBILE_FRAME_STEP = 4; // Sample every 4th frame on mobile for performance
 
@@ -20,10 +22,9 @@ const ScrollFrameAnimation = ({ className = '' }: ScrollFrameAnimationProps) => 
   const [isInView, setIsInView] = useState(false);
   const isMobile = useIsMobile();
 
-  // Generate frame URL with zero-padded number
+  // Generate frame URL using the proxy
   const getFrameUrl = useCallback((frameNumber: number) => {
-    const paddedNumber = String(frameNumber).padStart(3, '0');
-    return `${FRAME_BASE_URL}${paddedNumber}.jpg`;
+    return `${FRAME_PROXY_URL}?frame=${frameNumber}`;
   }, []);
 
   // Get frame indices based on device
