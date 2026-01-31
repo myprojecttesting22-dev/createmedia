@@ -5,7 +5,7 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-const FRAME_BASE_URL = 'http://213.199.54.102/frames/ezgif-frame-';
+const FRAME_BASE_URL = 'http://213.199.54.102/frames/frame-';
 
 serve(async (req) => {
   // Handle CORS preflight requests
