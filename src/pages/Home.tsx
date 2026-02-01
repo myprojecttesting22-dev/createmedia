@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BrandMarquee from "@/components/BrandMarquee";
-import ScrollFrameAnimation from "@/components/ScrollFrameAnimation";
+
 
 const Home = () => {
   const systemSteps = [
@@ -66,12 +66,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Scroll Frame Animation Section */}
-      <section className="px-6 pb-12">
-        <div className="container mx-auto max-w-5xl">
-          <ScrollFrameAnimation className="rounded-2xl overflow-hidden shadow-2xl shadow-primary/10" />
-        </div>
-      </section>
 
       {/* Brand Marquee */}
       <BrandMarquee />
