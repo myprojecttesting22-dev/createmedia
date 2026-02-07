@@ -11,12 +11,13 @@ import { Mail, Calendar, Linkedin, Twitter, Instagram, Youtube } from "lucide-re
 import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
+import { validateEmail, isValidName, isValidMessage, isValidPhone } from "@/lib/spam-detection";
 
 const formSchema = z.object({
-  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
-  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
-  phone: z.string().trim().max(20, "Phone number must be less than 20 characters").optional(),
-  message: z.string().trim().min(1, "Message is required").max(2000, "Message must be less than 2000 characters"),
+  name: z.string().trim().min(1, "Name is required").max(100).refine(v => isValidName(v).valid, v => ({ message: isValidName(v).reason || "Invalid name" })),
+  email: z.string().trim().email("Invalid email").max(255).refine(v => validateEmail(v).valid, v => ({ message: validateEmail(v).reason || "Invalid email" })),
+  phone: z.string().trim().max(20).optional().refine(v => !v || isValidPhone(v).valid, v => ({ message: isValidPhone(v || '').reason || "Invalid phone" })),
+  message: z.string().trim().min(1, "Message is required").max(2000).refine(v => isValidMessage(v).valid, v => ({ message: isValidMessage(v).reason || "Invalid message" })),
 });
 
 const Connect = () => {
@@ -27,37 +28,40 @@ const Connect = () => {
     phone: "",
     message: "",
   });
+  const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    // Honeypot check
+    if (honeypot) {
+      toast({ title: "Message Sent!", description: "We'll get back to you within 24 hours." });
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
-      // Validate form data
       const validatedData = formSchema.parse(formData);
 
-      // Call the edge function
       const { data, error } = await supabase.functions.invoke('send-connect-message', {
-        body: validatedData,
+        body: { ...validatedData, _hp: honeypot },
       });
 
-      if (error) {
-        throw error;
+      if (error) throw error;
+
+      if (data?.error) {
+        toast({ title: "Error", description: data.error, variant: "destructive" });
+      } else {
+        toast({ title: "Message Sent!", description: "We'll get back to you within 24 hours." });
+        setFormData({ name: "", email: "", phone: "", message: "" });
       }
-
-      toast({
-        title: "Message Sent!",
-        description: "We'll get back to you within 24 hours.",
-      });
-      setFormData({ name: "", email: "", phone: "", message: "" });
     } catch (error) {
       console.error("Error submitting form:", error);
       toast({
         title: "Error",
-        description: error instanceof z.ZodError 
-          ? error.errors[0].message 
-          : "Failed to send message. Please try again.",
+        description: error instanceof z.ZodError ? error.errors[0].message : "Failed to send message. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -65,9 +69,7 @@ const Connect = () => {
     }
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -93,10 +95,7 @@ const Connect = () => {
               </p>
 
               <div className="space-y-6">
-                <a 
-                  href="mailto:vansh@createmedia.pro"
-                  className="block transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)]"
-                >
+                <a href="mailto:vansh@createmedia.pro" className="block transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)]">
                   <Card className="liquid-glass-element liquid-glass-element--dark cursor-pointer border-primary/20">
                     <CardContent className="p-6">
                       <div className="flex items-start gap-4">
@@ -105,21 +104,14 @@ const Connect = () => {
                         </div>
                         <div>
                           <h3 className="font-semibold mb-1">Email</h3>
-                          <p className="text-foreground/80">
-                            vansh@createmedia.pro
-                          </p>
+                          <p className="text-foreground/80">vansh@createmedia.pro</p>
                         </div>
                       </div>
                     </CardContent>
                   </Card>
                 </a>
 
-                <a
-                  href="https://calendly.com/createmedia22/appointment"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)]"
-                >
+                <a href="https://calendly.com/createmedia22/appointment" target="_blank" rel="noopener noreferrer" className="block transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)]">
                   <Card className="liquid-glass-element liquid-glass-element--dark cursor-pointer border-primary/20">
                     <CardContent className="p-6">
                       <div className="flex items-start gap-4">
@@ -128,9 +120,7 @@ const Connect = () => {
                         </div>
                         <div>
                           <h3 className="font-semibold mb-1">Schedule a Meeting</h3>
-                          <p className="text-foreground/80">
-                            Book an appointment
-                          </p>
+                          <p className="text-foreground/80">Book an appointment</p>
                         </div>
                       </div>
                     </CardContent>
@@ -140,36 +130,16 @@ const Connect = () => {
                 <div>
                   <h3 className="font-semibold mb-4">Follow Us</h3>
                   <div className="flex gap-4">
-                    <a
-                      href="https://www.linkedin.com/company/createmedia-pro/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
-                    >
+                    <a href="https://www.linkedin.com/company/createmedia-pro/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors">
                       <Linkedin size={20} />
                     </a>
-                    <a
-                      href="https://x.com/CREATEMEDIA225"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
-                    >
+                    <a href="https://x.com/CREATEMEDIA225" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors">
                       <Twitter size={20} />
                     </a>
-                    <a
-                      href="https://www.instagram.com/createmedia22?igsh=MThnemR0MTV5bTNrdQ=="
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
-                    >
+                    <a href="https://www.instagram.com/createmedia22?igsh=MThnemR0MTV5bTNrdQ==" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors">
                       <Instagram size={20} />
                     </a>
-                    <a
-                      href="https://www.youtube.com/@CREATEMEDIA-cd6wx"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
-                    >
+                    <a href="https://www.youtube.com/@CREATEMEDIA-cd6wx" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors">
                       <Youtube size={20} />
                     </a>
                   </div>
@@ -181,57 +151,36 @@ const Connect = () => {
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold mb-6">Send Us a Message</h3>
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Honeypot - hidden from real users */}
+                  <div className="absolute opacity-0 -z-10" aria-hidden="true" tabIndex={-1}>
+                    <input
+                      type="text"
+                      name="website_url"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
+
                   <div>
                     <Label htmlFor="name">Name *</Label>
-                    <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="mt-2"
-                      placeholder="Your name"
-                    />
+                    <Input id="name" name="name" value={formData.name} onChange={handleChange} required className="mt-2" placeholder="Your name" />
                   </div>
 
                   <div>
                     <Label htmlFor="email">Email *</Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="mt-2"
-                      placeholder="your@email.com"
-                    />
+                    <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required className="mt-2" placeholder="your@email.com" />
                   </div>
 
                   <div>
                     <Label htmlFor="phone">Phone</Label>
-                    <Input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="mt-2"
-                      placeholder="+1 (234) 567-890"
-                    />
+                    <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} className="mt-2" placeholder="+91 98765 43210" />
                   </div>
 
                   <div>
                     <Label htmlFor="message">Message *</Label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      className="mt-2 min-h-32"
-                      placeholder="Tell us about your project or questions..."
-                    />
+                    <Textarea id="message" name="message" value={formData.message} onChange={handleChange} required className="mt-2 min-h-32" placeholder="Tell us about your project or questions... (minimum 20 characters)" />
                   </div>
 
                   <Button type="submit" size="lg" variant="liquid-glass" className="w-full" disabled={isSubmitting}>

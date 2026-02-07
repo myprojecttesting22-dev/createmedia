@@ -10,12 +10,13 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
+import { validateEmail, isValidName, isValidMessage, isValidCompany } from "@/lib/spam-detection";
 
 const formSchema = z.object({
-  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
-  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
-  company: z.string().trim().min(1, "Company is required").max(100, "Company must be less than 100 characters"),
-  description: z.string().trim().min(1, "Description is required").max(2000, "Description must be less than 2000 characters"),
+  name: z.string().trim().min(1, "Name is required").max(100).refine(v => isValidName(v).valid, v => ({ message: isValidName(v).reason || "Invalid name" })),
+  email: z.string().trim().email("Invalid email").max(255).refine(v => validateEmail(v).valid, v => ({ message: validateEmail(v).reason || "Invalid email" })),
+  company: z.string().trim().min(1, "Company is required").max(100).refine(v => isValidCompany(v).valid, v => ({ message: isValidCompany(v).reason || "Invalid company" })),
+  description: z.string().trim().min(1, "Description is required").max(2000).refine(v => isValidMessage(v).valid, v => ({ message: isValidMessage(v).reason || "Invalid description" })),
 });
 
 const VisionLab = () => {
@@ -26,37 +27,40 @@ const VisionLab = () => {
     company: "",
     description: "",
   });
+  const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    // Honeypot check
+    if (honeypot) {
+      toast({ title: "Request Submitted!", description: "We'll contact you shortly to discuss your custom plan." });
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
-      // Validate form data
       const validatedData = formSchema.parse(formData);
 
-      // Call the edge function
       const { data, error } = await supabase.functions.invoke('send-visionlab-request', {
-        body: validatedData,
+        body: { ...validatedData, _hp: honeypot },
       });
 
-      if (error) {
-        throw error;
+      if (error) throw error;
+
+      if (data?.error) {
+        toast({ title: "Error", description: data.error, variant: "destructive" });
+      } else {
+        toast({ title: "Request Submitted!", description: "We'll contact you shortly to discuss your custom plan." });
+        setFormData({ name: "", email: "", company: "", description: "" });
       }
-
-      toast({
-        title: "Request Submitted!",
-        description: "We'll contact you shortly to discuss your custom plan.",
-      });
-      setFormData({ name: "", email: "", company: "", description: "" });
     } catch (error) {
       console.error("Error submitting form:", error);
       toast({
         title: "Error",
-        description: error instanceof z.ZodError 
-          ? error.errors[0].message 
-          : "Failed to submit request. Please try again.",
+        description: error instanceof z.ZodError ? error.errors[0].message : "Failed to submit request. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -64,9 +68,7 @@ const VisionLab = () => {
     }
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -125,57 +127,36 @@ const VisionLab = () => {
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold mb-6">Request Your Custom Plan</h3>
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Honeypot - hidden from real users */}
+                  <div className="absolute opacity-0 -z-10" aria-hidden="true" tabIndex={-1}>
+                    <input
+                      type="text"
+                      name="website_url"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
+
                   <div>
                     <Label htmlFor="name">Name *</Label>
-                    <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="mt-2"
-                      placeholder="John Doe"
-                    />
+                    <Input id="name" name="name" value={formData.name} onChange={handleChange} required className="mt-2" placeholder="John Doe" />
                   </div>
 
                   <div>
                     <Label htmlFor="email">Email *</Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="mt-2"
-                      placeholder="john@example.com"
-                    />
+                    <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required className="mt-2" placeholder="john@example.com" />
                   </div>
 
                   <div>
                     <Label htmlFor="company">Company *</Label>
-                    <Input
-                      id="company"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      required
-                      className="mt-2"
-                      placeholder="Your Real Estate Company"
-                    />
+                    <Input id="company" name="company" value={formData.company} onChange={handleChange} required className="mt-2" placeholder="Your Real Estate Company" />
                   </div>
 
                   <div>
                     <Label htmlFor="description">Project Description *</Label>
-                    <Textarea
-                      id="description"
-                      name="description"
-                      value={formData.description}
-                      onChange={handleChange}
-                      required
-                      className="mt-2 min-h-32"
-                      placeholder="Tell us about your project goals, target audience, and any specific requirements..."
-                    />
+                    <Textarea id="description" name="description" value={formData.description} onChange={handleChange} required className="mt-2 min-h-32" placeholder="Tell us about your project goals, target audience, and any specific requirements... (minimum 20 characters)" />
                   </div>
 
                   <Button type="submit" size="lg" variant="liquid-glass" className="w-full" disabled={isSubmitting}>
