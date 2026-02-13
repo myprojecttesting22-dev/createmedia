@@ -2,20 +2,21 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, ChevronRight } from "lucide-react";
 import logo from "@/assets/create-media-logo.png";
+import ThemeToggle from "./ThemeToggle";
+import { useThemeContext } from "@/contexts/ThemeContext";
 
 const Navigation = () => {
+  const { isDark, toggle: onToggleTheme } = useThemeContext();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCreateSuiteOpen, setIsCreateSuiteOpen] = useState(false);
   const [isMobileCreateSuiteOpen, setIsMobileCreateSuiteOpen] = useState(false);
   const [navMode, setNavMode] = useState<"dark" | "light">("dark");
   const navRef = useRef<HTMLDivElement>(null);
 
-  // Adaptive glass: detect background luminance with IntersectionObserver
   useEffect(() => {
     const sentinels: HTMLDivElement[] = [];
     const sections = document.querySelectorAll("main > section, main > div, section, .hero-section, [data-section]");
 
-    // Create invisible sentinels at the top of each section
     sections.forEach((section) => {
       const sentinel = document.createElement("div");
       sentinel.style.cssText = "position:absolute;top:0;left:0;width:100%;height:1px;pointer-events:none;";
@@ -24,19 +25,17 @@ const Navigation = () => {
       sentinels.push(sentinel);
     });
 
-    // Simple luminance check: sample background color
     const getLuminance = (el: Element): number => {
       const style = getComputedStyle(el);
       const bg = style.backgroundColor;
       const match = bg.match(/\d+/g);
-      if (!match || match.length < 3) return 0; // default dark
+      if (!match || match.length < 3) return isDark ? 0 : 1;
       const [r, g, b] = match.map(Number);
       return (0.299 * r + 0.587 * g + 0.114 * b) / 255;
     };
 
     const observer = new IntersectionObserver(
       (entries) => {
-        // Find the most visible section near the top
         let topEntry: IntersectionObserverEntry | null = null;
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -63,7 +62,9 @@ const Navigation = () => {
       observer.disconnect();
       sentinels.forEach((s) => s.remove());
     };
-  }, []);
+  }, [isDark]);
+
+  const effectiveNavMode = isDark ? navMode : "light";
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -82,7 +83,11 @@ const Navigation = () => {
     { name: "VisionLab", path: "/visionlab" },
   ];
 
-  const pillClass = navMode === "light" ? "navbar-pill navbar-pill--light" : "navbar-pill navbar-pill--dark";
+  const pillClass = effectiveNavMode === "light" ? "navbar-pill navbar-pill--light" : "navbar-pill navbar-pill--dark";
+  const linkClass = effectiveNavMode === "light" ? "nav-link--light" : "nav-link-liquid";
+  const brandClass = effectiveNavMode === "light" ? "nav-brand--light" : "nav-brand";
+  const mobileMenuClass = isDark ? "navbar-mobile-panel" : "navbar-mobile-panel--light";
+  const mobileLinkClass = isDark ? "nav-link-liquid" : "nav-link--light";
 
   return (
     <nav className="fixed top-4 left-4 right-4 z-50" ref={navRef}>
@@ -90,29 +95,27 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 hover-lift shrink-0">
             <img src={logo} alt="CREATE MEDIA" className="h-12 w-12 rounded-full" />
-            <span className={`text-xl font-bold whitespace-nowrap ${navMode === "light" ? "nav-brand--light" : "nav-brand"}`}>CREATE MEDIA</span>
+            <span className={`text-xl font-bold whitespace-nowrap ${brandClass}`}>CREATE MEDIA</span>
           </Link>
 
-          {/* Desktop Navigation — scrollable on tablet */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8 nav-scroll-container">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm font-medium px-3 lg:px-4 py-2 rounded-xl whitespace-nowrap ${navMode === "light" ? "nav-link--light" : "nav-link-liquid"}`}
+                className={`text-sm font-medium px-3 lg:px-4 py-2 rounded-xl whitespace-nowrap ${linkClass}`}
               >
                 {link.name}
               </Link>
             ))}
             
-            {/* Create Suite Dropdown */}
             <div 
               className="relative group"
               onMouseEnter={() => setIsCreateSuiteOpen(true)}
               onMouseLeave={() => setIsCreateSuiteOpen(false)}
             >
               <button
-                className={`text-sm font-medium px-3 lg:px-4 py-2 rounded-xl flex items-center gap-1 whitespace-nowrap ${navMode === "light" ? "nav-link--light" : "nav-link-liquid"}`}
+                className={`text-sm font-medium px-3 lg:px-4 py-2 rounded-xl flex items-center gap-1 whitespace-nowrap ${linkClass}`}
                 onClick={() => setIsCreateSuiteOpen(!isCreateSuiteOpen)}
               >
                 Create Suite
@@ -141,20 +144,22 @@ const Navigation = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm font-medium px-3 lg:px-4 py-2 rounded-xl whitespace-nowrap ${navMode === "light" ? "nav-link--light" : "nav-link-liquid"}`}
+                className={`text-sm font-medium px-3 lg:px-4 py-2 rounded-xl whitespace-nowrap ${linkClass}`}
               >
                 {link.name}
               </Link>
             ))}
+
+            <ThemeToggle isDark={isDark} onToggle={onToggleTheme} />
+
             <Link 
               to="/visionlab" 
-              className="text-sm font-semibold px-5 py-2 rounded-xl whitespace-nowrap liquid-glass-element liquid-glass-element--blue border border-primary/20 hover:bg-primary/30 transition-all"
+              className="text-sm font-semibold px-5 py-2 rounded-xl whitespace-nowrap bg-primary text-primary-foreground hover:bg-primary/90 transition-all"
             >
               Get Started
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             className="md:hidden p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -164,25 +169,23 @@ const Navigation = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation — clean slide-down panel */}
       {isMobileMenuOpen && (
-        <div className="md:hidden mt-2 mx-2 navbar-mobile-panel animate-fade-in">
+        <div className={`md:hidden mt-2 mx-2 ${mobileMenuClass} animate-fade-in`}>
           <div className="flex flex-col gap-2 p-5">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-sm font-medium nav-link-liquid px-4 py-3 rounded-xl"
+                className={`text-sm font-medium ${mobileLinkClass} px-4 py-3 rounded-xl`}
               >
                 {link.name}
               </Link>
             ))}
             
-            {/* Mobile Create Suite Dropdown */}
             <div>
               <button
-                className="text-sm font-medium nav-link-liquid px-4 py-3 rounded-xl flex items-center gap-1 w-full text-left"
+                className={`text-sm font-medium ${mobileLinkClass} px-4 py-3 rounded-xl flex items-center gap-1 w-full text-left`}
                 onClick={() => setIsMobileCreateSuiteOpen(!isMobileCreateSuiteOpen)}
               >
                 Create Suite
@@ -198,7 +201,7 @@ const Navigation = () => {
                         setIsMobileMenuOpen(false);
                         setIsMobileCreateSuiteOpen(false);
                       }}
-                      className="text-sm font-medium nav-link-liquid px-4 py-3 rounded-xl"
+                      className={`text-sm font-medium ${mobileLinkClass} px-4 py-3 rounded-xl`}
                     >
                       {item.name}
                     </Link>
@@ -212,15 +215,20 @@ const Navigation = () => {
                 key={link.path}
                 to={link.path}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-sm font-medium nav-link-liquid px-4 py-3 rounded-xl"
+                className={`text-sm font-medium ${mobileLinkClass} px-4 py-3 rounded-xl`}
               >
                 {link.name}
               </Link>
             ))}
+
+            <div className="flex items-center justify-center py-2">
+              <ThemeToggle isDark={isDark} onToggle={onToggleTheme} />
+            </div>
+
             <Link 
               to="/visionlab" 
               onClick={() => setIsMobileMenuOpen(false)}
-              className="text-sm font-semibold px-5 py-3 rounded-xl text-center liquid-glass-element liquid-glass-element--blue border border-primary/20 hover:bg-primary/30 transition-all mt-2"
+              className="text-sm font-semibold px-5 py-3 rounded-xl text-center bg-primary text-primary-foreground hover:bg-primary/90 transition-all mt-2"
             >
               Get Started
             </Link>
