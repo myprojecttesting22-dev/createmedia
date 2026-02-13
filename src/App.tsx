@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollArrow from "@/components/ScrollArrow";
 import AtlasChatbot from "@/components/AtlasChatbot";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 import Home from "./pages/Home";
 import CoreStory from "./pages/CoreStory";
 import CreateSuite from "./pages/CreateSuite";
@@ -21,25 +22,27 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollArrow />
-        <AtlasChatbot />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/core-story" element={<CoreStory />} />
-          <Route path="/create-suite" element={<CreateSuite />} />
-          <Route path="/visionlab" element={<VisionLab />} />
-          <Route path="/trust-frame" element={<TrustFrame />} />
-          <Route path="/ai-engine" element={<AIEngine />} />
-          <Route path="/connect" element={<Connect />} />
-          <Route path="/snapcuts" element={<SnapCuts />} />
-          <Route path="/admin-assets" element={<AdminAssets />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <ThemeProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <ScrollArrow />
+          <AtlasChatbot />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/core-story" element={<CoreStory />} />
+            <Route path="/create-suite" element={<CreateSuite />} />
+            <Route path="/visionlab" element={<VisionLab />} />
+            <Route path="/trust-frame" element={<TrustFrame />} />
+            <Route path="/ai-engine" element={<AIEngine />} />
+            <Route path="/connect" element={<Connect />} />
+            <Route path="/snapcuts" element={<SnapCuts />} />
+            <Route path="/admin-assets" element={<AdminAssets />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
