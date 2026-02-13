@@ -328,25 +328,87 @@ All colors MUST be HSL.
     background: rgba(30, 30, 30, 0.3);
   }
   
-  /* Pill Navigation */
+  /* Pill Navigation — shared */
   .navbar-pill {
-    background: rgba(30, 30, 30, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 9999px;
-    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.4);
+    transition: background 250ms ease, border-color 250ms ease, box-shadow 250ms ease;
   }
-  
-  /* Permanent High Contrast Navbar Text */
+
+  /* Dark Glass Mode (default — over dark backgrounds) */
+  .navbar-pill--dark {
+    background: rgba(30, 30, 30, 0.82);
+    backdrop-filter: blur(35px) saturate(180%);
+    -webkit-backdrop-filter: blur(35px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 
+      0 4px 24px 0 rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+  }
+
+  /* Light Glass Mode (over light backgrounds) */
+  .navbar-pill--light {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(35px) saturate(180%);
+    -webkit-backdrop-filter: blur(35px) saturate(180%);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow:
+      0 4px 24px 0 rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+  }
+
+  /* Dark mode nav text */
   .nav-brand,
   .nav-link-liquid {
     color: #FFFFFF !important;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-    transition: background 0.3s ease, transform 0.1s ease;
+    transition: background 0.25s ease, transform 0.1s ease, color 0.25s ease;
   }
-  
+
   .nav-link-liquid:hover {
     background: rgba(255, 255, 255, 0.15);
     transform: scale(1.05);
+  }
+
+  /* Light mode nav text */
+  .nav-brand--light {
+    color: #1a1a1a !important;
+    text-shadow: none;
+    transition: color 0.25s ease;
+  }
+
+  .nav-link--light {
+    color: #1a1a1a !important;
+    text-shadow: none;
+    transition: background 0.25s ease, transform 0.1s ease, color 0.25s ease;
+  }
+
+  .nav-link--light:hover {
+    background: rgba(0, 0, 0, 0.08);
+    transform: scale(1.05);
+  }
+
+  /* Tablet: horizontal scroll for nav links */
+  .nav-scroll-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    mask-image: linear-gradient(to right, transparent 0, black 8px, black calc(100% - 24px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, black 8px, black calc(100% - 24px), transparent 100%);
+  }
+
+  .nav-scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Mobile menu — clean glass panel, no giant circle */
+  .navbar-mobile-panel {
+    background: rgba(20, 20, 20, 0.92);
+    backdrop-filter: blur(35px) saturate(180%);
+    -webkit-backdrop-filter: blur(35px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.25rem;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
   }
   
   /* Glass Containers */
