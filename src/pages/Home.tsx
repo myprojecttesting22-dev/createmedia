@@ -95,7 +95,7 @@ const Home = () => {
             {systemSteps.map((step, index) => (
               <Card
                 key={step.title}
-                className="liquid-glass-element liquid-glass-element--dark hover-lift border-border"
+                className="liquid-glass-element liquid-glass-element--dark liquid-glass-card-blue hover-lift border-border"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <CardContent className="pt-8 pb-8">
@@ -145,7 +145,7 @@ const Home = () => {
             ].map((service) => (
               <div
                 key={service}
-                className="p-4 liquid-glass-element liquid-glass-element--dark rounded-lg text-center"
+                className="p-4 liquid-glass-element liquid-glass-element--dark liquid-glass-card-blue rounded-lg text-center"
               >
                 <p className="text-foreground/90 font-medium">{service}</p>
               </div>

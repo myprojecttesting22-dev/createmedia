@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, ChevronRight } from "lucide-react";
 import logo from "@/assets/create-media-logo.png";
@@ -11,7 +11,9 @@ const Navigation = () => {
   const [isCreateSuiteOpen, setIsCreateSuiteOpen] = useState(false);
   const [isMobileCreateSuiteOpen, setIsMobileCreateSuiteOpen] = useState(false);
   const [navMode, setNavMode] = useState<"dark" | "light">("dark");
+  const [navVisible, setNavVisible] = useState(true);
   const navRef = useRef<HTMLDivElement>(null);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const sentinels: HTMLDivElement[] = [];
@@ -64,7 +66,26 @@ const Navigation = () => {
     };
   }, [isDark]);
 
-  const effectiveNavMode = isDark ? navMode : "light";
+  // Hide on scroll down, show on scroll up
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY < 80) {
+        setNavVisible(true);
+      } else if (currentY > lastScrollY.current + 10) {
+        setNavVisible(false);
+        setIsMobileMenuOpen(false);
+      } else if (currentY < lastScrollY.current - 10) {
+        setNavVisible(true);
+      }
+      lastScrollY.current = currentY;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // In light mode: use solid blue navbar by default, dark glass over dark sections
+  const effectiveNavMode = isDark ? navMode : (navMode === "dark" ? "dark" : "light-blue");
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -83,14 +104,18 @@ const Navigation = () => {
     { name: "VisionLab", path: "/visionlab" },
   ];
 
-  const pillClass = effectiveNavMode === "light" ? "navbar-pill navbar-pill--light" : "navbar-pill navbar-pill--dark";
+  const pillClass = effectiveNavMode === "light-blue" 
+    ? "navbar-pill navbar-pill--light-blue" 
+    : effectiveNavMode === "light" 
+      ? "navbar-pill navbar-pill--light" 
+      : "navbar-pill navbar-pill--dark";
   const linkClass = effectiveNavMode === "light" ? "nav-link--light" : "nav-link-liquid";
   const brandClass = effectiveNavMode === "light" ? "nav-brand--light" : "nav-brand";
   const mobileMenuClass = isDark ? "navbar-mobile-panel" : "navbar-mobile-panel--light";
   const mobileLinkClass = isDark ? "nav-link-liquid" : "nav-link--light";
 
   return (
-    <nav className="fixed top-4 left-4 right-4 z-50" ref={navRef}>
+    <nav className={`fixed top-4 left-4 right-4 z-50 transition-all duration-300 ease-in-out ${navVisible ? 'navbar-visible' : 'navbar-hidden'}`} ref={navRef}>
       <div className={`container mx-auto px-6 py-3 ${pillClass}`}>
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 hover-lift shrink-0">
