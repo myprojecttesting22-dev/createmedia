@@ -109,36 +109,35 @@ All colors MUST be HSL.
   }
 
   .light {
-    --background: 216 45% 98%;
+    --background: 220 30% 97%;
     --foreground: 216 29% 7%;
 
     --card: 0 0% 100%;
-    --card-foreground: 216 29% 7%;
+    --card-foreground: 0 0% 100%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 216 29% 7%;
 
-    --primary: 205 80% 50%;
+    --primary: 205 82% 49%;
     --primary-foreground: 0 0% 100%;
 
-    --primary-hover: 205 81% 44%;
-    --primary-deep: 209 83% 36%;
+    --primary-hover: 210 86% 45%;
 
-    --secondary: 216 30% 95%;
+    --secondary: 220 20% 96%;
     --secondary-foreground: 216 29% 7%;
 
-    --muted: 216 20% 95%;
+    --muted: 220 15% 96%;
     --muted-foreground: 216 11% 40%;
 
-    --accent: 216 30% 95%;
+    --accent: 220 20% 96%;
     --accent-foreground: 216 29% 7%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 216 20% 90%;
-    --input: 216 20% 90%;
-    --ring: 205 80% 50%;
+    --border: 220 15% 91%;
+    --input: 220 15% 91%;
+    --ring: 205 82% 49%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -169,7 +168,7 @@ All colors MUST be HSL.
   }
 
   .light body {
-    background: hsl(216, 45%, 98%);
+    background: hsl(220, 30%, 97%);
   }
   
   .dark body::before {
@@ -482,48 +481,82 @@ All colors MUST be HSL.
     padding: 2rem;
   }
 
-  /* Blue Liquid Glass Card (light mode) */
-  .light .liquid-glass-card-blue {
-    background: rgba(25, 148, 230, 0.08);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(25, 148, 230, 0.25);
-    box-shadow: 0 20px 40px rgba(25, 148, 230, 0.15);
-    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  /* Solid Blue Card (light mode) — no glassmorphism */
+  .light .solid-blue-card {
+    background: hsl(205, 82%, 49%) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    border-radius: 16px !important;
+    color: white !important;
+    box-shadow: 0 20px 40px rgba(23, 139, 230, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .light .liquid-glass-card-blue:hover {
+  .light .solid-blue-card:hover {
     transform: translateY(-6px);
-    background: rgba(25, 148, 230, 0.15);
-    box-shadow: 0 24px 48px rgba(25, 148, 230, 0.2);
+    box-shadow: 0 28px 50px rgba(23, 139, 230, 0.35);
   }
 
-  /* Primary gradient button (light mode) */
-  .light .btn-primary-gradient {
-    background: linear-gradient(135deg, hsl(205, 80%, 50%), hsl(205, 81%, 44%));
-    color: white;
-    box-shadow: 0 4px 20px rgba(25, 148, 230, 0.35);
+  .light .solid-blue-card h3,
+  .light .solid-blue-card p,
+  .light .solid-blue-card span {
+    color: white !important;
+  }
+
+  .light .solid-blue-card .icon-container {
+    background: rgba(255, 255, 255, 0.2) !important;
+  }
+
+  .light .solid-blue-card .icon-container svg {
+    color: white !important;
+  }
+
+  /* Solid blue service pill (light mode) */
+  .light .solid-blue-pill {
+    background: hsl(205, 82%, 49%) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    border-radius: 12px !important;
+    color: white !important;
+    box-shadow: 0 8px 24px rgba(23, 139, 230, 0.2);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
 
-  .light .btn-primary-gradient:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(25, 148, 230, 0.45);
+  .light .solid-blue-pill:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(23, 139, 230, 0.3);
+  }
+
+  .light .solid-blue-pill p {
+    color: white !important;
   }
 
   /* Light mode navbar — solid blue default */
   .navbar-pill--light-blue {
-    background: hsl(205, 80%, 50%);
+    background: hsl(205, 82%, 49%);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 24px rgba(25, 148, 230, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 24px rgba(23, 139, 230, 0.3);
   }
 
   .navbar-pill--light-blue .nav-link-liquid,
   .navbar-pill--light-blue .nav-brand {
     color: #FFFFFF !important;
     text-shadow: none;
+  }
+
+  /* Light mode primary button — solid, no gradient */
+  .light .bg-primary {
+    box-shadow: 0 4px 16px rgba(23, 139, 230, 0.3);
+  }
+
+  .light .bg-primary:hover,
+  .light .hover\:bg-primary\/90:hover {
+    background: hsl(210, 86%, 45%) !important;
+    box-shadow: 0 6px 24px rgba(23, 139, 230, 0.4);
   }
 
   /* Navbar hide/show */
