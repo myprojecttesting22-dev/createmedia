@@ -84,8 +84,8 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // In light mode: use solid blue navbar by default, dark glass over dark sections
-  const effectiveNavMode = isDark ? navMode : (navMode === "dark" ? "dark" : "light-blue");
+  // In light mode: white navbar default, dark glass over dark sections
+  const effectiveNavMode = isDark ? navMode : (navMode === "dark" ? "light-dark" : "light-white");
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -104,13 +104,15 @@ const Navigation = () => {
     { name: "VisionLab", path: "/visionlab" },
   ];
 
-  const pillClass = effectiveNavMode === "light-blue" 
-    ? "navbar-pill navbar-pill--light-blue" 
-    : effectiveNavMode === "light" 
-      ? "navbar-pill navbar-pill--light" 
-      : "navbar-pill navbar-pill--dark";
-  const linkClass = effectiveNavMode === "light" ? "nav-link--light" : "nav-link-liquid";
-  const brandClass = effectiveNavMode === "light" ? "nav-brand--light" : "nav-brand";
+  const pillClass = effectiveNavMode === "light-white"
+    ? "navbar-pill navbar-pill--light-white"
+    : effectiveNavMode === "light-dark"
+      ? "navbar-pill navbar-pill--light-dark"
+      : effectiveNavMode === "light"
+        ? "navbar-pill navbar-pill--light"
+        : "navbar-pill navbar-pill--dark";
+  const linkClass = effectiveNavMode === "light-white" ? "nav-link--light-nav" : "nav-link-liquid";
+  const brandClass = effectiveNavMode === "light-white" ? "nav-brand--light-nav" : "nav-brand";
   const mobileMenuClass = isDark ? "navbar-mobile-panel" : "navbar-mobile-panel--light";
   const mobileLinkClass = isDark ? "nav-link-liquid" : "nav-link--light";
 
