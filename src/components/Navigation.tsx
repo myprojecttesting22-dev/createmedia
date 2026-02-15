@@ -1,91 +1,17 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, ChevronRight } from "lucide-react";
 import logo from "@/assets/create-media-logo.png";
-import ThemeToggle from "./ThemeToggle";
-import { useThemeContext } from "@/contexts/ThemeContext";
 
 const Navigation = () => {
-  const { isDark, toggle: onToggleTheme } = useThemeContext();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCreateSuiteOpen, setIsCreateSuiteOpen] = useState(false);
   const [isMobileCreateSuiteOpen, setIsMobileCreateSuiteOpen] = useState(false);
-  const [navMode, setNavMode] = useState<"dark" | "light">("dark");
   const [navVisible, setNavVisible] = useState(true);
   const navRef = useRef<HTMLDivElement>(null);
   const lastScrollY = useRef(0);
 
-  useEffect(() => {
-    const sentinels: HTMLDivElement[] = [];
-    const sections = document.querySelectorAll("main > section, main > div, section, .hero-section, [data-section]");
-
-    sections.forEach((section) => {
-      const sentinel = document.createElement("div");
-      sentinel.style.cssText = "position:absolute;top:0;left:0;width:100%;height:1px;pointer-events:none;";
-      (section as HTMLElement).style.position = (section as HTMLElement).style.position || "relative";
-      section.prepend(sentinel);
-      sentinels.push(sentinel);
-    });
-
-    const getLuminance = (el: Element): number => {
-      const style = getComputedStyle(el);
-      const bg = style.backgroundColor;
-      const match = bg.match(/\d+/g);
-      if (!match || match.length < 3) return isDark ? 0 : 1;
-      const [r, g, b] = match.map(Number);
-      return (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-    };
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        let topEntry: IntersectionObserverEntry | null = null;
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (!topEntry || entry.boundingClientRect.top < topEntry.boundingClientRect.top) {
-              topEntry = entry;
-            }
-          }
-        });
-
-        if (topEntry) {
-          const parent = (topEntry as IntersectionObserverEntry).target.parentElement;
-          if (parent) {
-            const lum = getLuminance(parent);
-            setNavMode(lum > 0.5 ? "light" : "dark");
-          }
-        }
-      },
-      { rootMargin: "-10% 0px -80% 0px", threshold: 0 }
-    );
-
-    sentinels.forEach((s) => observer.observe(s));
-
-    return () => {
-      observer.disconnect();
-      sentinels.forEach((s) => s.remove());
-    };
-  }, [isDark]);
-
-  // Hide on scroll down, show on scroll up
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentY = window.scrollY;
-      if (currentY < 80) {
-        setNavVisible(true);
-      } else if (currentY > lastScrollY.current + 10) {
-        setNavVisible(false);
-        setIsMobileMenuOpen(false);
-      } else if (currentY < lastScrollY.current - 10) {
-        setNavVisible(true);
-      }
-      lastScrollY.current = currentY;
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // In light mode: white navbar default, dark glass over dark sections
-  const effectiveNavMode = isDark ? navMode : (navMode === "dark" ? "light-dark" : "light-white");
+  // Dark mode only — no section detection needed
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -104,17 +30,11 @@ const Navigation = () => {
     { name: "VisionLab", path: "/visionlab" },
   ];
 
-  const pillClass = effectiveNavMode === "light-white"
-    ? "navbar-pill navbar-pill--light-white"
-    : effectiveNavMode === "light-dark"
-      ? "navbar-pill navbar-pill--light-dark"
-      : effectiveNavMode === "light"
-        ? "navbar-pill navbar-pill--light"
-        : "navbar-pill navbar-pill--dark";
-  const linkClass = effectiveNavMode === "light-white" ? "nav-link--light-nav" : "nav-link-liquid";
-  const brandClass = effectiveNavMode === "light-white" ? "nav-brand--light-nav" : "nav-brand";
-  const mobileMenuClass = isDark ? "navbar-mobile-panel" : "navbar-mobile-panel--light";
-  const mobileLinkClass = isDark ? "nav-link-liquid" : "nav-link--light";
+  const pillClass = "navbar-pill navbar-pill--dark";
+  const linkClass = "nav-link-liquid";
+  const brandClass = "nav-brand";
+  const mobileMenuClass = "navbar-mobile-panel";
+  const mobileLinkClass = "nav-link-liquid";
 
   return (
     <nav className={`fixed top-4 left-4 right-4 z-50 transition-all duration-300 ease-in-out ${navVisible ? 'navbar-visible' : 'navbar-hidden'}`} ref={navRef}>
@@ -176,8 +96,6 @@ const Navigation = () => {
                 {link.name}
               </Link>
             ))}
-
-            <ThemeToggle isDark={isDark} onToggle={onToggleTheme} />
 
             <Link 
               to="/visionlab" 
@@ -247,10 +165,6 @@ const Navigation = () => {
                 {link.name}
               </Link>
             ))}
-
-            <div className="flex items-center justify-center py-2">
-              <ThemeToggle isDark={isDark} onToggle={onToggleTheme} />
-            </div>
 
             <Link 
               to="/visionlab" 

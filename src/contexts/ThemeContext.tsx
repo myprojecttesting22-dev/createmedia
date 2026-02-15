@@ -3,10 +3,9 @@ import { useTheme as useThemeHook } from "@/hooks/useTheme";
 
 interface ThemeContextType {
   isDark: boolean;
-  toggle: () => void;
 }
 
-const ThemeContext = createContext<ThemeContextType>({ isDark: true, toggle: () => {} });
+const ThemeContext = createContext<ThemeContextType>({ isDark: true });
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const theme = useThemeHook();
