@@ -108,46 +108,6 @@ All colors MUST be HSL.
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  .light {
-    --background: 220 27% 97%;
-    --foreground: 216 50% 8%;
-
-    --card: 205 74% 21%;
-    --card-foreground: 0 0% 100%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 216 50% 8%;
-
-    --primary: 205 74% 21%;
-    --primary-foreground: 0 0% 100%;
-
-    --primary-hover: 205 80% 17%;
-
-    --secondary: 0 0% 100%;
-    --secondary-foreground: 205 74% 21%;
-
-    --muted: 220 15% 96%;
-    --muted-foreground: 215 16% 37%;
-
-    --accent: 220 20% 96%;
-    --accent-foreground: 216 50% 8%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 220 15% 91%;
-    --input: 220 15% 91%;
-    --ring: 205 74% 21%;
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
 }
 
 @layer base {
@@ -163,15 +123,12 @@ All colors MUST be HSL.
   }
 
   .dark body,
-  body:not(.light body) {
+  body {
     background: linear-gradient(135deg, hsl(0, 0%, 6%) 0%, hsl(198, 50%, 8%) 100%);
   }
-
-  .light body {
-    background: hsl(220, 30%, 97%);
-  }
   
-  .dark body::before {
+  .dark body::before,
+  body::before {
     content: '';
     position: fixed;
     top: 0;
@@ -185,9 +142,6 @@ All colors MUST be HSL.
     z-index: -1;
   }
 
-  .light body::before {
-    display: none;
-  }
   
   html {
     scroll-behavior: smooth;
@@ -423,171 +377,11 @@ All colors MUST be HSL.
     transform: scale(1.05);
   }
 
-  /* Light mode nav text */
-  .nav-brand--light {
-    color: #1a1a1a !important;
-    text-shadow: none;
-    transition: color 0.25s ease;
-  }
-
-  .nav-link--light {
-    color: #1a1a1a !important;
-    text-shadow: none;
-    transition: background 0.25s ease, transform 0.1s ease, color 0.25s ease;
-  }
-
-  .nav-link--light:hover {
-    background: rgba(0, 0, 0, 0.08);
-    transform: scale(1.05);
-  }
-
-  /* Tablet: horizontal scroll for nav links */
-  .nav-scroll-container {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    mask-image: linear-gradient(to right, transparent 0, black 8px, black calc(100% - 24px), transparent 100%);
-    -webkit-mask-image: linear-gradient(to right, transparent 0, black 8px, black calc(100% - 24px), transparent 100%);
-  }
-
-  .nav-scroll-container::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Mobile menu — clean glass panel, no giant circle */
-  .navbar-mobile-panel {
-    background: rgba(20, 20, 20, 0.92);
-    backdrop-filter: blur(35px) saturate(180%);
-    -webkit-backdrop-filter: blur(35px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 1.25rem;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
-  }
-
-  /* Light mode mobile menu */
-  .navbar-mobile-panel--light {
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(35px) saturate(180%);
-    -webkit-backdrop-filter: blur(35px) saturate(180%);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-radius: 1.25rem;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
-  }
   
   /* Glass Containers */
   .glass-container {
     border-radius: 1.25rem;
     padding: 2rem;
-  }
-
-  /* Solid Deep Blue Card (light mode) — no glassmorphism */
-  .light .solid-blue-card {
-    background: hsl(205, 74%, 21%) !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    border: none !important;
-    border-radius: 18px !important;
-    color: white !important;
-    box-shadow:
-      0 20px 40px rgba(14, 58, 95, 0.25),
-      0 8px 16px rgba(0, 0, 0, 0.12);
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-  }
-
-  .light .solid-blue-card:hover {
-    transform: translateY(-6px);
-    box-shadow:
-      0 28px 60px rgba(14, 58, 95, 0.35),
-      0 12px 24px rgba(0, 0, 0, 0.18);
-  }
-
-  .light .solid-blue-card h3,
-  .light .solid-blue-card span {
-    color: white !important;
-  }
-
-  .light .solid-blue-card p {
-    color: rgba(255, 255, 255, 0.85) !important;
-  }
-
-  .light .solid-blue-card .icon-container {
-    background: rgba(255, 255, 255, 0.15) !important;
-  }
-
-  .light .solid-blue-card .icon-container svg {
-    color: white !important;
-  }
-
-  /* Solid deep blue service pill (light mode) */
-  .light .solid-blue-pill {
-    background: hsl(205, 74%, 21%) !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    border: none !important;
-    border-radius: 12px !important;
-    color: white !important;
-    box-shadow:
-      0 10px 25px rgba(14, 58, 95, 0.25),
-      0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .light .solid-blue-pill:hover {
-    transform: translateY(-3px);
-    box-shadow:
-      0 16px 36px rgba(14, 58, 95, 0.35),
-      0 6px 14px rgba(0, 0, 0, 0.15);
-  }
-
-  .light .solid-blue-pill p {
-    color: white !important;
-  }
-
-  /* Light mode navbar — white default */
-  .navbar-pill--light-white {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-  }
-
-  .navbar-pill--light-white .nav-link--light-nav {
-    color: #1A1A1A !important;
-    text-shadow: none;
-  }
-
-  .navbar-pill--light-white .nav-brand--light-nav {
-    color: #1A1A1A !important;
-    text-shadow: none;
-  }
-
-  /* Light mode navbar over dark section */
-  .navbar-pill--light-dark {
-    background: rgba(14, 58, 95, 0.95);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
-  }
-
-  .navbar-pill--light-dark .nav-link-liquid,
-  .navbar-pill--light-dark .nav-brand {
-    color: #FFFFFF !important;
-    text-shadow: none;
-  }
-
-  /* Light mode primary button — solid, deep blue */
-  .light .bg-primary {
-    box-shadow: 0 10px 25px rgba(14, 58, 95, 0.30);
-  }
-
-  .light .bg-primary:hover,
-  .light .hover\:bg-primary\/90:hover {
-    background: hsl(205, 80%, 17%) !important;
-    transform: translateY(-3px);
-    box-shadow: 0 18px 40px rgba(14, 58, 95, 0.40);
   }
 
   /* Navbar hide/show */
