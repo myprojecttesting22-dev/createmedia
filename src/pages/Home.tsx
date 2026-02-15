@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Target, Film, Share2, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BrandMarquee from "@/components/BrandMarquee";
@@ -36,14 +35,14 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted">
+    <div className="min-h-screen">
       <Navigation />
       
       {/* Hero Section */}
       <section className="pt-32 pb-8 px-6">
         <div className="container mx-auto text-center">
           <div className="animate-fade-in">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-foreground">
               We create, repurpose,
               <br />
               <span className="text-primary">and automate</span>
@@ -53,12 +52,12 @@ const Home = () => {
               and automated marketing systems.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button size="lg" variant="liquid-glass" asChild>
+              <Button size="lg" asChild>
                 <Link to="/visionlab">
                   Start Your Project <ArrowRight className="ml-2" size={20} />
                 </Link>
               </Button>
-              <Button size="lg" variant="liquid-glass" asChild>
+              <Button size="lg" variant="outline" asChild>
                 <Link to="/core-story">Learn More</Link>
               </Button>
             </div>
@@ -74,7 +73,7 @@ const Home = () => {
       <section className="py-20 px-6">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">
+            <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight text-foreground">
               We don't hope for attention
               <br />
               <span className="text-primary">We control it</span>
@@ -93,27 +92,25 @@ const Home = () => {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {systemSteps.map((step, index) => (
-              <Card
+              <div
                 key={step.title}
-                className="liquid-glass-element liquid-glass-element--dark solid-blue-card hover-lift border-border"
-                style={{ animationDelay: `${index * 100}ms`, borderRadius: '16px' }}
+                className="depth-card p-8 animate-slide-up"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                <CardContent className="pt-8 pb-8">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="icon-container w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <step.icon className="text-primary" size={20} />
-                    </div>
-                    <span className="text-primary/40 font-mono text-xs">{step.step}</span>
+                <div className="flex items-center gap-3 mb-6 relative z-10">
+                  <div className="depth-icon">
+                    <step.icon size={20} />
                   </div>
-                  <h3 className="text-2xl font-bold mb-3">{step.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{step.description}</p>
-                </CardContent>
-              </Card>
+                  <span className="depth-subtext font-mono text-xs">{step.step}</span>
+                </div>
+                <h3 className="text-2xl font-bold mb-3 depth-title relative z-10">{step.title}</h3>
+                <p className="depth-text text-sm leading-relaxed relative z-10">{step.description}</p>
+              </div>
             ))}
           </div>
 
           <div className="text-center mt-12">
-            <Button variant="liquid-glass" size="lg" asChild>
+            <Button size="lg" asChild>
               <Link to="/create-suite">
                 See How It Works <ArrowRight className="ml-2" size={20} />
               </Link>
@@ -126,7 +123,7 @@ const Home = () => {
       <section className="py-20 px-6">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">What We Execute</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">What We Execute</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Every service exists to power the system. Nothing is random.
             </p>
@@ -145,9 +142,9 @@ const Home = () => {
             ].map((service) => (
               <div
                 key={service}
-                className="p-4 liquid-glass-element liquid-glass-element--dark solid-blue-pill rounded-lg text-center"
+                className="depth-pill p-4 text-center"
               >
-                <p className="text-foreground/90 font-medium">{service}</p>
+                <p className="font-medium relative z-10">{service}</p>
               </div>
             ))}
           </div>
@@ -157,22 +154,22 @@ const Home = () => {
       {/* CTA Section */}
       <section className="py-20 px-6">
         <div className="container mx-auto">
-          <Card className="liquid-glass text-white border-0">
-            <CardContent className="py-16 text-center relative z-10">
-              <h2 className="text-3xl md:text-5xl font-bold mb-4">
+          <div className="depth-cta">
+            <div className="py-16 text-center relative z-10 px-6">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">
                 Ready to scale your visibility?
               </h2>
-              <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
+              <p className="text-lg mb-8 text-white/85 max-w-2xl mx-auto">
                 Stop uploading and hoping. Let's build a distribution system 
                 that compounds attention for your real estate brand.
               </p>
-              <Button size="lg" variant="liquid-glass" asChild>
+              <Button size="lg" asChild>
                 <Link to="/visionlab">
                   Request Custom Plan <ArrowRight className="ml-2" size={20} />
                 </Link>
               </Button>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
       </section>
 

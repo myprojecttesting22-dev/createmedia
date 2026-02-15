@@ -8,96 +8,94 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 6%;
+    --background: 220 30% 6%;
     --foreground: 0 0% 98%;
 
-    --card: 0 0% 8%;
+    --card: 210 40% 14%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 8%;
+    --popover: 210 40% 14%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 198 100% 48%;
+    /* Brand Primary: #0E3A5F = hsl(204, 73%, 21%) */
+    --primary: 204 73% 21%;
     --primary-foreground: 0 0% 100%;
+    
+    /* Lighter brand for gradients: #1A5A8A ≈ hsl(204, 68% 32%) */
+    --primary-light: 204 68% 32%;
 
-    --secondary: 198 50% 15%;
+    --secondary: 204 50% 15%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 220 20% 10%;
+    --muted-foreground: 215 15% 65%;
 
-    --accent: 198 50% 15%;
+    --accent: 204 50% 15%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 198 100% 48%;
+    --border: 210 20% 18%;
+    --input: 210 20% 18%;
+    --ring: 204 73% 21%;
 
     --radius: 0.75rem;
     
     --dark-blue: 223 65% 14%;
     --dark-gray: 0 0% 17%;
     
-    --gradient-primary: linear-gradient(135deg, hsl(198 100% 48%), hsl(198 100% 58%));
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 6%), hsl(198 50% 8%));
-    --gradient-frosted: linear-gradient(135deg, hsla(0, 0%, 8%, 0.7), hsla(198, 100%, 48%, 0.1));
+    --gradient-primary: linear-gradient(135deg, hsl(204 73% 21%), hsl(204 68% 32%));
+    --gradient-subtle: linear-gradient(180deg, hsl(220 30% 6%), hsl(210 40% 8%));
+    --gradient-frosted: linear-gradient(135deg, hsla(220, 30%, 6%, 0.7), hsla(204, 73%, 21%, 0.08));
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     
-    --theme-blue-rgb: 0, 173, 247;
+    --theme-blue-rgb: 14, 58, 95;
     --theme-purple-rgb: 114, 9, 183;
     --text-light: 0 0% 100%;
     --text-dark: 0 0% 12%;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 0 0% 6%;
+    --background: 220 30% 6%;
     --foreground: 0 0% 98%;
 
-    --card: 0 0% 8%;
+    --card: 210 40% 14%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 8%;
+    --popover: 210 40% 14%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 198 100% 48%;
+    --primary: 204 73% 21%;
     --primary-foreground: 0 0% 100%;
+    --primary-light: 204 68% 32%;
 
-    --secondary: 198 50% 15%;
+    --secondary: 204 50% 15%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 220 20% 10%;
+    --muted-foreground: 215 15% 65%;
 
-    --accent: 198 50% 15%;
+    --accent: 204 50% 15%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 198 100% 48%;
+    --border: 210 20% 18%;
+    --input: 210 20% 18%;
+    --ring: 204 73% 21%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -124,7 +122,7 @@ All colors MUST be HSL.
 
   .dark body,
   body {
-    background: linear-gradient(135deg, hsl(0, 0%, 6%) 0%, hsl(198, 50%, 8%) 100%);
+    background: linear-gradient(135deg, hsl(220, 30%, 6%) 0%, hsl(210, 40%, 8%) 100%);
   }
   
   .dark body::before,
@@ -153,22 +151,283 @@ All colors MUST be HSL.
   }
   
   .glass-section {
-    background: linear-gradient(135deg, hsla(0, 0%, 8%, 0.6), hsla(198, 100%, 48%, 0.05));
+    background: linear-gradient(135deg, hsla(220, 30%, 8%, 0.6), hsla(204, 73%, 21%, 0.05));
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid hsla(198, 100%, 48%, 0.1);
+    border: 1px solid hsla(204, 73%, 21%, 0.1);
   }
-  
+
+  /* ========================================
+     UNIFIED 3D DEPTH SYSTEM
+     iOS-inspired glossy, dimensional cards/buttons/pills
+     Brand: #0E3A5F = hsl(204, 73%, 21%)
+     ======================================== */
+
+  /* 3D Card — deep brand blue gradient with gloss */
+  .depth-card {
+    background: linear-gradient(
+      160deg,
+      hsl(204, 73%, 24%) 0%,
+      hsl(204, 73%, 21%) 40%,
+      hsl(204, 73%, 17%) 100%
+    );
+    border-radius: 20px;
+    border: 1px solid hsla(204, 60%, 40%, 0.25);
+    position: relative;
+    overflow: hidden;
+    color: #FFFFFF;
+    box-shadow:
+      0 20px 40px rgba(14, 58, 95, 0.35),
+      0 8px 16px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .depth-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    border-radius: 20px 20px 0 0;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.03) 60%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .depth-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      0 28px 60px rgba(14, 58, 95, 0.45),
+      0 12px 24px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Text inside depth cards */
+  .depth-card h3,
+  .depth-card h2,
+  .depth-card .depth-title {
+    color: #FFFFFF;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .depth-card p,
+  .depth-card .depth-text {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .depth-card .depth-subtext {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  /* 3D Icon Container — iOS app icon style */
+  .depth-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+      160deg,
+      hsla(204, 60%, 45%, 0.35) 0%,
+      hsla(204, 70%, 30%, 0.2) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .depth-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      transparent 100%
+    );
+    border-radius: 14px 14px 0 0;
+    pointer-events: none;
+  }
+
+  .depth-icon svg {
+    color: #FFFFFF;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+    position: relative;
+    z-index: 1;
+  }
+
+  /* 3D Button — unified for ALL buttons */
+  .depth-button {
+    background: linear-gradient(
+      160deg,
+      hsl(204, 73%, 26%) 0%,
+      hsl(204, 73%, 21%) 50%,
+      hsl(204, 73%, 17%) 100%
+    );
+    color: #FFFFFF;
+    font-weight: 600;
+    border: 1px solid hsla(204, 60%, 40%, 0.3);
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 10px 25px rgba(14, 58, 95, 0.35),
+      0 4px 10px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .depth-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .depth-button:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 18px 40px rgba(14, 58, 95, 0.5),
+      0 8px 16px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      inset 0 -1px 2px rgba(0, 0, 0, 0.1),
+      0 0 30px rgba(14, 58, 95, 0.2);
+  }
+
+  /* 3D Pill — for service tags */
+  .depth-pill {
+    background: linear-gradient(
+      160deg,
+      hsl(204, 73%, 25%) 0%,
+      hsl(204, 73%, 20%) 100%
+    );
+    color: #FFFFFF;
+    font-weight: 500;
+    border-radius: 12px;
+    border: 1px solid hsla(204, 60%, 40%, 0.2);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 6px 16px rgba(14, 58, 95, 0.3),
+      0 2px 6px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .depth-pill::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+
+  .depth-pill:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 12px 28px rgba(14, 58, 95, 0.4),
+      0 4px 10px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+
+  /* 3D CTA Block */
+  .depth-cta {
+    background: linear-gradient(
+      160deg,
+      hsl(204, 73%, 22%) 0%,
+      hsl(204, 73%, 18%) 50%,
+      hsl(204, 73%, 15%) 100%
+    );
+    border-radius: 24px;
+    border: 1px solid hsla(204, 60%, 40%, 0.2);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 24px 50px rgba(14, 58, 95, 0.4),
+      0 10px 20px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+  }
+
+  .depth-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 45%;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Secondary button */
+  .depth-button-secondary {
+    background: transparent;
+    color: hsl(204, 73%, 21%);
+    font-weight: 600;
+    border: 2px solid hsl(204, 73%, 21%);
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(14, 58, 95, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  }
+
+  .depth-button-secondary:hover {
+    transform: translateY(-2px);
+    background: hsla(204, 73%, 21%, 0.08);
+    box-shadow: 0 8px 20px rgba(14, 58, 95, 0.25);
+  }
+
+  /* Liquid glass — subtle version for white-ish sections */
   .liquid-glass {
     background: linear-gradient(
       135deg,
-      hsla(0, 0%, 4%, 0.85) 0%,
-      hsla(0, 0%, 6%, 0.9) 100%
+      hsla(220, 30%, 8%, 0.85) 0%,
+      hsla(220, 30%, 10%, 0.9) 100%
     );
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);
     box-shadow: 
-      0 8px 32px 0 rgba(0, 173, 247, 0.15),
+      0 8px 32px 0 rgba(14, 58, 95, 0.2),
       inset 0 1px 0 0 hsla(0, 0%, 100%, 0.05);
     position: relative;
     overflow: hidden;
@@ -184,8 +443,8 @@ All colors MUST be HSL.
       var(--glow-angle, 0deg),
       transparent 0%,
       transparent 20%,
-      #00ADF7 40%,
-      #00ADF7 60%,
+      hsl(204, 73%, 40%) 40%,
+      hsl(204, 73%, 40%) 60%,
       transparent 80%,
       transparent 100%
     );
@@ -194,7 +453,7 @@ All colors MUST be HSL.
     mask-composite: exclude;
     animation: corner-glow 4s linear infinite;
     pointer-events: none;
-    filter: drop-shadow(0 0 20px #00ADF7) drop-shadow(0 0 35px rgba(0, 173, 247, 0.6));
+    filter: drop-shadow(0 0 20px hsl(204, 73%, 40%)) drop-shadow(0 0 35px hsla(204, 73%, 40%, 0.6));
   }
   
   @keyframes corner-glow {
@@ -271,7 +530,7 @@ All colors MUST be HSL.
   }
   
   .ticker-item {
-    color: #00ADF7;
+    color: hsl(204, 73%, 40%);
     font-family: 'Inter', 'SF Pro', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     font-weight: 600;
     font-size: 1.5rem;
@@ -311,12 +570,11 @@ All colors MUST be HSL.
     }
   }
   
-  /* Thick Apple Liquid Glass Effect */
+  /* Legacy liquid glass element — kept for backward compat, redirected to depth system */
   .liquid-glass-element {
     backdrop-filter: blur(35px) saturate(180%);
     -webkit-backdrop-filter: blur(35px) saturate(180%);
-    filter: url(#liquid-distortion);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 
       0 8px 32px 0 rgba(0, 0, 0, 0.37),
       inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
@@ -333,7 +591,7 @@ All colors MUST be HSL.
   }
   
   .liquid-glass-element--dark {
-    background: rgba(30, 30, 30, 0.3);
+    background: rgba(14, 58, 95, 0.15);
   }
   
   /* Pill Navigation — shared */
@@ -348,9 +606,9 @@ All colors MUST be HSL.
   .navbar-pill--dark {
     background: linear-gradient(
       135deg,
-      rgba(14, 20, 32, 0.75) 0%,
-      rgba(20, 30, 48, 0.65) 40%,
-      rgba(0, 120, 200, 0.08) 100%
+      rgba(14, 40, 64, 0.8) 0%,
+      rgba(14, 58, 95, 0.6) 40%,
+      rgba(10, 30, 50, 0.75) 100%
     );
     backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
     -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
@@ -399,9 +657,9 @@ All colors MUST be HSL.
       var(--nav-glow-angle, 0deg),
       transparent 0%,
       transparent 30%,
-      rgba(0, 173, 247, 0.3) 45%,
-      rgba(0, 173, 247, 0.5) 50%,
-      rgba(0, 173, 247, 0.3) 55%,
+      rgba(14, 58, 95, 0.5) 45%,
+      rgba(26, 90, 138, 0.7) 50%,
+      rgba(14, 58, 95, 0.5) 55%,
       transparent 70%,
       transparent 100%
     );
@@ -410,7 +668,7 @@ All colors MUST be HSL.
     mask-composite: exclude;
     pointer-events: none;
     animation: nav-glow-sweep 6s linear infinite;
-    filter: drop-shadow(0 0 8px rgba(0, 173, 247, 0.25));
+    filter: drop-shadow(0 0 8px rgba(14, 58, 95, 0.4));
   }
 
   @property --nav-glow-angle {
@@ -473,8 +731,8 @@ All colors MUST be HSL.
   .navbar-mobile-panel {
     background: linear-gradient(
       135deg,
-      rgba(14, 20, 32, 0.88) 0%,
-      rgba(20, 30, 48, 0.82) 100%
+      rgba(14, 40, 64, 0.92) 0%,
+      rgba(14, 58, 95, 0.85) 100%
     );
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);

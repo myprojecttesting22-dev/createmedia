@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Users, Zap, Target, Shield, Rocket, CheckCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface SnapCutsLandingProps {
   onJoinClick: () => void;
@@ -7,26 +8,10 @@ interface SnapCutsLandingProps {
 
 const SnapCutsLanding = ({ onJoinClick }: SnapCutsLandingProps) => {
   const features = [
-    {
-      icon: <Users className="w-6 h-6" />,
-      title: "Join the Snapper Network",
-      description: "Join a network focused on distribution, not just file delivery. Snappers share standards and a deep understanding of how short-form attention works."
-    },
-    {
-      icon: <Zap className="w-6 h-6" />,
-      title: "Real Opportunities",
-      description: "Connect with real demand, active campaigns, and consistent needs. For serious snappers, this is the path to stability and long-term momentum."
-    },
-    {
-      icon: <Target className="w-6 h-6" />,
-      title: "Skill Development",
-      description: "Learn from experienced editors, get feedback on your work, and level up your craft in 2026."
-    },
-    {
-      icon: <Shield className="w-6 h-6" />,
-      title: "Standards That Matter",
-      description: "We maintain quality. No clowns, no client-stealers, no desperate DM spammers. Just professionals."
-    }
+    { icon: <Users className="w-6 h-6" />, title: "Join the Snapper Network", description: "Join a network focused on distribution, not just file delivery. Snappers share standards and a deep understanding of how short-form attention works." },
+    { icon: <Zap className="w-6 h-6" />, title: "Real Opportunities", description: "Connect with real demand, active campaigns, and consistent needs. For serious snappers, this is the path to stability and long-term momentum." },
+    { icon: <Target className="w-6 h-6" />, title: "Skill Development", description: "Learn from experienced editors, get feedback on your work, and level up your craft in 2026." },
+    { icon: <Shield className="w-6 h-6" />, title: "Standards That Matter", description: "We maintain quality. No clowns, no client-stealers, no desperate DM spammers. Just professionals." },
   ];
 
   const benefits = [
@@ -36,11 +21,11 @@ const SnapCutsLanding = ({ onJoinClick }: SnapCutsLandingProps) => {
     "Feedback that sharpens decision-making",
     "A network built on consistency",
     "Exposure to diverse formats",
-    "Resources for faster workflows"
+    "Resources for faster workflows",
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 overflow-hidden">
         <div className="absolute inset-0 dot-grid-bg opacity-30" />
@@ -56,10 +41,10 @@ const SnapCutsLanding = ({ onJoinClick }: SnapCutsLandingProps) => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-8"
+              className="inline-flex items-center gap-2 depth-pill px-4 py-2 text-sm font-medium mb-8"
             >
-              <Rocket className="w-4 h-4" />
-              Now Accepting Applications
+              <Rocket className="w-4 h-4 relative z-10" />
+              <span className="relative z-10">Now Accepting Applications</span>
             </motion.div>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight">
@@ -72,19 +57,12 @@ const SnapCutsLanding = ({ onJoinClick }: SnapCutsLandingProps) => {
               SnapCuts is built on snapping. We take high-impact moments from long-form content and shape them into clips that travel. It's not just about editing; it's about understanding content and pushing it where the attention lives.
             </p>
 
-            <motion.button
-              onClick={onJoinClick}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="group inline-flex items-center gap-3 px-10 py-5 rounded-2xl text-lg font-semibold text-primary-foreground transition-all duration-300"
-              style={{
-                background: "linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(198 100% 58%) 100%)",
-                boxShadow: "0 0 40px hsl(var(--primary) / 0.4), inset 0 1px 0 rgba(255,255,255,0.2)",
-              }}
-            >
-              <span>👉 Join SnapCuts</span>
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-            </motion.button>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Button size="lg" onClick={onJoinClick} className="px-10 py-5 text-lg">
+                <span>Join SnapCuts</span>
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -96,17 +74,19 @@ const SnapCutsLanding = ({ onJoinClick }: SnapCutsLandingProps) => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="liquid-glass rounded-3xl p-8 md:p-12 mb-16"
+            className="depth-cta rounded-3xl p-8 md:p-12 mb-16"
           >
-            <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-6">
-              What is <span className="text-primary">SnapCuts</span>?
-            </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-              SnapCuts is the creator network for CREATE MEDIA.
-            </p>
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              Snapping is our system: find the moments that hold attention, shape them for the feed, and publish for reach. We don't execute this randomly. We do it consistently.
-            </p>
+            <div className="relative z-10">
+              <h2 className="text-2xl md:text-4xl font-bold text-white mb-6">
+                What is <span className="text-white/80">SnapCuts</span>?
+              </h2>
+              <p className="text-white/80 text-lg leading-relaxed mb-6">
+                SnapCuts is the creator network for CREATE MEDIA.
+              </p>
+              <p className="text-white/80 text-lg leading-relaxed">
+                Snapping is our system: find the moments that hold attention, shape them for the feed, and publish for reach. We don't execute this randomly. We do it consistently.
+              </p>
+            </div>
           </motion.div>
 
           {/* Features Grid */}
@@ -118,13 +98,13 @@ const SnapCutsLanding = ({ onJoinClick }: SnapCutsLandingProps) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="liquid-glass rounded-2xl p-6 md:p-8"
+                className="depth-card p-6 md:p-8"
               >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
+                <div className="depth-icon mb-4 relative z-10">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
+                <h3 className="text-xl font-semibold text-white mb-2 relative z-10">{feature.title}</h3>
+                <p className="depth-text relative z-10">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -153,7 +133,7 @@ const SnapCutsLanding = ({ onJoinClick }: SnapCutsLandingProps) => {
               "Video Editors who deliver on time",
               "Short-form Creators (Reels, Shorts, TikToks)",
               "Real Estate Content Specialists",
-              "Hungry Beginners with no ego"
+              "Hungry Beginners with no ego",
             ].map((type, index) => (
               <motion.div
                 key={type}
@@ -161,9 +141,9 @@ const SnapCutsLanding = ({ onJoinClick }: SnapCutsLandingProps) => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-card/50 border border-border rounded-xl p-5 text-center hover:border-primary/50 transition-colors"
+                className="depth-pill p-5 text-center"
               >
-                <p className="text-foreground font-medium">{type}</p>
+                <p className="text-white font-medium relative z-10">{type}</p>
               </motion.div>
             ))}
           </div>
@@ -177,25 +157,27 @@ const SnapCutsLanding = ({ onJoinClick }: SnapCutsLandingProps) => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="liquid-glass rounded-3xl p-8 md:p-12"
+            className="depth-cta rounded-3xl p-8 md:p-12"
           >
-            <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-8 text-center">
-              What You Get
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {benefits.map((benefit, index) => (
-                <motion.div
-                  key={benefit}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className="flex items-center gap-3"
-                >
-                  <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-foreground">{benefit}</span>
-                </motion.div>
-              ))}
+            <div className="relative z-10">
+              <h2 className="text-2xl md:text-4xl font-bold text-white mb-8 text-center">
+                What You Get
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {benefits.map((benefit, index) => (
+                  <motion.div
+                    key={benefit}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05 }}
+                    className="flex items-center gap-3"
+                  >
+                    <CheckCircle className="w-5 h-5 text-white/80 flex-shrink-0" />
+                    <span className="text-white/85">{benefit}</span>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>
@@ -215,19 +197,12 @@ const SnapCutsLanding = ({ onJoinClick }: SnapCutsLandingProps) => {
             <p className="text-muted-foreground text-lg mb-8 max-w-xl mx-auto">
               If you are serious about snapping and want a system where effort compounds, you belong here. The application is short. The standards aren't.
             </p>
-            <motion.button
-              onClick={onJoinClick}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="group inline-flex items-center gap-3 px-10 py-5 rounded-2xl text-lg font-semibold text-primary-foreground transition-all duration-300"
-              style={{
-                background: "linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(198 100% 58%) 100%)",
-                boxShadow: "0 0 40px hsl(var(--primary) / 0.4), inset 0 1px 0 rgba(255,255,255,0.2)",
-              }}
-            >
-              <span>👉 Join SnapCuts</span>
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-            </motion.button>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Button size="lg" onClick={onJoinClick} className="px-10 py-5 text-lg">
+                <span>Join SnapCuts</span>
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </motion.div>
           </motion.div>
         </div>
       </section>
