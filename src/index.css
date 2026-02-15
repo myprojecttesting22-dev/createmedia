@@ -339,29 +339,89 @@ All colors MUST be HSL.
   /* Pill Navigation — shared */
   .navbar-pill {
     border-radius: 9999px;
-    transition: background 250ms ease, border-color 250ms ease, box-shadow 250ms ease;
+    transition: background 250ms ease, border-color 250ms ease, box-shadow 250ms ease, transform 0.4s ease;
+    position: relative;
+    overflow: hidden;
   }
 
-  /* Dark Glass Mode (default — over dark backgrounds) */
+  /* 3D Liquid Glass Navbar — deep refractive depth */
   .navbar-pill--dark {
-    background: rgba(30, 30, 30, 0.82);
-    backdrop-filter: blur(35px) saturate(180%);
-    -webkit-backdrop-filter: blur(35px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 
-      0 4px 24px 0 rgba(0, 0, 0, 0.5),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+    background: linear-gradient(
+      135deg,
+      rgba(14, 20, 32, 0.75) 0%,
+      rgba(20, 30, 48, 0.65) 40%,
+      rgba(0, 120, 200, 0.08) 100%
+    );
+    backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
+    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
+    border: 1.5px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.55),
+      0 2px 8px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.03),
+      0 0 0 0.5px rgba(255, 255, 255, 0.06);
   }
 
-  /* Light Glass Mode (over light backgrounds) */
-  .navbar-pill--light {
-    background: rgba(255, 255, 255, 0.72);
-    backdrop-filter: blur(35px) saturate(180%);
-    -webkit-backdrop-filter: blur(35px) saturate(180%);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow:
-      0 4px 24px 0 rgba(0, 0, 0, 0.1),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+  /* Refractive highlight sweep on hover */
+  .navbar-pill--dark::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      105deg,
+      transparent 0%,
+      transparent 35%,
+      rgba(255, 255, 255, 0.04) 45%,
+      rgba(255, 255, 255, 0.08) 50%,
+      rgba(255, 255, 255, 0.04) 55%,
+      transparent 65%,
+      transparent 100%
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .navbar-pill--dark:hover::before {
+    opacity: 1;
+  }
+
+  /* Subtle glow border animation */
+  .navbar-pill--dark::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: linear-gradient(
+      var(--nav-glow-angle, 0deg),
+      transparent 0%,
+      transparent 30%,
+      rgba(0, 173, 247, 0.3) 45%,
+      rgba(0, 173, 247, 0.5) 50%,
+      rgba(0, 173, 247, 0.3) 55%,
+      transparent 70%,
+      transparent 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    animation: nav-glow-sweep 6s linear infinite;
+    filter: drop-shadow(0 0 8px rgba(0, 173, 247, 0.25));
+  }
+
+  @property --nav-glow-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  @keyframes nav-glow-sweep {
+    0% { --nav-glow-angle: 0deg; }
+    100% { --nav-glow-angle: 360deg; }
   }
 
   /* Dark mode nav text */
@@ -373,11 +433,10 @@ All colors MUST be HSL.
   }
 
   .nav-link-liquid:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.12);
+    transform: scale(1.04);
   }
 
-  
   /* Glass Containers */
   .glass-container {
     border-radius: 1.25rem;
@@ -395,5 +454,34 @@ All colors MUST be HSL.
     transform: translateY(0);
     opacity: 1;
     pointer-events: auto;
+  }
+
+  /* Tablet nav — horizontal touch-scroll */
+  .nav-scroll-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-wrap: nowrap;
+  }
+
+  .nav-scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Mobile panel — liquid glass */
+  .navbar-mobile-panel {
+    background: linear-gradient(
+      135deg,
+      rgba(14, 20, 32, 0.88) 0%,
+      rgba(20, 30, 48, 0.82) 100%
+    );
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border-radius: 24px;
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
   }
 }

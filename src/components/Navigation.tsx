@@ -11,7 +11,20 @@ const Navigation = () => {
   const navRef = useRef<HTMLDivElement>(null);
   const lastScrollY = useRef(0);
 
-  // Dark mode only — no section detection needed
+  // Auto-hide on scroll down, reappear on scroll up
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY > lastScrollY.current && currentY > 80) {
+        setNavVisible(false);
+      } else {
+        setNavVisible(true);
+      }
+      lastScrollY.current = currentY;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -30,39 +43,38 @@ const Navigation = () => {
     { name: "VisionLab", path: "/visionlab" },
   ];
 
-  const pillClass = "navbar-pill navbar-pill--dark";
-  const linkClass = "nav-link-liquid";
-  const brandClass = "nav-brand";
-  const mobileMenuClass = "navbar-mobile-panel";
-  const mobileLinkClass = "nav-link-liquid";
-
   return (
-    <nav className={`fixed top-4 left-4 right-4 z-50 transition-all duration-300 ease-in-out ${navVisible ? 'navbar-visible' : 'navbar-hidden'}`} ref={navRef}>
-      <div className={`container mx-auto px-6 py-3 ${pillClass}`}>
-        <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3 hover-lift shrink-0">
-            <img src={logo} alt="CREATE MEDIA" className="h-12 w-12 rounded-full" />
-            <span className={`text-xl font-bold whitespace-nowrap ${brandClass}`}>CREATE MEDIA</span>
+    <nav
+      className={`fixed top-4 left-4 right-4 z-50 transition-all duration-400 ease-in-out ${navVisible ? 'navbar-visible' : 'navbar-hidden'}`}
+      ref={navRef}
+    >
+      <div className="container mx-auto px-4 sm:px-6 py-3 navbar-pill navbar-pill--dark">
+        <div className="flex items-center justify-between gap-4">
+          {/* Brand */}
+          <Link to="/" className="flex items-center gap-2 sm:gap-3 hover-lift shrink-0">
+            <img src={logo} alt="CREATE MEDIA" className="h-10 w-10 sm:h-12 sm:w-12 rounded-full" />
+            <span className="text-lg sm:text-xl font-bold whitespace-nowrap nav-brand">CREATE MEDIA</span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-6 lg:gap-8 nav-scroll-container">
+          {/* Desktop / Tablet nav — swipeable on tablet */}
+          <div className="hidden md:flex items-center gap-4 lg:gap-8 nav-scroll-container min-w-0">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm font-medium px-3 lg:px-4 py-2 rounded-xl whitespace-nowrap ${linkClass}`}
+                className="text-sm font-medium px-3 lg:px-4 py-2 rounded-xl whitespace-nowrap shrink-0 nav-link-liquid"
               >
                 {link.name}
               </Link>
             ))}
             
             <div 
-              className="relative group"
+              className="relative group shrink-0"
               onMouseEnter={() => setIsCreateSuiteOpen(true)}
               onMouseLeave={() => setIsCreateSuiteOpen(false)}
             >
               <button
-                className={`text-sm font-medium px-3 lg:px-4 py-2 rounded-xl flex items-center gap-1 whitespace-nowrap ${linkClass}`}
+                className="text-sm font-medium px-3 lg:px-4 py-2 rounded-xl flex items-center gap-1 whitespace-nowrap nav-link-liquid"
                 onClick={() => setIsCreateSuiteOpen(!isCreateSuiteOpen)}
               >
                 Create Suite
@@ -91,7 +103,7 @@ const Navigation = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm font-medium px-3 lg:px-4 py-2 rounded-xl whitespace-nowrap ${linkClass}`}
+                className="text-sm font-medium px-3 lg:px-4 py-2 rounded-xl whitespace-nowrap shrink-0 nav-link-liquid"
               >
                 {link.name}
               </Link>
@@ -99,14 +111,15 @@ const Navigation = () => {
 
             <Link 
               to="/visionlab" 
-              className="text-sm font-semibold px-5 py-2 rounded-xl whitespace-nowrap bg-primary text-primary-foreground hover:bg-primary/90 transition-all"
+              className="text-sm font-semibold px-5 py-2 rounded-xl whitespace-nowrap shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 transition-all"
             >
               Get Started
             </Link>
           </div>
 
+          {/* Mobile hamburger */}
           <button
-            className="md:hidden p-2"
+            className="md:hidden p-2 text-white"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -114,15 +127,16 @@ const Navigation = () => {
         </div>
       </div>
 
+      {/* Mobile menu panel */}
       {isMobileMenuOpen && (
-        <div className={`md:hidden mt-2 mx-2 ${mobileMenuClass} animate-fade-in`}>
-          <div className="flex flex-col gap-2 p-5">
+        <div className="md:hidden mt-2 mx-2 navbar-mobile-panel animate-fade-in">
+          <div className="flex flex-col gap-1 p-5">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`text-sm font-medium ${mobileLinkClass} px-4 py-3 rounded-xl`}
+                className="text-sm font-medium nav-link-liquid px-4 py-3 rounded-xl"
               >
                 {link.name}
               </Link>
@@ -130,7 +144,7 @@ const Navigation = () => {
             
             <div>
               <button
-                className={`text-sm font-medium ${mobileLinkClass} px-4 py-3 rounded-xl flex items-center gap-1 w-full text-left`}
+                className="text-sm font-medium nav-link-liquid px-4 py-3 rounded-xl flex items-center gap-1 w-full text-left"
                 onClick={() => setIsMobileCreateSuiteOpen(!isMobileCreateSuiteOpen)}
               >
                 Create Suite
@@ -146,7 +160,7 @@ const Navigation = () => {
                         setIsMobileMenuOpen(false);
                         setIsMobileCreateSuiteOpen(false);
                       }}
-                      className={`text-sm font-medium ${mobileLinkClass} px-4 py-3 rounded-xl`}
+                      className="text-sm font-medium nav-link-liquid px-4 py-3 rounded-xl"
                     >
                       {item.name}
                     </Link>
@@ -160,7 +174,7 @@ const Navigation = () => {
                 key={link.path}
                 to={link.path}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`text-sm font-medium ${mobileLinkClass} px-4 py-3 rounded-xl`}
+                className="text-sm font-medium nav-link-liquid px-4 py-3 rounded-xl"
               >
                 {link.name}
               </Link>
