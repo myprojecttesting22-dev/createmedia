@@ -1,6 +1,5 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Target, Film, Share2, Rocket, ArrowRight } from "lucide-react";
@@ -74,7 +73,7 @@ const CreateSuite = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted">
+    <div className="min-h-screen">
       <Navigation />
       
       <section className="pt-32 pb-12 px-6">
@@ -83,7 +82,7 @@ const CreateSuite = () => {
             <p className="text-primary font-medium tracking-wide uppercase text-sm mb-4">
               The System
             </p>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">Create Suite</h1>
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">Create Suite</h1>
             <p className="text-xl text-muted-foreground">
               Every service exists to power the system. Nothing is random. Here's exactly 
               how we generate millions of views for real estate podcasts and personal brands.
@@ -96,69 +95,67 @@ const CreateSuite = () => {
         <div className="container mx-auto max-w-5xl">
           <div className="space-y-16">
             {systemPhases.map((phase, index) => (
-              <Card
+              <div
                 key={phase.title}
-                className="liquid-glass-element liquid-glass-element--dark hover-lift animate-slide-up overflow-hidden"
+                className="depth-card animate-slide-up overflow-hidden"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <CardContent className="p-0">
-                  {/* Phase Header */}
-                  <div className="p-8 md:p-10 border-b border-border/50">
-                    <div className="flex items-start gap-6">
-                      <div className="w-16 h-16 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
-                        <phase.icon className="text-primary" size={32} />
-                      </div>
-                      <div>
-                        <p className="text-primary font-mono text-sm mb-1">{phase.step}</p>
-                        <h2 className="text-3xl font-bold mb-1">{phase.title}</h2>
-                        <p className="text-muted-foreground font-medium">{phase.subtitle}</p>
-                      </div>
+                {/* Phase Header */}
+                <div className="p-8 md:p-10 border-b border-white/10 relative z-10">
+                  <div className="flex items-start gap-6">
+                    <div className="depth-icon w-16 h-16 flex-shrink-0">
+                      <phase.icon size={32} />
                     </div>
-                  </div>
-
-                  {/* Phase Content */}
-                  <div className="p-8 md:p-10">
-                    <p className="text-lg text-foreground/80 leading-relaxed mb-8">
-                      {phase.description}
-                    </p>
-
-                    <div className="mb-8">
-                      <h3 className="font-semibold mb-4 text-foreground">How We Execute:</h3>
-                      <ul className="space-y-3">
-                        {phase.details.map((detail, i) => (
-                          <li key={i} className="flex items-start gap-3">
-                            <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 flex-shrink-0" />
-                            <span className="text-foreground/80">{detail}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="p-4 rounded-lg bg-primary/5 border border-primary/10 mb-8">
-                      <p className="text-foreground/90">
-                        <span className="font-semibold text-primary">The Outcome: </span>
-                        {phase.outcome}
-                      </p>
-                    </div>
-
                     <div>
-                      <h3 className="font-semibold mb-3 text-muted-foreground text-sm uppercase tracking-wide">
-                        Services In This Phase
-                      </h3>
-                      <div className="flex flex-wrap gap-2">
-                        {phase.services.map((service) => (
-                          <span
-                            key={service}
-                            className="px-3 py-1.5 rounded-full bg-muted text-foreground/80 text-sm"
-                          >
-                            {service}
-                          </span>
-                        ))}
-                      </div>
+                      <p className="text-white/60 font-mono text-sm mb-1">{phase.step}</p>
+                      <h2 className="text-3xl font-bold mb-1 text-white">{phase.title}</h2>
+                      <p className="text-white/60 font-medium">{phase.subtitle}</p>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+
+                {/* Phase Content */}
+                <div className="p-8 md:p-10 relative z-10">
+                  <p className="text-lg depth-text leading-relaxed mb-8">
+                    {phase.description}
+                  </p>
+
+                  <div className="mb-8">
+                    <h3 className="font-semibold mb-4 text-white">How We Execute:</h3>
+                    <ul className="space-y-3">
+                      {phase.details.map((detail, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <div className="w-1.5 h-1.5 rounded-full bg-white/60 mt-2.5 flex-shrink-0" />
+                          <span className="depth-text">{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="p-4 rounded-lg bg-white/5 border border-white/10 mb-8">
+                    <p className="depth-text">
+                      <span className="font-semibold text-white">The Outcome: </span>
+                      {phase.outcome}
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold mb-3 text-white/50 text-sm uppercase tracking-wide">
+                      Services In This Phase
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {phase.services.map((service) => (
+                        <span
+                          key={service}
+                          className="depth-pill px-3 py-1.5 text-sm"
+                        >
+                          <span className="relative z-10">{service}</span>
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
 
@@ -167,7 +164,7 @@ const CreateSuite = () => {
             <p className="text-muted-foreground mb-6 text-lg">
               Content is the asset. Distribution is the weapon.
             </p>
-            <Button size="lg" variant="liquid-glass" asChild>
+            <Button size="lg" asChild>
               <Link to="/visionlab">
                 Build Your System <ArrowRight className="ml-2" size={20} />
               </Link>
