@@ -130,10 +130,10 @@ const SystemFlowCards = () => {
           <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 -translate-y-1/2 z-0">
             <div
               className="h-full bg-gradient-to-r from-transparent via-primary to-transparent transition-all duration-700 ease-out"
-              style={{ width: `${flowProgress * 100}%`, boxShadow: isLocked ? "none" : "0 0 20px hsl(204, 73%, 30%), 0 0 40px hsla(204, 73%, 30%, 0.5)" }}
+              style={{ width: `${flowProgress * 100}%`, boxShadow: isLocked ? "none" : "0 0 20px hsl(207, 76%, 59%), 0 0 40px hsla(207, 76%, 59%, 0.5)" }}
             />
             {!isLocked && flowProgress > 0.1 && (
-              <div className="absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-primary animate-pulse" style={{ left: `${flowProgress * 100 - 2}%`, boxShadow: "0 0 15px hsl(204, 73%, 30%)" }} />
+              <div className="absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-primary animate-pulse" style={{ left: `${flowProgress * 100 - 2}%`, boxShadow: "0 0 15px hsl(207, 76%, 59%)" }} />
             )}
           </div>
 
@@ -177,7 +177,7 @@ const SystemFlowCards = () => {
                       <div className="lg:hidden absolute -bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center">
                         <div
                           className="w-0.5 h-6 transition-all duration-500"
-                          style={{ background: cardStates[index + 1] ? "linear-gradient(to bottom, hsl(204, 73%, 30%), transparent)" : "transparent" }}
+                          style={{ background: cardStates[index + 1] ? "linear-gradient(to bottom, hsl(207, 76%, 59%), transparent)" : "transparent" }}
                         />
                       </div>
                     )}

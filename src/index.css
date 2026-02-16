@@ -17,20 +17,20 @@ All colors MUST be HSL.
     --popover: 210 40% 14%;
     --popover-foreground: 0 0% 98%;
 
-    /* Brand Primary: #0E3A5F = hsl(204, 73%, 21%) */
-    --primary: 204 73% 21%;
+    /* Brand Primary: #4A9FE5 = hsl(207, 76%, 59%) — vivid sky blue */
+    --primary: 207 76% 59%;
     --primary-foreground: 0 0% 100%;
     
-    /* Lighter brand for gradients: #1A5A8A ≈ hsl(204, 68% 32%) */
-    --primary-light: 204 68% 32%;
+    /* Lighter brand for gradients */
+    --primary-light: 207 76% 68%;
 
-    --secondary: 204 50% 15%;
+    --secondary: 207 60% 25%;
     --secondary-foreground: 0 0% 98%;
 
     --muted: 220 20% 10%;
     --muted-foreground: 215 15% 65%;
 
-    --accent: 204 50% 15%;
+    --accent: 207 60% 25%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
@@ -38,21 +38,21 @@ All colors MUST be HSL.
 
     --border: 210 20% 18%;
     --input: 210 20% 18%;
-    --ring: 204 73% 21%;
+    --ring: 207 76% 59%;
 
     --radius: 0.75rem;
     
     --dark-blue: 223 65% 14%;
     --dark-gray: 0 0% 17%;
     
-    --gradient-primary: linear-gradient(135deg, hsl(204 73% 21%), hsl(204 68% 32%));
+    --gradient-primary: linear-gradient(135deg, hsl(207 76% 59%), hsl(207 76% 68%));
     --gradient-subtle: linear-gradient(180deg, hsl(220 30% 6%), hsl(210 40% 8%));
-    --gradient-frosted: linear-gradient(135deg, hsla(220, 30%, 6%, 0.7), hsla(204, 73%, 21%, 0.08));
+    --gradient-frosted: linear-gradient(135deg, hsla(220, 30%, 6%, 0.7), hsla(207, 76%, 59%, 0.08));
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     
-    --theme-blue-rgb: 14, 58, 95;
+    --theme-blue-rgb: 74, 159, 229;
     --theme-purple-rgb: 114, 9, 183;
     --text-light: 0 0% 100%;
     --text-dark: 0 0% 12%;
@@ -77,17 +77,17 @@ All colors MUST be HSL.
     --popover: 210 40% 14%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 204 73% 21%;
+    --primary: 207 76% 59%;
     --primary-foreground: 0 0% 100%;
-    --primary-light: 204 68% 32%;
+    --primary-light: 207 76% 68%;
 
-    --secondary: 204 50% 15%;
+    --secondary: 207 60% 25%;
     --secondary-foreground: 0 0% 98%;
 
     --muted: 220 20% 10%;
     --muted-foreground: 215 15% 65%;
 
-    --accent: 204 50% 15%;
+    --accent: 207 60% 25%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
@@ -95,7 +95,7 @@ All colors MUST be HSL.
 
     --border: 210 20% 18%;
     --input: 210 20% 18%;
-    --ring: 204 73% 21%;
+    --ring: 207 76% 59%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -151,35 +151,35 @@ All colors MUST be HSL.
   }
   
   .glass-section {
-    background: linear-gradient(135deg, hsla(220, 30%, 8%, 0.6), hsla(204, 73%, 21%, 0.05));
+    background: linear-gradient(135deg, hsla(220, 30%, 8%, 0.6), hsla(207, 76%, 59%, 0.05));
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid hsla(204, 73%, 21%, 0.1);
+    border: 1px solid hsla(207, 76%, 59%, 0.1);
   }
 
   /* ========================================
      UNIFIED 3D DEPTH SYSTEM
      iOS-inspired glossy, dimensional cards/buttons/pills
-     Brand: #0E3A5F = hsl(204, 73%, 21%)
+     Brand: #4A9FE5 = hsl(207, 76%, 59%)
      ======================================== */
 
-  /* 3D Card — deep brand blue gradient with gloss */
+  /* 3D Card — vivid brand blue gradient with gloss */
   .depth-card {
     background: linear-gradient(
       160deg,
-      hsl(204, 73%, 24%) 0%,
-      hsl(204, 73%, 21%) 40%,
-      hsl(204, 73%, 17%) 100%
+      hsl(207, 76%, 52%) 0%,
+      hsl(207, 76%, 45%) 40%,
+      hsl(207, 76%, 38%) 100%
     );
     border-radius: 20px;
-    border: 1px solid hsla(204, 60%, 40%, 0.25);
+    border: 1px solid hsla(207, 70%, 65%, 0.3);
     position: relative;
     overflow: hidden;
     color: #FFFFFF;
     box-shadow:
-      0 20px 40px rgba(14, 58, 95, 0.35),
+      0 20px 40px rgba(74, 159, 229, 0.3),
       0 8px 16px rgba(0, 0, 0, 0.25),
-      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
       inset 0 -2px 4px rgba(0, 0, 0, 0.15);
     transition: transform 0.35s ease, box-shadow 0.35s ease;
   }
@@ -194,8 +194,8 @@ All colors MUST be HSL.
     border-radius: 20px 20px 0 0;
     background: linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.1) 0%,
-      rgba(255, 255, 255, 0.03) 60%,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.04) 60%,
       transparent 100%
     );
     pointer-events: none;
@@ -205,9 +205,9 @@ All colors MUST be HSL.
   .depth-card:hover {
     transform: translateY(-6px);
     box-shadow:
-      0 28px 60px rgba(14, 58, 95, 0.45),
+      0 28px 60px rgba(74, 159, 229, 0.4),
       0 12px 24px rgba(0, 0, 0, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18),
       inset 0 -2px 4px rgba(0, 0, 0, 0.15);
   }
 
@@ -238,8 +238,8 @@ All colors MUST be HSL.
     justify-content: center;
     background: linear-gradient(
       160deg,
-      hsla(204, 60%, 45%, 0.35) 0%,
-      hsla(204, 70%, 30%, 0.2) 100%
+      hsla(207, 70%, 60%, 0.4) 0%,
+      hsla(207, 76%, 45%, 0.25) 100%
     );
     border: 1px solid rgba(255, 255, 255, 0.12);
     box-shadow:
@@ -277,20 +277,20 @@ All colors MUST be HSL.
   .depth-button {
     background: linear-gradient(
       160deg,
-      hsl(204, 73%, 26%) 0%,
-      hsl(204, 73%, 21%) 50%,
-      hsl(204, 73%, 17%) 100%
+      hsl(207, 76%, 55%) 0%,
+      hsl(207, 76%, 48%) 50%,
+      hsl(207, 76%, 40%) 100%
     );
     color: #FFFFFF;
     font-weight: 600;
-    border: 1px solid hsla(204, 60%, 40%, 0.3);
+    border: 1px solid hsla(207, 70%, 65%, 0.35);
     border-radius: 14px;
     position: relative;
     overflow: hidden;
     box-shadow:
-      0 10px 25px rgba(14, 58, 95, 0.35),
+      0 10px 25px rgba(74, 159, 229, 0.35),
       0 4px 10px rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
       inset 0 -1px 2px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
@@ -304,7 +304,7 @@ All colors MUST be HSL.
     height: 50%;
     background: linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.12) 0%,
       transparent 100%
     );
     pointer-events: none;
@@ -314,30 +314,30 @@ All colors MUST be HSL.
   .depth-button:hover {
     transform: translateY(-3px);
     box-shadow:
-      0 18px 40px rgba(14, 58, 95, 0.5),
+      0 18px 40px rgba(74, 159, 229, 0.45),
       0 8px 16px rgba(0, 0, 0, 0.25),
-      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18),
       inset 0 -1px 2px rgba(0, 0, 0, 0.1),
-      0 0 30px rgba(14, 58, 95, 0.2);
+      0 0 30px rgba(74, 159, 229, 0.2);
   }
 
   /* 3D Pill — for service tags */
   .depth-pill {
     background: linear-gradient(
       160deg,
-      hsl(204, 73%, 25%) 0%,
-      hsl(204, 73%, 20%) 100%
+      hsl(207, 76%, 52%) 0%,
+      hsl(207, 76%, 44%) 100%
     );
     color: #FFFFFF;
     font-weight: 500;
     border-radius: 12px;
-    border: 1px solid hsla(204, 60%, 40%, 0.2);
+    border: 1px solid hsla(207, 70%, 65%, 0.25);
     position: relative;
     overflow: hidden;
     box-shadow:
-      0 6px 16px rgba(14, 58, 95, 0.3),
+      0 6px 16px rgba(74, 159, 229, 0.3),
       0 2px 6px rgba(0, 0, 0, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
       inset 0 -1px 2px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
@@ -351,7 +351,7 @@ All colors MUST be HSL.
     height: 50%;
     background: linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.1) 0%,
       transparent 100%
     );
     pointer-events: none;
@@ -360,27 +360,27 @@ All colors MUST be HSL.
   .depth-pill:hover {
     transform: translateY(-3px);
     box-shadow:
-      0 12px 28px rgba(14, 58, 95, 0.4),
+      0 12px 28px rgba(74, 159, 229, 0.4),
       0 4px 10px rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      inset 0 1px 0 rgba(255, 255, 255, 0.14);
   }
 
   /* 3D CTA Block */
   .depth-cta {
     background: linear-gradient(
       160deg,
-      hsl(204, 73%, 22%) 0%,
-      hsl(204, 73%, 18%) 50%,
-      hsl(204, 73%, 15%) 100%
+      hsl(207, 76%, 50%) 0%,
+      hsl(207, 76%, 42%) 50%,
+      hsl(207, 76%, 35%) 100%
     );
     border-radius: 24px;
-    border: 1px solid hsla(204, 60%, 40%, 0.2);
+    border: 1px solid hsla(207, 70%, 65%, 0.25);
     position: relative;
     overflow: hidden;
     box-shadow:
-      0 24px 50px rgba(14, 58, 95, 0.4),
+      0 24px 50px rgba(74, 159, 229, 0.35),
       0 10px 20px rgba(0, 0, 0, 0.25),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
       inset 0 -2px 4px rgba(0, 0, 0, 0.15);
   }
 
@@ -393,7 +393,7 @@ All colors MUST be HSL.
     height: 45%;
     background: linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.1) 0%,
       transparent 100%
     );
     pointer-events: none;
@@ -403,18 +403,18 @@ All colors MUST be HSL.
   /* Secondary button */
   .depth-button-secondary {
     background: transparent;
-    color: hsl(204, 73%, 21%);
+    color: hsl(207, 76%, 59%);
     font-weight: 600;
-    border: 2px solid hsl(204, 73%, 21%);
+    border: 2px solid hsl(207, 76%, 59%);
     border-radius: 14px;
-    box-shadow: 0 4px 12px rgba(14, 58, 95, 0.15);
+    box-shadow: 0 4px 12px rgba(74, 159, 229, 0.15);
     transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   }
 
   .depth-button-secondary:hover {
     transform: translateY(-2px);
-    background: hsla(204, 73%, 21%, 0.08);
-    box-shadow: 0 8px 20px rgba(14, 58, 95, 0.25);
+    background: hsla(207, 76%, 59%, 0.1);
+    box-shadow: 0 8px 20px rgba(74, 159, 229, 0.25);
   }
 
   /* Liquid glass — subtle version for white-ish sections */
@@ -427,7 +427,7 @@ All colors MUST be HSL.
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);
     box-shadow: 
-      0 8px 32px 0 rgba(14, 58, 95, 0.2),
+      0 8px 32px 0 rgba(74, 159, 229, 0.2),
       inset 0 1px 0 0 hsla(0, 0%, 100%, 0.05);
     position: relative;
     overflow: hidden;
@@ -443,8 +443,8 @@ All colors MUST be HSL.
       var(--glow-angle, 0deg),
       transparent 0%,
       transparent 20%,
-      hsl(204, 73%, 40%) 40%,
-      hsl(204, 73%, 40%) 60%,
+      hsl(207, 76%, 59%) 40%,
+      hsl(207, 76%, 59%) 60%,
       transparent 80%,
       transparent 100%
     );
@@ -453,7 +453,7 @@ All colors MUST be HSL.
     mask-composite: exclude;
     animation: corner-glow 4s linear infinite;
     pointer-events: none;
-    filter: drop-shadow(0 0 20px hsl(204, 73%, 40%)) drop-shadow(0 0 35px hsla(204, 73%, 40%, 0.6));
+    filter: drop-shadow(0 0 20px hsl(207, 76%, 59%)) drop-shadow(0 0 35px hsla(207, 76%, 59%, 0.6));
   }
   
   @keyframes corner-glow {
@@ -530,7 +530,7 @@ All colors MUST be HSL.
   }
   
   .ticker-item {
-    color: hsl(204, 73%, 40%);
+    color: hsl(207, 76%, 59%);
     font-family: 'Inter', 'SF Pro', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     font-weight: 600;
     font-size: 1.5rem;
@@ -591,7 +591,7 @@ All colors MUST be HSL.
   }
   
   .liquid-glass-element--dark {
-    background: rgba(14, 58, 95, 0.15);
+    background: rgba(74, 159, 229, 0.15);
   }
   
   /* Pill Navigation — shared */
@@ -606,9 +606,9 @@ All colors MUST be HSL.
   .navbar-pill--dark {
     background: linear-gradient(
       135deg,
-      rgba(14, 40, 64, 0.8) 0%,
-      rgba(14, 58, 95, 0.6) 40%,
-      rgba(10, 30, 50, 0.75) 100%
+      rgba(30, 80, 140, 0.8) 0%,
+      rgba(74, 159, 229, 0.5) 40%,
+      rgba(20, 60, 110, 0.75) 100%
     );
     backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
     -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
@@ -657,9 +657,9 @@ All colors MUST be HSL.
       var(--nav-glow-angle, 0deg),
       transparent 0%,
       transparent 30%,
-      rgba(14, 58, 95, 0.5) 45%,
-      rgba(26, 90, 138, 0.7) 50%,
-      rgba(14, 58, 95, 0.5) 55%,
+      rgba(74, 159, 229, 0.5) 45%,
+      rgba(100, 180, 240, 0.7) 50%,
+      rgba(74, 159, 229, 0.5) 55%,
       transparent 70%,
       transparent 100%
     );
@@ -668,7 +668,7 @@ All colors MUST be HSL.
     mask-composite: exclude;
     pointer-events: none;
     animation: nav-glow-sweep 6s linear infinite;
-    filter: drop-shadow(0 0 8px rgba(14, 58, 95, 0.4));
+    filter: drop-shadow(0 0 8px rgba(74, 159, 229, 0.4));
   }
 
   @property --nav-glow-angle {
@@ -731,8 +731,8 @@ All colors MUST be HSL.
   .navbar-mobile-panel {
     background: linear-gradient(
       135deg,
-      rgba(14, 40, 64, 0.92) 0%,
-      rgba(14, 58, 95, 0.85) 100%
+      rgba(30, 80, 140, 0.92) 0%,
+      rgba(74, 159, 229, 0.75) 100%
     );
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);
