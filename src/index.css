@@ -9,13 +9,13 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 0 0% 0%;
-    --foreground: 199 98% 48%;
+    --foreground: 0 0% 100%;
 
     --card: 0 0% 4%;
-    --card-foreground: 199 98% 48%;
+    --card-foreground: 0 0% 100%;
 
     --popover: 0 0% 4%;
-    --popover-foreground: 199 98% 48%;
+    --popover-foreground: 0 0% 100%;
 
     /* Brand Primary: #02AAF5 = hsl(199, 98%, 48%) */
     --primary: 199 98% 48%;
@@ -25,13 +25,13 @@ All colors MUST be HSL.
     --primary-light: 199 90% 58%;
 
     --secondary: 199 80% 25%;
-    --secondary-foreground: 199 98% 48%;
+    --secondary-foreground: 0 0% 100%;
 
     --muted: 0 0% 6%;
-    --muted-foreground: 199 40% 55%;
+    --muted-foreground: 0 0% 65%;
 
     --accent: 199 80% 25%;
-    --accent-foreground: 199 98% 48%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
@@ -69,26 +69,26 @@ All colors MUST be HSL.
 
   .dark {
     --background: 0 0% 0%;
-    --foreground: 199 98% 48%;
+    --foreground: 0 0% 100%;
 
     --card: 0 0% 4%;
-    --card-foreground: 199 98% 48%;
+    --card-foreground: 0 0% 100%;
 
     --popover: 0 0% 4%;
-    --popover-foreground: 199 98% 48%;
+    --popover-foreground: 0 0% 100%;
 
     --primary: 199 98% 48%;
     --primary-foreground: 0 0% 100%;
     --primary-light: 199 90% 58%;
 
     --secondary: 199 80% 25%;
-    --secondary-foreground: 199 98% 48%;
+    --secondary-foreground: 0 0% 100%;
 
     --muted: 0 0% 6%;
-    --muted-foreground: 199 40% 55%;
+    --muted-foreground: 0 0% 65%;
 
     --accent: 199 80% 25%;
-    --accent-foreground: 199 98% 48%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
@@ -97,7 +97,7 @@ All colors MUST be HSL.
     --input: 199 30% 15%;
     --ring: 199 98% 48%;
     --sidebar-background: 0 0% 4%;
-    --sidebar-foreground: 199 98% 48%;
+    --sidebar-foreground: 0 0% 100%;
     --sidebar-primary: 199 98% 48%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 8%;
