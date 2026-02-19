@@ -8,16 +8,8 @@ const steps = [
   { id: "04", title: "Analytics & Monthly Report", description: "Every month, you get a clear breakdown: what worked, what didn't, and what to scale next.", icon: BarChart3 },
 ];
 
-const initialRotations = [
-  { rotateZ: -8, rotateY: 15, translateY: 20 },
-  { rotateZ: -3, rotateY: 8, translateY: -15 },
-  { rotateZ: 4, rotateY: -8, translateY: 10 },
-  { rotateZ: 9, rotateY: -15, translateY: -20 },
-];
-
 export const SystemWorkflow = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const [isLocked, setIsLocked] = useState(false);
   const [cardsVisible, setCardsVisible] = useState<boolean[]>([false, false, false, false]);
 
   useEffect(() => {
@@ -32,86 +24,189 @@ export const SystemWorkflow = () => {
                   newState[index] = true;
                   return newState;
                 });
-              }, index * 150);
+              }, index * 130);
             });
-            setTimeout(() => { setIsLocked(true); }, steps.length * 150 + 600);
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 text-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">How It Works</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">A seamless system from recording to results</p>
+    <section
+      ref={sectionRef}
+      className="relative py-28 overflow-hidden"
+      style={{ background: "#0a0c10" }}
+    >
+      {/* Atmospheric radial glow behind cards */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 50% at 50% 60%, rgba(0,150,255,0.10) 0%, transparent 70%)",
+        }}
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        {/* Header */}
+        <div className="text-center mb-20">
+          <p className="text-xs tracking-[0.35em] uppercase text-white/40 mb-4 font-medium">
+            Proven 4-Step System
+          </p>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+            How It Works
+          </h2>
+          <p className="text-base text-white/45 max-w-xl mx-auto leading-relaxed">
+            A seamless system from recording to results
+          </p>
         </div>
 
-        <div className="relative">
-          <div className="hidden lg:block absolute top-1/2 left-[12%] right-[12%] h-[2px] -translate-y-1/2 z-0">
-            <div className="w-full h-full bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-            <div
-              className={`absolute top-0 left-0 h-full w-20 bg-gradient-to-r from-transparent via-primary to-transparent transition-opacity duration-500 ${isLocked ? 'opacity-50' : 'opacity-0'}`}
-              style={{ animation: isLocked ? 'pulseMove 3s ease-in-out infinite' : 'none' }}
-            />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 relative z-10">
-            {steps.map((step, index) => {
-              const Icon = step.icon;
-              const rotation = initialRotations[index];
-              
-              return (
-                <div key={step.id} className="relative flex justify-center" style={{ perspective: "1000px" }}>
-                  {index < steps.length - 1 && (
-                    <div className="hidden lg:flex absolute -right-3 top-1/2 -translate-y-1/2 z-20 text-white/30">
-                      <svg width="12" height="20" viewBox="0 0 12 20" fill="currentColor">
-                        <path d="M2 2L10 10L2 18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                  )}
-                  
-                  <div
-                    className={`group relative w-full depth-card p-8 transition-all duration-700 ease-out ${cardsVisible[index] ? 'opacity-100' : 'opacity-0'}`}
-                    style={{
-                      transform: cardsVisible[index]
-                        ? isLocked
-                          ? 'rotateZ(0deg) rotateY(0deg) translateY(0px)'
-                          : `rotateZ(${rotation.rotateZ}deg) rotateY(${rotation.rotateY}deg) translateY(${rotation.translateY}px)`
-                        : `rotateZ(${rotation.rotateZ * 1.5}deg) rotateY(${rotation.rotateY * 1.5}deg) translateY(60px)`,
-                      transformStyle: 'preserve-3d',
-                    }}
-                  >
-                    {/* Step Number Badge */}
-                    <div className="absolute -top-4 -left-4 w-12 h-12 depth-icon rounded-full z-10 text-sm font-mono font-bold">
-                      {step.id}
-                    </div>
-
-                    <div className="depth-icon mb-6 relative z-10">
-                      <Icon className="w-8 h-8" strokeWidth={1.5} />
-                    </div>
-
-                    <h3 className="text-xl font-semibold mb-3 text-white relative z-10">{step.title}</h3>
-                    <p className="depth-text leading-relaxed text-sm relative z-10">{step.description}</p>
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7 lg:gap-8">
+          {steps.map((step, index) => {
+            const Icon = step.icon;
+            return (
+              <div
+                key={step.id}
+                className="glass-step-card group"
+                style={{
+                  opacity: cardsVisible[index] ? 1 : 0,
+                  transform: cardsVisible[index]
+                    ? "translateY(0px)"
+                    : "translateY(40px)",
+                  transition: `opacity 0.7s cubic-bezier(0.22,1,0.36,1) ${index * 0.12}s, transform 0.7s cubic-bezier(0.22,1,0.36,1) ${index * 0.12}s`,
+                }}
+              >
+                {/* Top row: icon + step number */}
+                <div className="flex items-center gap-3 mb-7">
+                  <div className="glass-icon-box">
+                    <Icon className="w-5 h-5" strokeWidth={1.6} style={{ color: "#02AAF5" }} />
                   </div>
+                  <span
+                    className="text-xs font-mono tracking-[0.2em] font-semibold"
+                    style={{ color: "rgba(255,255,255,0.25)" }}
+                  >
+                    {step.id}
+                  </span>
                 </div>
-              );
-            })}
-          </div>
+
+                {/* Title */}
+                <h3
+                  className="text-lg font-bold leading-snug mb-3"
+                  style={{ color: "#ffffff" }}
+                >
+                  {step.title}
+                </h3>
+
+                {/* Description */}
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{ color: "#9ea8b8", lineHeight: "1.75" }}
+                >
+                  {step.description}
+                </p>
+
+                {/* Bottom accent line */}
+                <div
+                  className="mt-8 h-px w-full rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, transparent, rgba(2,170,245,0.5), transparent)",
+                  }}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
 
       <style>{`
-        @keyframes pulseMove {
-          0%, 100% { left: 0%; opacity: 0; }
-          10% { opacity: 0.6; }
-          90% { opacity: 0.6; }
-          100% { left: calc(100% - 5rem); opacity: 0; }
+        .glass-step-card {
+          position: relative;
+          border-radius: 28px;
+          padding: 2rem;
+          backdrop-filter: blur(30px);
+          -webkit-backdrop-filter: blur(30px);
+          background: linear-gradient(
+            180deg,
+            rgba(255,255,255,0.075) 0%,
+            rgba(255,255,255,0.025) 100%
+          );
+          border: 1px solid rgba(255,255,255,0.09);
+          box-shadow:
+            0 25px 60px rgba(0,0,0,0.45),
+            0 0 120px rgba(0,150,255,0.12),
+            inset 0 1px 0 rgba(255,255,255,0.18);
+          overflow: hidden;
+          transition:
+            transform 0.35s cubic-bezier(0.22,1,0.36,1),
+            box-shadow 0.35s cubic-bezier(0.22,1,0.36,1);
+        }
+
+        /* Soft blue bottom glow inside each card */
+        .glass-step-card::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 80%;
+          height: 60%;
+          background: radial-gradient(
+            ellipse at bottom center,
+            rgba(0,170,255,0.13) 0%,
+            transparent 70%
+          );
+          pointer-events: none;
+          border-radius: 0 0 28px 28px;
+        }
+
+        /* Top gloss highlight */
+        .glass-step-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 10%;
+          right: 10%;
+          height: 1px;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.25),
+            transparent
+          );
+          pointer-events: none;
+        }
+
+        .glass-step-card:hover {
+          transform: translateY(-10px) scale(1.02);
+          box-shadow:
+            0 35px 80px rgba(0,0,0,0.5),
+            0 0 160px rgba(0,150,255,0.20),
+            inset 0 1px 0 rgba(255,255,255,0.22);
+        }
+
+        .glass-icon-box {
+          width: 42px;
+          height: 42px;
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(
+            135deg,
+            rgba(2,170,245,0.18) 0%,
+            rgba(2,170,245,0.08) 100%
+          );
+          border: 1px solid rgba(2,170,245,0.22);
+          box-shadow:
+            0 4px 16px rgba(0,0,0,0.3),
+            inset 0 1px 0 rgba(255,255,255,0.15),
+            0 0 20px rgba(2,170,245,0.10);
+          flex-shrink: 0;
         }
       `}</style>
     </section>
