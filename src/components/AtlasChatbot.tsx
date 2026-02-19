@@ -265,7 +265,11 @@ const AtlasChatbot = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-primary text-primary-foreground rounded-full shadow-lg flex items-center justify-center"
+      className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center"
+            style={{
+              background: "linear-gradient(135deg, #02AAF5 0%, #0180c0 100%)",
+              boxShadow: "0 8px 32px rgba(2,170,245,0.45), 0 0 0 1px rgba(2,170,245,0.2)",
+            }}
           >
             <MessageCircle className="w-6 h-6" />
           </motion.button>
@@ -283,17 +287,18 @@ const AtlasChatbot = () => {
             className="fixed bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-3rem)] h-[500px] max-h-[calc(100vh-6rem)] flex flex-col overflow-hidden"
             style={{
               borderRadius: "22px",
-              background: "linear-gradient(180deg, hsl(0 0% 10%) 0%, hsl(0 0% 6%) 100%)",
-              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 hsla(0, 0%, 100%, 0.05)",
-              border: "1px solid hsla(0, 0%, 100%, 0.08)",
+              background: "linear-gradient(180deg, rgba(2,170,245,0.07) 0%, rgba(0,0,0,0.97) 40%)",
+              boxShadow: "0 25px 60px rgba(0,0,0,0.6), 0 0 80px rgba(2,170,245,0.10), inset 0 1px 0 rgba(2,170,245,0.25)",
+              border: "1px solid rgba(2,170,245,0.18)",
+              backdropFilter: "blur(30px)",
             }}
           >
             {/* Header */}
             <div 
               className="flex items-center justify-between px-5 py-4"
               style={{
-                borderBottom: "1px solid hsla(0, 0%, 100%, 0.08)",
-                background: "linear-gradient(180deg, hsla(0, 0%, 12%, 0.8) 0%, transparent 100%)",
+                borderBottom: "1px solid rgba(2,170,245,0.15)",
+                background: "linear-gradient(180deg, rgba(2,170,245,0.08) 0%, transparent 100%)",
               }}
             >
               <div className="flex flex-col gap-0.5 pl-1">
@@ -347,11 +352,18 @@ const AtlasChatbot = () => {
                   className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                 >
                   <div
-                    className={`max-w-[85%] px-4 py-2.5 text-sm ${
-                      msg.role === "user"
-                        ? "bg-primary text-primary-foreground rounded-2xl rounded-br-md"
-                        : "bg-white/10 text-foreground rounded-2xl rounded-bl-md"
-                    }`}
+                    className="max-w-[85%] px-4 py-2.5 text-sm rounded-2xl"
+                    style={msg.role === "user" ? {
+                      background: "linear-gradient(135deg, #02AAF5 0%, #0180c0 100%)",
+                      color: "#ffffff",
+                      borderRadius: "18px 18px 4px 18px",
+                      boxShadow: "0 4px 20px rgba(2,170,245,0.35)",
+                    } : {
+                      background: "rgba(2,170,245,0.08)",
+                      border: "1px solid rgba(2,170,245,0.18)",
+                      color: "rgba(255,255,255,0.92)",
+                      borderRadius: "18px 18px 18px 4px",
+                    }}
                   >
                     {msg.role === "assistant" ? (
                       <div className="space-y-2">
@@ -386,7 +398,7 @@ const AtlasChatbot = () => {
                   exit={{ opacity: 0 }}
                   className="flex flex-col items-center justify-center py-8 gap-3"
                   style={{
-                    background: "radial-gradient(circle at center, hsla(198, 100%, 48%, 0.05) 0%, transparent 70%)",
+                    background: "radial-gradient(circle at center, rgba(2,170,245,0.08) 0%, transparent 70%)",
                   }}
                 >
                   <p 
@@ -410,8 +422,8 @@ const AtlasChatbot = () => {
               onSubmit={handleSubmit} 
               className="p-3"
               style={{
-                borderTop: "1px solid hsla(0, 0%, 100%, 0.08)",
-                background: "hsla(0, 0%, 8%, 0.5)",
+                borderTop: "1px solid rgba(2,170,245,0.15)",
+                background: "rgba(0,0,0,0.4)",
               }}
             >
               <div className="flex gap-2">
@@ -422,19 +434,27 @@ const AtlasChatbot = () => {
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask Atlas"
                   disabled={isLoading}
-                  className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 placeholder:text-white/40"
+                  className="flex-1 rounded-xl px-4 py-2.5 text-sm focus:outline-none placeholder:text-white/35 text-white"
                   style={{
                     fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif",
+                    background: "rgba(2,170,245,0.07)",
+                    border: "1px solid rgba(2,170,245,0.2)",
+                    outline: "none",
                   }}
+                  onFocus={(e) => e.target.style.boxShadow = "0 0 0 2px rgba(2,170,245,0.35)"}
+                  onBlur={(e) => e.target.style.boxShadow = "none"}
                 />
-                <Button
+                <button
                   type="submit"
-                  size="icon"
                   disabled={isLoading || !input.trim()}
-                  className="shrink-0 rounded-xl"
+                  className="shrink-0 w-10 h-10 rounded-xl flex items-center justify-center disabled:opacity-40 transition-all"
+                  style={{
+                    background: "linear-gradient(135deg, #02AAF5 0%, #0180c0 100%)",
+                    boxShadow: "0 4px 16px rgba(2,170,245,0.4)",
+                  }}
                 >
-                  <Send className="w-4 h-4" />
-                </Button>
+                  <Send className="w-4 h-4 text-white" />
+                </button>
               </div>
             </form>
           </motion.div>
