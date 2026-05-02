@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import NewsletterArchitect from "@/components/NewsletterArchitect";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Brain, Zap, Target, TrendingUp, Sparkles, ArrowRight } from "lucide-react";
