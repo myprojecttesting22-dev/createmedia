@@ -32,7 +32,7 @@ const NewsletterArchitect = () => {
   const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleAnalyze = () => {
+  const handleAnalyze = async () => {
     const trimmed = url.trim();
     if (!trimmed) {
       toast({ title: "Add a URL", description: "Paste a YouTube podcast URL to continue.", variant: "destructive" });
@@ -45,10 +45,28 @@ const NewsletterArchitect = () => {
     setLoading(true);
     const prompt = MEGA_PROMPT(trimmed);
     const target = `https://gemini.google.com/app?prompt=${encodeURIComponent(prompt)}`;
-    setTimeout(() => {
-      window.open(target, "_blank", "noopener,noreferrer");
-      setLoading(false);
-    }, 700);
+
+    // Clipboard fallback (best-effort, must not block the redirect)
+    try {
+      await navigator.clipboard.writeText(prompt);
+    } catch {
+      // ignore — anchor click below is the primary path
+    }
+
+    // Safari-safe redirect: synchronous anchor click within the user gesture
+    const a = document.createElement("a");
+    a.href = target;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    toast({
+      title: "Launched Gemini",
+      description: "Prompt also copied to your clipboard as a backup.",
+    });
+    setLoading(false);
   };
 
   return (
