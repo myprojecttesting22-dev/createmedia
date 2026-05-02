@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import NewsletterArchitect from "@/components/NewsletterArchitect";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Brain, Zap, Target, TrendingUp, Sparkles, ArrowRight } from "lucide-react";
@@ -45,6 +46,8 @@ const AIEngine = () => {
               and amplify your impact
             </p>
           </div>
+
+          <NewsletterArchitect />
 
           {/* Video Showcase Section */}
           <div className="max-w-4xl mx-auto mb-16 animate-slide-up">
