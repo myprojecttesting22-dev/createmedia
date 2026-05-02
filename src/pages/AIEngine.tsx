@@ -47,6 +47,8 @@ const AIEngine = () => {
             </p>
           </div>
 
+          <NewsletterArchitect />
+
           {/* Video Showcase Section */}
           <div className="max-w-4xl mx-auto mb-16 animate-slide-up">
             <h2 className="text-3xl font-bold text-center mb-8 text-foreground">See AI in Action</h2>
