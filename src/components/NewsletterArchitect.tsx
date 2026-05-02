@@ -5,15 +5,19 @@ import { Input } from "@/components/ui/input";
 import { FileText, Loader2, Sparkles } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 
-const MEGA_PROMPT = (url: string) => `Using your YouTube extension, analyze this video: ${url}. Act as the Lead Investment Strategist for Create Media. Generate a 3-part 'Investor Alpha' newsletter for high-net-worth Limited Partners:
+const MEGA_PROMPT = (url: string) => `Using your YouTube extension, FIRST analyze the content of this specific podcast episode: ${url}
 
-1. THE LINKEDIN AUTHORITY POST (Institutional tone, bold headers, focusing on market macro).
+Based ONLY on the insights from this episode, perform the following tasks:
 
-2. THE INVESTOR-PULSE EMAIL (A punchy, data-driven update for LPs).
+1. THE NEWSLETTER COPY: Write a high-authority LinkedIn post (institutional, Apple-meets-Bloomberg tone, bold headers, zero fluff) summarizing the guest's core investment thesis. Focus on IRR, Risk Mitigation, and First-Principles logic. Format the entire post as a single clean copy-paste block.
 
-3. THE LP HOOK (A single 'pattern-interrupt' social media caption).
+2. THE VISUAL ASSETS: Generate 5 standalone DALL·E 3 / ChatGPT image prompts to accompany the newsletter. Each prompt must:
+   - Be fully self-contained (no episode context required to render)
+   - Specify an Apple-style minimalist aesthetic: pitch-black background, soft glassmorphism, subtle brand-blue (#02AAF5) accents, high-end editorial composition, generous negative space, institutional Bloomberg-grade restraint
+   - Be presented as its own clean copy-paste block, clearly labeled IMAGE 1 through IMAGE 5
+   - Cover, in order: (1) hero conceptual visual, (2) abstract data / chart composition, (3) cinematic portrait-style scene, (4) macro thesis metaphor, (5) closing brand-mark composition
 
-Constraints: Use zero fluff. Focus on IRR, Risk Mitigation, and First-Principles logic.`;
+Constraints: zero fluff, no emojis, institutional tone throughout. Do not summarize the tasks back — execute them.`;
 
 const isValidYouTubeUrl = (url: string) => {
   try {
