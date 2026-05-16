@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Loader2, Upload, Image as ImageIcon } from 'lucide-react';
+import { Loader2, Upload, FileUp, FileText } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 
@@ -31,25 +31,35 @@ export function ImageUploader({ onUploadComplete }: ImageUploaderProps) {
     setIsDragging(false);
   }, []);
 
+  const ALLOWED_EXT = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'pdf', 'doc', 'docx'];
+  const isAllowed = (file: File) => {
+    const ext = (file.name.split('.').pop() || '').toLowerCase();
+    return file.type.startsWith('image/') ||
+      file.type === 'application/pdf' ||
+      file.type === 'application/msword' ||
+      file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
+      ALLOWED_EXT.includes(ext);
+  };
+
+  const acceptFile = (file: File) => {
+    if (!isAllowed(file)) {
+      toast.error('Unsupported file. Allowed: images, PDF, DOC, DOCX');
+      return;
+    }
+    setSelectedFile(file);
+    setPreview(file.type.startsWith('image/') ? URL.createObjectURL(file) : null);
+  };
+
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(false);
-    
     const file = e.dataTransfer.files[0];
-    if (file && file.type.startsWith('image/')) {
-      setSelectedFile(file);
-      setPreview(URL.createObjectURL(file));
-    } else {
-      toast.error('Please drop an image file');
-    }
+    if (file) acceptFile(file);
   }, []);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      setSelectedFile(file);
-      setPreview(URL.createObjectURL(file));
-    }
+    if (file) acceptFile(file);
   };
 
   const handleUpload = async () => {
@@ -86,13 +96,13 @@ export function ImageUploader({ onUploadComplete }: ImageUploaderProps) {
       // Try to copy URL to clipboard with fallback
       try {
         await navigator.clipboard.writeText(publicUrl);
-        toast.success('Image uploaded! URL copied to clipboard');
+        toast.success('File uploaded! URL copied to clipboard');
       } catch (clipboardErr) {
         // Clipboard failed (permissions), show URL in toast for manual copy
         console.warn('Clipboard access denied, showing URL in toast');
         toast.success(
           <div className="space-y-2">
-            <p>Image uploaded successfully!</p>
+            <p>File uploaded successfully!</p>
             <code className="block p-2 bg-muted rounded text-xs break-all select-all">{publicUrl}</code>
             <p className="text-xs text-muted-foreground">Select and copy the URL above</p>
           </div>,
@@ -122,10 +132,10 @@ export function ImageUploader({ onUploadComplete }: ImageUploaderProps) {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Upload className="w-5 h-5" />
-          Upload Image
+          Upload Asset
         </CardTitle>
         <CardDescription>
-          Drag and drop an image or click to select. URL will be copied automatically.
+          Drag and drop a file or click to select. URL will be copied automatically.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -141,25 +151,29 @@ export function ImageUploader({ onUploadComplete }: ImageUploaderProps) {
           `}
           onClick={() => !preview && document.getElementById('file-input')?.click()}
         >
-          {preview ? (
+          {selectedFile ? (
             <div className="space-y-4">
-              <img src={preview} alt="Preview" className="max-h-48 mx-auto rounded" />
-              <p className="text-sm text-muted-foreground">{selectedFile?.name}</p>
+              {preview ? (
+                <img src={preview} alt="Preview" className="max-h-48 mx-auto rounded" />
+              ) : (
+                <FileText className="w-16 h-16 mx-auto text-primary" />
+              )}
+              <p className="text-sm text-muted-foreground">{selectedFile.name}</p>
               <Button variant="outline" size="sm" onClick={(e) => { e.stopPropagation(); clearSelection(); }}>
                 Remove
               </Button>
             </div>
           ) : (
             <div className="space-y-2">
-              <ImageIcon className="w-12 h-12 mx-auto text-muted-foreground" />
-              <p className="text-muted-foreground">Drop image here or click to select</p>
-              <p className="text-xs text-muted-foreground">JPEG, PNG, GIF, WebP supported</p>
+              <FileUp className="w-12 h-12 mx-auto text-muted-foreground" />
+              <p className="text-muted-foreground">Drop file here or click to select</p>
+              <p className="text-xs text-muted-foreground">Images (JPEG, PNG, GIF, WebP), PDF, DOC, DOCX</p>
             </div>
           )}
           <input
             id="file-input"
             type="file"
-            accept="image/jpeg,image/png,image/gif,image/webp"
+            accept="image/jpeg,image/png,image/gif,image/webp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf,.doc,.docx"
             onChange={handleFileSelect}
             className="hidden"
           />

@@ -75,10 +75,20 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Validate file type
-    const allowedTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"];
-    if (!allowedTypes.includes(file.type)) {
-      return new Response(JSON.stringify({ error: "Invalid file type. Only JPEG, PNG, GIF, and WebP are allowed." }), {
+    // Validate file type — images + documents (PDF, Word)
+    const allowedTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/gif",
+      "image/webp",
+      "application/pdf",
+      "application/msword",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    ];
+    const allowedExtensions = ["jpg", "jpeg", "png", "gif", "webp", "pdf", "doc", "docx"];
+    const ext = (file.name.split(".").pop() || "").toLowerCase();
+    if (!allowedTypes.includes(file.type) && !allowedExtensions.includes(ext)) {
+      return new Response(JSON.stringify({ error: "Invalid file type. Allowed: JPEG, PNG, GIF, WebP, PDF, DOC, DOCX." }), {
         status: 400,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });

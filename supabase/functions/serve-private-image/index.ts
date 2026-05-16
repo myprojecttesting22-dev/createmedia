@@ -74,13 +74,14 @@ Deno.serve(async (req) => {
       return new Response("Not Found", { status: 404, headers: corsHeaders });
     }
 
-    // Return the image with appropriate headers
+    // Return the file with appropriate headers
+    const safeName = (image.original_filename || "file").replace(/"/g, "");
     return new Response(fileData, {
       status: 200,
       headers: {
         ...corsHeaders,
-        "Content-Type": image.mime_type,
-        "Content-Disposition": "inline",
+        "Content-Type": image.mime_type || "application/octet-stream",
+        "Content-Disposition": `inline; filename="${safeName}"`,
       },
     });
   } catch (error) {
