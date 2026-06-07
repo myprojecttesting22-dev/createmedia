@@ -61,28 +61,31 @@ const Connect = () => {
       setStep((s) => s + 1);
       return;
     }
+    if (honeypot) return;
     setIsSubmitting(true);
     try {
-      const { data, error } = await supabase.functions.invoke("send-application", {
-        body: {
-          q1: answers[0],
-          q2: answers[1],
-          q3: answers[2],
-          q4: answers[3],
-          _hp: honeypot,
-        },
-      });
-      if (error) throw error;
-      if (data?.error) throw new Error(data.error);
+      const body =
+        `Let's dominate.\n\n` +
+        QUESTIONS.map(
+          (q, i) => `Q${i + 1}. ${q}\n${answers[i].trim()}`,
+        ).join("\n\n") +
+        `\n\n— Sent from Create Media Connect Line`;
+
+      const mailto = `mailto:hello@createmedia.pro?subject=${encodeURIComponent(
+        "Lets dominate",
+      )}&body=${encodeURIComponent(body)}`;
+
+      window.location.href = mailto;
+
       setSuccess(true);
       setTimeout(() => {
         window.location.href = CALENDAR_URL;
-      }, 1600);
+      }, 2500);
     } catch (err: any) {
       console.error(err);
       toast({
-        title: "Submission failed",
-        description: err?.message || "Please try again.",
+        title: "Could not open email app",
+        description: "Please email us directly at hello@createmedia.pro",
         variant: "destructive",
       });
       setIsSubmitting(false);
