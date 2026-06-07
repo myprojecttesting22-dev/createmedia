@@ -71,7 +71,7 @@ const Connect = () => {
         ).join("\n\n") +
         `\n\n— Sent from Create Media Connect Line`;
 
-      const mailto = `mailto:hello@createmedia.pro?subject=${encodeURIComponent(
+      const mailto = `mailto:vanshhingmire22@gmail.com?subject=${encodeURIComponent(
         "Lets dominate",
       )}&body=${encodeURIComponent(body)}`;
 
