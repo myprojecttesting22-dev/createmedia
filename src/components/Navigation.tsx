@@ -9,6 +9,7 @@ const Navigation = () => {
   const [isMobileCreateSuiteOpen, setIsMobileCreateSuiteOpen] = useState(false);
   const [navVisible, setNavVisible] = useState(true);
   const navRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const lastScrollY = useRef(0);
 
   // Auto-hide on scroll down, reappear on scroll up
@@ -25,6 +26,18 @@ const Navigation = () => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close the Create Suite dropdown on outside click
+  useEffect(() => {
+    if (!isCreateSuiteOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setIsCreateSuiteOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isCreateSuiteOpen]);
 
   const navLinks = [
     { name: "Home", path: "/" },
