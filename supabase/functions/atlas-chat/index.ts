@@ -30,7 +30,6 @@ NAVIGATION PAGES:
 - Create Suite (/create-suite)
 - SnapCuts (/snapcuts)
 - Trust Frame (/trust-frame)
-- AI Engine (/ai-engine)
 - Connect Line (/connect)
 - VisionLab (/visionlab)
 

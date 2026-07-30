@@ -11,7 +11,6 @@ import CoreStory from "./pages/CoreStory";
 import CreateSuite from "./pages/CreateSuite";
 import VisionLab from "./pages/VisionLab";
 import TrustFrame from "./pages/TrustFrame";
-import AIEngine from "./pages/AIEngine";
 import Connect from "./pages/Connect";
 import SnapCuts from "./pages/SnapCuts";
 import NotFound from "./pages/NotFound";
@@ -34,7 +33,6 @@ const App = () => (
             <Route path="/create-suite" element={<CreateSuite />} />
             <Route path="/visionlab" element={<VisionLab />} />
             <Route path="/trust-frame" element={<TrustFrame />} />
-            <Route path="/ai-engine" element={<AIEngine />} />
             <Route path="/connect" element={<Connect />} />
             <Route path="/snapcuts" element={<SnapCuts />} />
             <Route path="/admin-assets" element={<AdminAssets />} />

@@ -131,7 +131,6 @@ const AtlasChatbot = () => {
       "/create-suite": "Explore Create Suite",
       "/snapcuts": "Join SnapCuts",
       "/trust-frame": "See Trust Frame",
-      "/ai-engine": "Discover AI Engine",
       "/connect": "Connect with Us",
       "/visionlab": "Request Custom Plan",
     };

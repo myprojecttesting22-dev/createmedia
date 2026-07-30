@@ -9,6 +9,7 @@ const Navigation = () => {
   const [isMobileCreateSuiteOpen, setIsMobileCreateSuiteOpen] = useState(false);
   const [navVisible, setNavVisible] = useState(true);
   const navRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const lastScrollY = useRef(0);
 
   // Auto-hide on scroll down, reappear on scroll up
@@ -26,6 +27,18 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close the Create Suite dropdown on outside click
+  useEffect(() => {
+    if (!isCreateSuiteOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setIsCreateSuiteOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isCreateSuiteOpen]);
+
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Core Story", path: "/core-story" },
@@ -34,7 +47,6 @@ const Navigation = () => {
   const navLinksAfterDropdown = [
     { name: "SnapCuts", path: "/snapcuts" },
     { name: "Trust Frame", path: "/trust-frame" },
-    { name: "AI Engine", path: "/ai-engine" },
     { name: "Connect Line", path: "/connect" },
   ];
 
@@ -68,18 +80,21 @@ const Navigation = () => {
               </Link>
             ))}
             
-            <div 
-              className="relative group shrink-0"
-              onMouseEnter={() => setIsCreateSuiteOpen(true)}
-              onMouseLeave={() => setIsCreateSuiteOpen(false)}
+            <div
+              ref={dropdownRef}
+              className="relative shrink-0"
             >
               <button
+                type="button"
+                aria-expanded={isCreateSuiteOpen}
+                aria-haspopup="true"
                 className="text-sm font-medium px-3 lg:px-4 py-2 rounded-xl flex items-center gap-1 whitespace-nowrap nav-link-liquid"
-                onClick={() => setIsCreateSuiteOpen(!isCreateSuiteOpen)}
+                onClick={() => setIsCreateSuiteOpen((prev) => !prev)}
               >
                 Create Suite
                 <ChevronRight size={14} className={`transition-transform ${isCreateSuiteOpen ? 'rotate-90' : ''}`} />
               </button>
+
               
               {isCreateSuiteOpen && (
                 <div className="absolute top-full left-0 pt-2 min-w-[160px] z-50">

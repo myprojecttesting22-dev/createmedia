@@ -134,8 +134,8 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
   const totalSteps = questions.length + 1; // +1 for basics
 
   const getCurrentStepNumber = () => {
-    if (step === "basics") return 1;
-    if (typeof step === "number") return step + 2;
+    if (typeof step === "number") return step + 1;
+    if (step === "basics") return questions.length + 1;
     return 0;
   };
 
@@ -201,12 +201,12 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
     if (!canProceed()) return;
 
     if (step === "intro") {
-      setStep("basics");
+      setStep(0);
       return;
     }
 
     if (step === "basics") {
-      setStep(0);
+      handleSubmit();
       return;
     }
 
@@ -224,17 +224,17 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
       if (step < questions.length - 1) {
         setStep(step + 1);
       } else {
-        handleSubmit();
+        setStep("basics");
       }
     }
   }, [step, canProceed, answers]);
 
   const handleBack = () => {
-    if (typeof step === "number" && step > 0) {
+    if (step === "basics") {
+      setStep(questions.length - 1);
+    } else if (typeof step === "number" && step > 0) {
       setStep(step - 1);
     } else if (step === 0) {
-      setStep("basics");
-    } else if (step === "basics") {
       setStep("intro");
     }
   };
@@ -273,7 +273,7 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
           if ((step as number) < questions.length - 1) {
             setStep((step as number) + 1);
           } else {
-            handleSubmit();
+            setStep("basics");
           }
         }, 150);
       }, 150);
@@ -315,7 +315,7 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
     } catch (error) {
       console.error("Submission error:", error);
       toast.error("Something went wrong. Please try again.");
-      setStep(questions.length - 1);
+      setStep("basics");
     } finally {
       setIsSubmitting(false);
     }
@@ -447,7 +447,7 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
               className="liquid-glass rounded-3xl p-8 md:p-12"
             >
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-                Basics
+                Last step — your details
               </h2>
               <p className="text-muted-foreground mb-8">
                 Ensure these are correct, or you won't be able to join the community.
@@ -531,7 +531,7 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
                       : "bg-muted text-muted-foreground cursor-not-allowed"
                   }`}
                 >
-                  Continue
+                  Submit
                   <ArrowRight className="w-5 h-5" />
                 </motion.button>
               </div>
@@ -620,7 +620,7 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
                         : "bg-muted text-muted-foreground cursor-not-allowed"
                     }`}
                   >
-                    {step === questions.length - 1 ? "Submit" : "Continue"}
+                    Continue
                     <ArrowRight className="w-5 h-5" />
                   </motion.button>
                 )}
