@@ -48,8 +48,8 @@ const Home = () => {
               <span className="text-primary">and automate</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-              Keeping ambitious brands visible everywhere with content
-              and automated distribution systems.
+              Growth and media systems for ambitious companies — startups, founders,
+              investors, fintech, finance, and leading real estate brands.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button size="lg" asChild>
