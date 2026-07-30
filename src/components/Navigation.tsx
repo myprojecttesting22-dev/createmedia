@@ -80,18 +80,21 @@ const Navigation = () => {
               </Link>
             ))}
             
-            <div 
-              className="relative group shrink-0"
-              onMouseEnter={() => setIsCreateSuiteOpen(true)}
-              onMouseLeave={() => setIsCreateSuiteOpen(false)}
+            <div
+              ref={dropdownRef}
+              className="relative shrink-0"
             >
               <button
+                type="button"
+                aria-expanded={isCreateSuiteOpen}
+                aria-haspopup="true"
                 className="text-sm font-medium px-3 lg:px-4 py-2 rounded-xl flex items-center gap-1 whitespace-nowrap nav-link-liquid"
-                onClick={() => setIsCreateSuiteOpen(!isCreateSuiteOpen)}
+                onClick={() => setIsCreateSuiteOpen((prev) => !prev)}
               >
                 Create Suite
                 <ChevronRight size={14} className={`transition-transform ${isCreateSuiteOpen ? 'rotate-90' : ''}`} />
               </button>
+
               
               {isCreateSuiteOpen && (
                 <div className="absolute top-full left-0 pt-2 min-w-[160px] z-50">
