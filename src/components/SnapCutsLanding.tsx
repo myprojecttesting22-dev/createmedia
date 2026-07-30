@@ -132,7 +132,7 @@ const SnapCutsLanding = ({ onJoinClick }: SnapCutsLandingProps) => {
             {[
               "Video Editors who deliver on time",
               "Short-form Creators (Reels, Shorts, TikToks)",
-              "Real Estate Content Specialists",
+              "Niche Content Specialists",
               "Hungry Beginners with no ego",
             ].map((type, index) => (
               <motion.div

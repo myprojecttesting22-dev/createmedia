@@ -17,7 +17,7 @@ const CoreStory = () => {
             </p>
             <h1 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">Core Story</h1>
             <p className="text-xl text-muted-foreground">
-              Why we built a distribution-first system for real estate brands
+              Why we built a distribution-first system for ambitious brands
             </p>
           </div>
 
@@ -26,7 +26,7 @@ const CoreStory = () => {
             <div>
               <h2 className="text-3xl font-bold mb-6 text-foreground">The Problem We Saw</h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-                Most real estate creators and podcast hosts operate the same way: record content, 
+                Most founders, operators and podcast hosts operate the same way: record content, 
                 edit it, upload it, and hope the algorithm picks it up. They invest thousands of 
                 dollars in production quality while ignoring the only thing that matters—distribution.
               </p>
@@ -44,7 +44,7 @@ const CoreStory = () => {
             {/* The Core Belief */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
-                { icon: Target, title: "Precision Over Volume", desc: "We target the exact borrower or realtor niche before creating a single piece of content. Clarity at this stage dictates scale later." },
+                { icon: Target, title: "Precision Over Volume", desc: "We define the exact buyer or audience niche before creating a single piece of content. Clarity at this stage dictates scale later." },
                 { icon: Eye, title: "Engineered Visibility", desc: "\"Organic\" reach today is manufactured, not accidental. We build the infrastructure that makes content appear everywhere simultaneously." },
                 { icon: Share2, title: "Leverage Over Patience", desc: "We leverage existing attention from established theme pages instead of waiting years for algorithms to favor us." },
               ].map((item) => (
@@ -91,11 +91,11 @@ const CoreStory = () => {
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-4">
                 This is not about one viral clip. It's about building a system where your 
-                real estate brand shows up everywhere your target audience looks—consistently, 
+                brand shows up everywhere your target audience looks—consistently, 
                 predictably, at scale.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                We've generated millions of views for real estate podcasts and personal brands 
+                We've generated millions of views for company and personal brands 
                 using this exact framework. The system works because it treats content as an 
                 asset and distribution as the weapon that deploys it.
               </p>

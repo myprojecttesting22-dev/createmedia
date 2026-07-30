@@ -122,7 +122,7 @@ const VisionLab = () => {
                 </div>
                 <div>
                   <Label htmlFor="company" className="text-white/80">Company *</Label>
-                  <Input id="company" name="company" value={formData.company} onChange={handleChange} required className="mt-2 bg-white/10 border-white/20 text-white placeholder:text-white/40" placeholder="Your Real Estate Company" />
+                  <Input id="company" name="company" value={formData.company} onChange={handleChange} required className="mt-2 bg-white/10 border-white/20 text-white placeholder:text-white/40" placeholder="Your Company" />
                 </div>
                 <div>
                   <Label htmlFor="description" className="text-white/80">Project Description *</Label>

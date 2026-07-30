@@ -39,7 +39,7 @@ const questions: Question[] = [
     options: [
       "Video Editor (I actually deliver on time)",
       "Short-form Creator (Reels, Shorts, TikToks)",
-      "Real Estate Content Specialist (brokers love me)",
+      "Niche Content Specialist (real estate, finance, startups)",
       "Beginner (no ego, just hunger)",
     ],
   },
@@ -63,13 +63,13 @@ const questions: Question[] = [
   },
   {
     id: "niche_experience",
-    title: "Have you worked with real estate or personal brands before?",
+    title: "Have you worked with company or personal brands before?",
     type: "single",
     options: [
-      "Yes, real estate (I get the niche)",
+      "Yes, business or real estate brands (I get the niche)",
       "Yes, other niches (skills transfer)",
       "No, but I'm grinding hard",
-      "No, and honestly… what even is real estate?",
+      "No, but I learn fast",
     ],
   },
   {

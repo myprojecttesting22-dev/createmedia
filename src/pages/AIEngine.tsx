@@ -121,13 +121,13 @@ const AIEngine = () => {
                 <div>
                   <h2 className="text-4xl font-bold text-white">Create IQ AI</h2>
                   <p className="text-white/70 font-medium text-lg">
-                    Premium intelligence for real estate dominance
+                    Premium intelligence for category dominance
                   </p>
                 </div>
               </div>
 
               <p className="text-xl depth-text mb-12 leading-relaxed max-w-3xl relative z-10">
-                Built for brands that refuse to blend in. Create IQ AI transforms how real estate leaders launch, scale, and dominate their markets. Pure intelligence. Zero compromise.
+                Built for brands that refuse to blend in. Create IQ AI transforms how market leaders launch, scale, and dominate their markets. Pure intelligence. Zero compromise.
               </p>
 
               {/* Product Pillars */}

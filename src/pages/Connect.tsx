@@ -147,7 +147,7 @@ const Connect = () => {
                     {/* Intro on step 0 */}
                     {step === 0 && (
                       <p className="text-white/70 text-sm md:text-base mb-8 leading-relaxed border-l-2 border-[#02AAF5]/60 pl-4">
-                        We partner with a limited number of real estate professionals and podcast hosts each quarter. Complete this short application to see if we're the right fit.
+                        We partner with a limited number of companies, founders and podcast hosts each quarter. Complete this short application to see if we're the right fit.
                       </p>
                     )}
 
