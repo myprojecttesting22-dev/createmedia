@@ -34,7 +34,6 @@ const Navigation = () => {
   const navLinksAfterDropdown = [
     { name: "SnapCuts", path: "/snapcuts" },
     { name: "Trust Frame", path: "/trust-frame" },
-    { name: "AI Engine", path: "/ai-engine" },
     { name: "Connect Line", path: "/connect" },
   ];
 
