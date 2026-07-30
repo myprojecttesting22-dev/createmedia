@@ -13,7 +13,7 @@ const Footer = () => {
               <span className="text-lg font-bold">CREATE MEDIA</span>
             </Link>
             <p className="text-sm text-muted-foreground">
-              Creating, repurposing, and automating content for real estate brands.
+              Creating, repurposing, and automating content for ambitious brands.
             </p>
           </div>
 

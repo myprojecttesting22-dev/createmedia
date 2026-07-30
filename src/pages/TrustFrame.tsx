@@ -27,7 +27,7 @@ const TrustFrame = () => {
           <div className="text-center mb-16 animate-fade-in">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">Trust Frame</h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Success stories from real estate brands that trust us to amplify their
+              Success stories from ambitious brands that trust us to amplify their
               presence and drive growth
             </p>
           </div>

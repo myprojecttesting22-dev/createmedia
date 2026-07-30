@@ -48,8 +48,8 @@ const Home = () => {
               <span className="text-primary">and automate</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-              Keeping your real estate brand visible everywhere with AI-driven content
-              and automated marketing systems.
+              Growth and media systems for ambitious companies — startups, founders,
+              investors, fintech, finance, and leading real estate brands.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button size="lg" asChild>
@@ -81,7 +81,7 @@ const Home = () => {
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               A proven 4-step system behind millions of views
               <br />
-              for real estate podcasts and brands.
+              for founder-led podcasts and brands.
             </p>
           </div>
         </div>
@@ -161,7 +161,7 @@ const Home = () => {
               </h2>
               <p className="text-lg mb-8 text-white/85 max-w-2xl mx-auto">
                 Stop uploading and hoping. Let's build a distribution system 
-                that compounds attention for your real estate brand.
+                that compounds attention for your brand.
               </p>
               <Button size="lg" asChild>
                 <Link to="/visionlab">
