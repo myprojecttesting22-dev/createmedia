@@ -1,15 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import logo from "@/assets/create-media-logo.png";
+import NavSlider from "@/components/NavSlider";
 
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isCreateSuiteOpen, setIsCreateSuiteOpen] = useState(false);
-  const [isMobileCreateSuiteOpen, setIsMobileCreateSuiteOpen] = useState(false);
   const [navVisible, setNavVisible] = useState(true);
   const navRef = useRef<HTMLDivElement>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
   const lastScrollY = useRef(0);
 
   // Auto-hide on scroll down, reappear on scroll up
@@ -27,32 +25,14 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close the Create Suite dropdown on outside click
-  useEffect(() => {
-    if (!isCreateSuiteOpen) return;
-    const handleClickOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setIsCreateSuiteOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isCreateSuiteOpen]);
-
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Core Story", path: "/core-story" },
-  ];
-
-  const navLinksAfterDropdown = [
+    { name: "Create Suite", path: "/create-suite" },
+    { name: "VisionLab", path: "/visionlab" },
     { name: "SnapCuts", path: "/snapcuts" },
     { name: "Trust Frame", path: "/trust-frame" },
     { name: "Connect Line", path: "/connect" },
-  ];
-
-  const createSuiteDropdown = [
-    { name: "Create Suite", path: "/create-suite" },
-    { name: "VisionLab", path: "/visionlab" },
   ];
 
   return (
@@ -68,69 +48,15 @@ const Navigation = () => {
             <span className="text-lg sm:text-xl font-bold whitespace-nowrap nav-brand">CREATE MEDIA</span>
           </Link>
 
-          {/* Desktop / Tablet nav — swipeable on tablet */}
-          <div className="hidden md:flex items-center gap-4 lg:gap-8 nav-scroll-container min-w-0">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className="text-sm font-medium px-3 lg:px-4 py-2 rounded-xl whitespace-nowrap shrink-0 nav-link-liquid"
-              >
-                {link.name}
-              </Link>
-            ))}
-            
-            <div
-              ref={dropdownRef}
-              className="relative shrink-0"
-            >
-              <button
-                type="button"
-                aria-expanded={isCreateSuiteOpen}
-                aria-haspopup="true"
-                className="text-sm font-medium px-3 lg:px-4 py-2 rounded-xl flex items-center gap-1 whitespace-nowrap nav-link-liquid"
-                onClick={() => setIsCreateSuiteOpen((prev) => !prev)}
-              >
-                Create Suite
-                <ChevronRight size={14} className={`transition-transform ${isCreateSuiteOpen ? 'rotate-90' : ''}`} />
-              </button>
+          {/* Desktop slider nav */}
+          <NavSlider />
 
-              
-              {isCreateSuiteOpen && (
-                <div className="absolute top-full left-0 pt-2 min-w-[160px] z-50">
-                  <div className="rounded-xl bg-background/95 backdrop-blur-xl border border-border/50 shadow-lg overflow-hidden">
-                    {createSuiteDropdown.map((item) => (
-                      <Link
-                        key={item.path}
-                        to={item.path}
-                        className="block px-4 py-3 text-sm font-medium text-foreground hover:bg-primary/10 transition-colors"
-                        onClick={() => setIsCreateSuiteOpen(false)}
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {navLinksAfterDropdown.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className="text-sm font-medium px-3 lg:px-4 py-2 rounded-xl whitespace-nowrap shrink-0 nav-link-liquid"
-              >
-                {link.name}
-              </Link>
-            ))}
-
-            <Link 
-              to="/visionlab" 
-              className="text-sm font-semibold px-5 py-2 rounded-xl whitespace-nowrap shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 transition-all"
-            >
-              Get Started
-            </Link>
-          </div>
+          <Link
+            to="/visionlab"
+            className="hidden lg:inline-flex text-sm font-semibold px-5 py-2 rounded-xl whitespace-nowrap shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 transition-all"
+          >
+            Get Started
+          </Link>
 
           {/* Mobile hamburger */}
           <button
@@ -147,44 +73,6 @@ const Navigation = () => {
         <div className="md:hidden mt-2 mx-2 navbar-mobile-panel animate-fade-in">
           <div className="flex flex-col gap-1 p-5">
             {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-sm font-medium nav-link-liquid px-4 py-3 rounded-xl"
-              >
-                {link.name}
-              </Link>
-            ))}
-            
-            <div>
-              <button
-                className="text-sm font-medium nav-link-liquid px-4 py-3 rounded-xl flex items-center gap-1 w-full text-left"
-                onClick={() => setIsMobileCreateSuiteOpen(!isMobileCreateSuiteOpen)}
-              >
-                Create Suite
-                <ChevronRight size={14} className={`transition-transform ${isMobileCreateSuiteOpen ? 'rotate-90' : ''}`} />
-              </button>
-              {isMobileCreateSuiteOpen && (
-                <div className="ml-4 mt-1 flex flex-col gap-1">
-                  {createSuiteDropdown.map((item) => (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      onClick={() => {
-                        setIsMobileMenuOpen(false);
-                        setIsMobileCreateSuiteOpen(false);
-                      }}
-                      className="text-sm font-medium nav-link-liquid px-4 py-3 rounded-xl"
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {navLinksAfterDropdown.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
