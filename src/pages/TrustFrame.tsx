@@ -4,7 +4,6 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Star } from "lucide-react";
 import { useState } from "react";
 import StatCircle from "@/components/StatCircle";
-import { Button } from "@/components/ui/button";
 
 const TrustFrame = () => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -114,10 +113,9 @@ const TrustFrame = () => {
           <div className="mt-16 text-center">
             <div className="depth-cta max-w-3xl mx-auto">
               <div className="py-12 px-6 relative z-10">
-                <h2 className="text-3xl font-bold mb-4 text-white">Join Our Success Stories</h2>
+                <h2 className="text-3xl font-bold mb-4 text-white">Your Story Could Be Next</h2>
                 <p className="text-lg text-white/85 mb-6">
-                  Ready to transform your brand with AI-powered content and automated
-                  marketing systems?
+                  Ready to make what you're building impossible to overlook?
                 </p>
               </div>
             </div>

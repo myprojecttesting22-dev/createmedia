@@ -11,26 +11,26 @@ const Home = () => {
     {
       icon: Target,
       step: "01",
-      title: "The Foundation",
-      description: "Lock onto your exact niche. No guessing. Precision from day one.",
+      title: "Find the Signal",
+      description: "We find the ideas, stories and perspectives worth owning.",
     },
     {
       icon: Film,
       step: "02",
-      title: "The Pre-Hype",
-      description: "Cinematic trailers before launch. Hooks that seed curiosity.",
+      title: "Shape the Story",
+      description: "We turn them into content people actually want to watch, read and remember.",
     },
     {
       icon: Share2,
       step: "03",
-      title: "Shadow Distribution",
-      description: "Fan pages. Curator networks. Engineered reach at scale.",
+      title: "Build the Presence",
+      description: "We put those ideas consistently in front of the people who matter.",
     },
     {
       icon: Rocket,
       step: "04",
-      title: "The Multiplier",
-      description: "Leverage existing audiences. Immediate spikes, not slow growth.",
+      title: "Compound It",
+      description: "One conversation becomes weeks of content. Every piece builds on the last.",
     },
   ];
 
@@ -48,8 +48,8 @@ const Home = () => {
               <span className="text-primary">and automate</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-              Growth and media systems for ambitious companies — startups, founders,
-              investors, fintech, finance, and leading real estate brands.
+              We build the stories people remember — for startups, founders,
+              leading real estate brands, fintech, and capital firms.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button size="lg" asChild>
@@ -79,9 +79,7 @@ const Home = () => {
               <span className="text-primary">We control it</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              A proven 4-step system behind millions of views
-              <br />
-              for founder-led podcasts and brands.
+              A four-part system for turning what you know into what people know you for.
             </p>
           </div>
         </div>
@@ -119,26 +117,26 @@ const Home = () => {
         </div>
       </section>
 
-      {/* What We Execute */}
+      {/* What We Make */}
       <section className="py-20 px-6">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">What We Execute</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">What We Make</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Every service exists to power the system. Nothing is random.
+              Everything needed to run the system.
             </p>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
             {[
-              "Podcast Editing",
-              "Shorts & Reels",
-              "Cinematic Trailers",
-              "Thumbnail Curation",
-              "SEO Optimization",
-              "Script Creation",
-              "Platform Optimization",
-              "Distribution Network",
+              "Podcasts",
+              "Short-form",
+              "Films & Trailers",
+              "Thumbnails",
+              "Writing",
+              "Search",
+              "Distribution",
+              "Platform Strategy",
             ].map((service) => (
               <div
                 key={service}
@@ -157,11 +155,10 @@ const Home = () => {
           <div className="depth-cta">
             <div className="py-16 text-center relative z-10 px-6">
               <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">
-                Ready to scale your visibility?
+                Building something worth remembering?
               </h2>
               <p className="text-lg mb-8 text-white/85 max-w-2xl mx-auto">
-                Stop uploading and hoping. Let's build a distribution system 
-                that compounds attention for your brand.
+                Let’s make sure the right people know why it matters.
               </p>
               <Button size="lg" asChild>
                 <Link to="/visionlab">
