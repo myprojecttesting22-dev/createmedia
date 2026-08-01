@@ -8,67 +8,39 @@ const CreateSuite = () => {
   const systemPhases = [
     {
       icon: Target,
-      step: "Step 01",
-      title: "The Foundation",
-      subtitle: "Precision Targeting",
+      step: "01",
+      title: "Find the Signal",
+      subtitle: "Know what you're worth hearing for.",
       description:
-        "Most creators fail because they're too broad. They speak to everyone and connect with no one. We start by identifying your exact buyer or category niche—the specific audience segment that will convert into clients, referrals, and long-term brand equity.",
-      details: [
-        "We analyze your market position and competitive landscape",
-        "We define the exact demographic, psychographic, and behavioral profile of your ideal viewer",
-        "We establish content themes that resonate specifically with that audience",
-        "We create a targeting framework that guides every piece of content we produce",
-      ],
-      outcome: "Clarity at this stage dictates scale later. Every decision downstream becomes easier when you know exactly who you're reaching.",
-      services: ["Niche Research", "Audience Profiling", "Content Strategy", "Competitive Analysis"],
+        "We find the ideas, perspectives and stories your audience should associate with you.",
+      services: ["Research", "Positioning", "Content Direction"],
     },
     {
       icon: Film,
-      step: "Step 02",
-      title: "The Pre-Hype",
-      subtitle: "Cinematic Trailers & Content Preparation",
+      step: "02",
+      title: "Shape the Story",
+      subtitle: "Make the idea worth staying for.",
       description:
-        "Uploading a full podcast episode without pre-hype is like opening a restaurant without telling anyone. We extract the highest-impact moments from your content and cut them into cinematic trailers that seed curiosity before your main content drops.",
-      details: [
-        "We identify the most compelling 15-60 second moments from each piece of content",
-        "We craft hooks that stop the scroll—questions, bold statements, unexpected reveals",
-        "We design thumbnails engineered for click-through, not just aesthetics",
-        "We control pacing and editing rhythm to maximize watch time and shares",
-      ],
-      outcome: "When your main content drops, your audience is already primed. They've seen the trailer. They know what's coming. They're waiting for it.",
-      services: ["Podcast Editing", "Trailer Production", "Thumbnail Curation", "Hook Writing", "Script Creation"],
+        "Podcasts, films, shorts and writing — built around the story, not the format.",
+      services: ["Podcasts", "Shorts", "Films", "Writing", "Thumbnails"],
     },
     {
       icon: Share2,
-      step: "Step 03",
-      title: "Shadow Distribution",
-      subtitle: "Manufactured Organic Buzz",
+      step: "03",
+      title: "Build the Presence",
+      subtitle: "Put the right ideas in the right places.",
       description:
-        "Here's the truth most agencies won't tell you: 'organic' reach in 2024 is engineered, not accidental. We manufacture buzz through controlled distribution networks—fan pages, viral curators, and content syndicators that make your brand appear everywhere simultaneously.",
-      details: [
-        "We deploy content through a network of niche-focused fan pages and curators",
-        "We simulate mass conversation around your brand across multiple touchpoints",
-        "We time releases for maximum algorithmic advantage on each platform",
-        "We optimize short-form content specifically for each platform's distribution mechanics",
-      ],
-      outcome: "Your content doesn't just get posted—it gets distributed. The difference is millions of views versus hundreds.",
-      services: ["SnapCuts Network", "Platform Optimization", "Distribution Timing", "Multi-Platform Syndication"],
+        "Every piece is adapted for where people actually discover, watch, read and search.",
+      services: ["Distribution", "Search", "Platform Strategy"],
     },
     {
       icon: Rocket,
-      step: "Step 04",
-      title: "The Multiplier",
-      subtitle: "Leverage Over Patience",
+      step: "04",
+      title: "Compound It",
+      subtitle: "One idea becomes a body of work.",
       description:
-        "Why wait years to build an audience when you can leverage audiences that already exist? We partner with established theme pages in your category to place your content directly in front of engaged, relevant viewers. This creates immediate attention spikes instead of slow, uncertain growth.",
-      details: [
-        "We identify and negotiate with top theme pages in your niche",
-        "We structure the funnel: theme page traffic → clips → podcast → brand",
-        "We track conversion paths from initial view to meaningful engagement",
-        "We scale what works and cut what doesn't—fast iteration, not guesswork",
-      ],
-      outcome: "Leverage beats patience. One strategic placement can generate more qualified attention than months of organic posting.",
-      services: ["Theme Page Partnerships", "Funnel Strategy", "Performance Tracking", "SEO Optimization"],
+        "A conversation becomes a podcast. A podcast becomes clips. Clips become stories. Each one reinforces the same idea.",
+      services: ["Repurposing", "Distribution", "Partnerships", "Performance"],
     },
   ];
 
@@ -84,8 +56,7 @@ const CreateSuite = () => {
             </p>
             <h1 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">Create Suite</h1>
             <p className="text-xl text-muted-foreground">
-              Every service exists to power the system. Nothing is random. Here's exactly 
-              how we generate millions of views for company podcasts and personal brands.
+              One idea should do more than become one post. We find what matters, shape it, and carry it across every format and place that matters.
             </p>
           </div>
         </div>
@@ -120,28 +91,9 @@ const CreateSuite = () => {
                     {phase.description}
                   </p>
 
-                  <div className="mb-8">
-                    <h3 className="font-semibold mb-4 text-white">How We Execute:</h3>
-                    <ul className="space-y-3">
-                      {phase.details.map((detail, i) => (
-                        <li key={i} className="flex items-start gap-3">
-                          <div className="w-1.5 h-1.5 rounded-full bg-white/60 mt-2.5 flex-shrink-0" />
-                          <span className="depth-text">{detail}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="p-4 rounded-lg bg-white/5 border border-white/10 mb-8">
-                    <p className="depth-text">
-                      <span className="font-semibold text-white">The Outcome: </span>
-                      {phase.outcome}
-                    </p>
-                  </div>
-
                   <div>
                     <h3 className="font-semibold mb-3 text-white/50 text-sm uppercase tracking-wide">
-                      Services In This Phase
+                      What This Includes
                     </h3>
                     <div className="flex flex-wrap gap-2">
                       {phase.services.map((service) => (
@@ -162,11 +114,11 @@ const CreateSuite = () => {
           {/* Bottom CTA */}
           <div className="text-center mt-16">
             <p className="text-muted-foreground mb-6 text-lg">
-              Content is the asset. Distribution is the weapon.
+              One idea. Many forms. One clear identity.
             </p>
             <Button size="lg" asChild>
               <Link to="/visionlab">
-                Build Your System <ArrowRight className="ml-2" size={20} />
+                Build Your Presence <ArrowRight className="ml-2" size={20} />
               </Link>
             </Button>
           </div>
