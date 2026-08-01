@@ -22,6 +22,7 @@ const NavSlider = () => {
   const trackRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [rects, setRects] = useState<Rect[]>([]);
+  const [ready, setReady] = useState(false);
   const x = useMotionValue(0);
   const width = useMotionValue(0);
   const initialized = useRef(false);
@@ -54,6 +55,7 @@ const NavSlider = () => {
     width.set(activeRect.width);
     settledIndex.current = activeIndex;
     initialized.current = true;
+    setReady(true);
   }, [activeIndex, rects, width, x]);
 
   useEffect(() => {
@@ -185,7 +187,7 @@ const NavSlider = () => {
       <motion.div
         aria-hidden
         className="absolute top-0 h-full z-0 pointer-events-none rounded-full bg-primary/25 border border-primary/45 shadow-[inset_0_1px_2px_hsl(0_0%_100%/0.2),0_2px_10px_hsl(var(--primary)/0.2)]"
-        style={{ x, width, left: 0, opacity: initialized.current ? 1 : 0 }}
+        style={{ x, width, left: 0, opacity: ready ? 1 : 0 }}
       />
       {OPTIONS.map((opt, idx) => {
         const isActive = idx === activeIndex;
