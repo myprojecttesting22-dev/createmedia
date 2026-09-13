@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Check, X } from "lucide-react";
 import { toast } from "sonner";
-import createMediaLogo from "@/assets/create-media-logo-2.png";
+import createMediaLogoAsset from "@/assets/create-media-logo-2026.png.asset.json";
 
 const WEBHOOK_URL = "https://auto-n8n.createmedia.pro/webhook-test/3d625327-069a-438c-8d34-47913e9062cf";
 
@@ -400,12 +400,12 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.2, type: "spring" as const, stiffness: 200 }}
-                  className="w-24 h-24 mx-auto mb-8"
+                  className="w-24 h-24 mx-auto mb-8 overflow-hidden rounded-full border border-primary/35 bg-background shadow-[0_0_24px_hsl(var(--primary)/0.2)]"
                 >
                   <img 
-                    src={createMediaLogo} 
+                    src={createMediaLogoAsset.url} 
                     alt="CREATE MEDIA" 
-                    className="w-full h-full object-contain rounded-2xl"
+                    className="w-full h-full object-cover rounded-full"
                   />
                 </motion.div>
 
