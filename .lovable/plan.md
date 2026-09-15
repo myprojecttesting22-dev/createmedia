@@ -1,45 +1,16 @@
-## Newsletter Architect — Sequential Prompt + Safari Fix + DALL·E Image Prompts
+# Separate Discover Booking Page and Replace Brand Logo
 
-### Update `src/components/NewsletterArchitect.tsx`
+## What will change
+- Create a dedicated **Discover** page for the embedded Cal.com booking experience.
+- Point both desktop and mobile **Get Started** buttons to the new Discover page, while keeping VisionLab as its own navigation destination.
+- Use the heading **Discover** and the exact supporting line: “Pick a time that works for you, thirty minutes on us.”
+- Reduce the blue/glass frame around the calendar to a much thinner treatment.
+- Replace the navigation and footer logos with the newly uploaded Create Media logo.
+- Generate matching browser favicon and touch-icon files from the uploaded logo and update the page metadata references.
 
-**1. New MEGA_PROMPT (sequential):**
-```
-Using your YouTube extension, FIRST analyze the content of this specific podcast episode: {url}
-
-Based ONLY on the insights from this episode, perform the following tasks:
-
-1. THE NEWSLETTER COPY: Write a high-authority LinkedIn post (institutional, Apple-meets-Bloomberg tone, bold headers, zero fluff) summarizing the guest's core investment thesis. Focus on IRR, Risk Mitigation, and First-Principles logic. Format as a copy-paste block.
-
-2. THE VISUAL ASSETS: Generate 5 standalone DALL·E 3 / ChatGPT image prompts to accompany the newsletter. Each prompt must:
-   - Be self-contained (no episode context required)
-   - Specify an Apple-style minimalist aesthetic: dark background, soft glassmorphism, subtle blue (#02AAF5) accents, high-end editorial composition, generous negative space, institutional/Bloomberg-grade restraint
-   - Be formatted as a clean copy-paste block, numbered IMAGE 1 through IMAGE 5
-   - Cover: (1) hero conceptual visual, (2) data/chart abstraction, (3) portrait-style scene, (4) macro thesis metaphor, (5) closing brand mark composition
-
-Constraints: zero fluff, no emojis, institutional tone throughout.
-```
-
-**2. New `handleAnalyze` flow (Safari-safe):**
-- Validate URL (existing logic)
-- Build prompt + target URL: `https://gemini.google.com/app?prompt=${encodeURIComponent(prompt)}`
-- Copy full prompt to clipboard via `navigator.clipboard.writeText` (wrapped in try/catch fallback)
-- Open Gemini using a dynamic anchor:
-  ```ts
-  const a = document.createElement('a');
-  a.href = target;
-  a.target = '_blank';
-  a.rel = 'noopener noreferrer';
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  ```
-- Toast: "Launched Gemini — prompt also copied to clipboard as backup."
-- Remove the artificial `setTimeout` delay (anchor click must run synchronously inside the user gesture for Safari to allow it)
-
-### Out of scope
-- No styling changes
-- No new components / files
-- No backend work
-
-### Files touched
-- `src/components/NewsletterArchitect.tsx`
+## Technical details
+- Add a new React route at `/discover` with the existing dark Cal.com embed.
+- Remove the calendar embed from VisionLab so the two destinations are separate.
+- Store the uploaded main logo through the project asset system, then import its pointer in navigation and footer.
+- Produce small, square favicon files by padding and resizing the same supplied logo without stretching it.
+- Verify the Discover page, Get Started navigation, logo rendering, and calendar frame on desktop and mobile-sized layouts.
