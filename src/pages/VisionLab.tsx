@@ -80,28 +80,6 @@ const VisionLab = () => {
             </p>
           </div>
 
-          {/* Book a Call — Cal.com */}
-          <div className="mb-16 animate-slide-up">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl md:text-4xl font-bold mb-3 text-foreground">
-                Book a Call
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Pick a time that works for you — 30 minutes, on us.
-              </p>
-            </div>
-            <div className="depth-card p-2 md:p-4 rounded-3xl overflow-hidden">
-              <iframe
-                src="https://cal.com/vansh-h-qgd2lm/30min?embed=true&theme=dark&layout=month_view"
-                title="Book a call with Create Media"
-                className="w-full rounded-2xl border border-white/10 bg-black"
-                style={{ height: "720px" }}
-                loading="lazy"
-                allow="payment"
-              />
-            </div>
-          </div>
-
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
             <div className="animate-slide-up">
               <h2 className="text-3xl font-bold mb-6 text-foreground">

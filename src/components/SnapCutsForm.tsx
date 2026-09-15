@@ -2,8 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Check, X } from "lucide-react";
 import { toast } from "sonner";
-import createMediaLogoAsset from "@/assets/create-media-logo-2026.png.asset.json";
-import createMediaLightLogoAsset from "@/assets/create-media-logo-2026-white.png.asset.json";
+import createMediaLogoAsset from "@/assets/create-media-logo.png.asset.json";
 
 const WEBHOOK_URL = "https://auto-n8n.createmedia.pro/webhook-test/3d625327-069a-438c-8d34-47913e9062cf";
 
@@ -401,16 +400,13 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.2, type: "spring" as const, stiffness: 200 }}
-                  className="logo-theme-frame w-24 h-24 mx-auto mb-8 overflow-hidden rounded-full border border-primary/35 shadow-[0_0_24px_hsl(var(--primary)/0.2)]"
+                  className="w-24 h-24 mx-auto mb-8 overflow-hidden rounded-full border border-primary/35 shadow-[0_0_24px_hsl(var(--primary)/0.2)]"
                 >
-                  <picture>
-                    <source media="(prefers-color-scheme: dark)" srcSet={createMediaLogoAsset.url} />
-                    <img 
-                      src={createMediaLightLogoAsset.url} 
-                      alt="CREATE MEDIA" 
-                      className="w-full h-full object-cover rounded-full"
-                    />
-                  </picture>
+                  <img 
+                    src={createMediaLogoAsset.url} 
+                    alt="CREATE MEDIA" 
+                    className="w-full h-full object-cover rounded-full"
+                  />
                 </motion.div>
 
                 <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
