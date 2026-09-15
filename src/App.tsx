@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import CoreStory from "./pages/CoreStory";
 import CreateSuite from "./pages/CreateSuite";
 import VisionLab from "./pages/VisionLab";
+import Discover from "./pages/Discover";
 import TrustFrame from "./pages/TrustFrame";
 import Connect from "./pages/Connect";
 import SnapCuts from "./pages/SnapCuts";
@@ -30,6 +31,7 @@ const App = () => (
             <Route path="/core-story" element={<CoreStory />} />
             <Route path="/create-suite" element={<CreateSuite />} />
             <Route path="/visionlab" element={<VisionLab />} />
+            <Route path="/discover" element={<Discover />} />
             <Route path="/trust-frame" element={<TrustFrame />} />
             <Route path="/connect" element={<Connect />} />
             <Route path="/snapcuts" element={<SnapCuts />} />

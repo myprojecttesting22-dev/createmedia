@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Linkedin, Twitter, Instagram, Youtube } from "lucide-react";
-import logoAsset from "@/assets/create-media-logo-2026.png.asset.json";
-import lightLogoAsset from "@/assets/create-media-logo-2026-white.png.asset.json";
+import logoAsset from "@/assets/create-media-logo.png.asset.json";
 
 const Footer = () => {
   return (
@@ -10,11 +9,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1">
             <Link to="/" className="flex items-center gap-3 mb-4">
-              <span className="logo-theme-frame h-10 w-10 shrink-0 overflow-hidden rounded-full border border-primary/35">
-                <picture>
-                  <source media="(prefers-color-scheme: dark)" srcSet={logoAsset.url} />
-                  <img src={lightLogoAsset.url} alt="CREATE MEDIA" className="h-full w-full rounded-full object-cover" />
-                </picture>
+              <span className="h-10 w-10 shrink-0 overflow-hidden rounded-full border border-primary/35">
+                <img src={logoAsset.url} alt="CREATE MEDIA" className="h-full w-full rounded-full object-cover" />
               </span>
               <span className="text-lg font-bold">CREATE MEDIA</span>
             </Link>
