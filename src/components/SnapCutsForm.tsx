@@ -2,8 +2,8 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Check, X } from "lucide-react";
 import { toast } from "sonner";
-import createMediaDarkLogo from "@/assets/create-media-logo.png";
-import createMediaLightLogo from "@/assets/create-media-logo-2.png";
+import createMediaLogoAsset from "@/assets/create-media-logo-2026.png.asset.json";
+import createMediaLightLogoAsset from "@/assets/create-media-logo-2026-white.png.asset.json";
 
 const WEBHOOK_URL = "https://auto-n8n.createmedia.pro/webhook-test/3d625327-069a-438c-8d34-47913e9062cf";
 
@@ -404,9 +404,9 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
                   className="logo-theme-frame w-24 h-24 mx-auto mb-8 overflow-hidden rounded-full border border-primary/35 shadow-[0_0_24px_hsl(var(--primary)/0.2)]"
                 >
                   <picture>
-                    <source media="(prefers-color-scheme: dark)" srcSet={createMediaDarkLogo} />
+                    <source media="(prefers-color-scheme: dark)" srcSet={createMediaLogoAsset.url} />
                     <img 
-                      src={createMediaLightLogo} 
+                      src={createMediaLightLogoAsset.url} 
                       alt="CREATE MEDIA" 
                       className="w-full h-full object-cover rounded-full"
                     />
