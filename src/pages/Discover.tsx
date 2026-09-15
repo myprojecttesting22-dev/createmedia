@@ -13,7 +13,7 @@ const Discover = () => {
               Discover
             </h1>
             <p className="text-lg text-muted-foreground">
-              Pick a time that works for you, thirty minutes on us.
+              Pick a time that works for you — 30 minutes, on us.
             </p>
           </header>
 
