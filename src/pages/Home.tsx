@@ -45,11 +45,10 @@ const Home = () => {
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-foreground">
               We create, repurpose,
               <br />
-              <span className="text-primary">and automate</span>
+              <span className="text-primary">and distribute</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-              We build the stories people remember — for startups, founders,
-              leading real estate brands, fintech, and capital firms.
+              We build stories people remember and brands people can't ignore — for startups, founders, capital firms, fintech companies, & real estate brands.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button size="lg" asChild>
