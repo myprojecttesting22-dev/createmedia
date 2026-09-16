@@ -106,7 +106,7 @@ const Connect = () => {
               Connect Line
             </h1>
             <p className="text-xl text-muted-foreground">
-              Let's build your next growth system together.
+              Let's make your show the greatest show of all time.
             </p>
           </div>
 
@@ -148,15 +148,15 @@ const Connect = () => {
                     <div className="mb-8">
                       <div className="flex items-center justify-between mb-3">
                         <span className="text-xs uppercase tracking-widest text-white/50 font-semibold">
-                          Step {step + 1} of {QUESTIONS.length}
+                          Let's make your show the greatest show of all time.
                         </span>
-                        <span className="text-xs text-white/50">
+                        <span className="text-xs text-white font-semibold">
                           {Math.round(((step + 1) / QUESTIONS.length) * 100)}%
                         </span>
                       </div>
-                      <div className="h-px w-full rounded-full bg-white/15 overflow-hidden">
+                      <div className="h-[3px] w-full rounded-full bg-white/15 overflow-hidden">
                         <motion.div
-                          className="h-full bg-white"
+                          className="h-full rounded-full bg-white"
                           initial={false}
                           animate={{ width: `${((step + 1) / QUESTIONS.length) * 100}%` }}
                           transition={{ duration: 0.4, ease: "easeOut" }}
