@@ -147,7 +147,7 @@ const Connect = () => {
                     {/* Progress */}
                     <div className="mb-8">
                       <div className="flex items-center justify-between mb-3">
-                        <span className="text-xs uppercase tracking-widest text-[#02AAF5] font-semibold">
+                        <span className="text-xs uppercase tracking-widest text-white/50 font-semibold">
                           Step {step + 1} of {QUESTIONS.length}
                         </span>
                         <span className="text-xs text-white/50">
