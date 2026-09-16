@@ -144,26 +144,19 @@ const Connect = () => {
                     animate={{ opacity: 1 }}
                     className="relative z-10"
                   >
-                    {/* Intro on step 0 */}
-                    {step === 0 && (
-                      <p className="text-white/70 text-sm md:text-base mb-8 leading-relaxed border-l-2 border-[#02AAF5]/60 pl-4">
-                        We partner with a limited number of companies, founders and podcast hosts each quarter. Complete this short application to see if we're the right fit.
-                      </p>
-                    )}
-
                     {/* Progress */}
                     <div className="mb-8">
                       <div className="flex items-center justify-between mb-3">
-                        <span className="text-xs uppercase tracking-widest text-[#02AAF5] font-semibold">
+                        <span className="text-xs uppercase tracking-widest text-white/50 font-semibold">
                           Step {step + 1} of {QUESTIONS.length}
                         </span>
                         <span className="text-xs text-white/50">
                           {Math.round(((step + 1) / QUESTIONS.length) * 100)}%
                         </span>
                       </div>
-                      <div className="h-1 w-full rounded-full bg-white/10 overflow-hidden">
+                      <div className="h-px w-full rounded-full bg-white/15 overflow-hidden">
                         <motion.div
-                          className="h-full bg-gradient-to-r from-[#02AAF5] to-[#0066cc] shadow-[0_0_10px_rgba(2,170,245,0.8)]"
+                          className="h-full bg-white"
                           initial={false}
                           animate={{ width: `${((step + 1) / QUESTIONS.length) * 100}%` }}
                           transition={{ duration: 0.4, ease: "easeOut" }}
