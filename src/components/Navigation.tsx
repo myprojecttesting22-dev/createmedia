@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import logoAsset from "@/assets/create-media-logo.png.asset.json";
 import NavSlider from "@/components/NavSlider";
 
 const Navigation = () => {
@@ -44,8 +43,8 @@ const Navigation = () => {
         <div className="flex items-center justify-between gap-4">
           {/* Brand */}
           <Link to="/" className="flex items-center gap-2 sm:gap-3 hover-lift shrink-0">
-            <span className="h-10 w-10 sm:h-12 sm:w-12 shrink-0 overflow-hidden rounded-full border border-primary/35 shadow-[0_0_18px_hsl(var(--primary)/0.18)]">
-              <img src={logoAsset.url} alt="CREATE MEDIA" className="h-full w-full rounded-full object-cover" />
+            <span className="h-10 w-10 sm:h-12 sm:w-12 shrink-0 overflow-hidden rounded-full border border-primary/35 bg-primary/20 shadow-[0_0_18px_hsl(var(--primary)/0.18)]">
+              <img src="/create-media-logo.webp" alt="CREATE MEDIA" width="256" height="256" loading="eager" decoding="async" className="h-full w-full rounded-full object-cover" />
             </span>
             <span className="text-lg sm:text-xl font-bold whitespace-nowrap nav-brand">CREATE MEDIA</span>
           </Link>

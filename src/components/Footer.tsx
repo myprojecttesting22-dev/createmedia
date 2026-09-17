@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { Mail, Linkedin, Twitter, Instagram, Youtube } from "lucide-react";
-import logoAsset from "@/assets/create-media-logo.png.asset.json";
 
 const Footer = () => {
   return (
@@ -9,8 +8,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1">
             <Link to="/" className="flex items-center gap-3 mb-4">
-              <span className="h-10 w-10 shrink-0 overflow-hidden rounded-full border border-primary/35">
-                <img src={logoAsset.url} alt="CREATE MEDIA" className="h-full w-full rounded-full object-cover" />
+              <span className="h-10 w-10 shrink-0 overflow-hidden rounded-full border border-primary/35 bg-primary/20">
+                <img src="/create-media-logo.webp" alt="CREATE MEDIA" width="256" height="256" loading="eager" decoding="async" className="h-full w-full rounded-full object-cover" />
               </span>
               <span className="text-lg font-bold">CREATE MEDIA</span>
             </Link>
