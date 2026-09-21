@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BrandMarquee from "@/components/BrandMarquee";
-import earthHomeAsset from "@/assets/earth-home.webp.asset.json";
 
 
 const Home = () => {
@@ -150,7 +149,7 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="home-earth-cta" style={{ backgroundImage: `url(${earthHomeAsset.url})` }}>
+      <section className="home-earth-cta">
         <div className="home-earth-cta__content">
               <h2 className="mb-4 text-3xl font-bold text-foreground md:text-5xl">
                 Building something worth remembering?

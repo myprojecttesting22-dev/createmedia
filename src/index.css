@@ -377,6 +377,7 @@ All colors MUST be HSL.
     position: relative;
     overflow: hidden;
     min-height: 560px;
+    background-image: url('/earth-home.webp');
     background-position: center;
     background-size: cover;
     isolation: isolate;
