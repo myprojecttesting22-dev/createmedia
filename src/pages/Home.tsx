@@ -149,23 +149,19 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-6">
-        <div className="container mx-auto">
-          <div className="depth-cta">
-            <div className="py-16 text-center relative z-10 px-6">
-              <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">
+      <section className="home-earth-cta">
+        <div className="home-earth-cta__content">
+              <h2 className="mb-4 text-3xl font-bold text-foreground md:text-5xl">
                 Building something worth remembering?
               </h2>
-              <p className="text-lg mb-8 text-white/85 max-w-2xl mx-auto">
+              <p className="mx-auto mb-8 max-w-2xl text-base font-light text-muted-foreground md:text-lg">
                 Let’s make sure the right people know why it matters.
               </p>
               <Button size="lg" asChild>
-                <Link to="/visionlab">
-                  Request Custom Plan <ArrowRight className="ml-2" size={20} />
+                <Link to="/discover">
+                  Get started <ArrowRight className="ml-2" size={20} />
                 </Link>
               </Button>
-            </div>
-          </div>
         </div>
       </section>
 
