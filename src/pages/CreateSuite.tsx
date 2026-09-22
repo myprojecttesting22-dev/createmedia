@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Target, Film, Share2, Rocket, ArrowRight } from "lucide-react";
+import { Target, Film, Share2, Rocket, ChevronRight } from "lucide-react";
 
 const CreateSuite = () => {
   const systemPhases = [
@@ -118,7 +118,7 @@ const CreateSuite = () => {
             </p>
             <Button size="lg" asChild>
               <Link to="/visionlab">
-                Build Your Presence <ArrowRight className="ml-2" size={20} />
+                Build Your Presence <ChevronRight className="ml-2" size={20} />
               </Link>
             </Button>
           </div>

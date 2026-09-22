@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Target, Film, Share2, Rocket } from "lucide-react";
+import { ChevronRight, Target, Film, Share2, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -53,7 +53,7 @@ const Home = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button size="lg" asChild>
                 <Link to="/visionlab">
-                  Start Your Project <ArrowRight className="ml-2" size={20} />
+                  Start Your Project <ChevronRight className="ml-2" size={20} />
                 </Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
@@ -109,7 +109,7 @@ const Home = () => {
           <div className="text-center mt-12">
             <Button size="lg" asChild>
               <Link to="/create-suite">
-                See How It Works <ArrowRight className="ml-2" size={20} />
+                See How It Works <ChevronRight className="ml-2" size={20} />
               </Link>
             </Button>
           </div>
@@ -159,7 +159,7 @@ const Home = () => {
               </p>
               <Button size="lg" asChild>
                 <Link to="/discover">
-                  Get started <ArrowRight className="ml-2" size={20} />
+                  Get started <ChevronRight className="ml-2" size={20} />
                 </Link>
               </Button>
         </div>

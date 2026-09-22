@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
-import { Check, ArrowLeft } from "lucide-react";
+import { Check, ChevronLeft } from "lucide-react";
 
 const CALENDAR_URL = "https://cal.com/vansh-h-qgd2lm/30min";
 const MIN_CHARS = 50;
@@ -233,7 +233,7 @@ const Connect = () => {
                           className="text-white/70 hover:text-white hover:bg-white/5"
                           disabled={isSubmitting}
                         >
-                          <ArrowLeft size={16} className="mr-2" /> Back
+                          <ChevronLeft size={16} className="mr-2" /> Back
                         </Button>
                       )}
                       <Button
@@ -249,9 +249,9 @@ const Connect = () => {
                             Submitting...
                           </>
                         ) : isLast ? (
-                          "DOMINATE →"
+                          "DOMINATE >"
                         ) : (
-                          "Continue →"
+                          "Continue >"
                         )}
                       </Button>
                     </div>

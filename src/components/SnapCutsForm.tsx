@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Check, X } from "lucide-react";
+import { ChevronRight, Check, X } from "lucide-react";
 import { toast } from "sonner";
 
 const WEBHOOK_URL = "https://auto-n8n.createmedia.pro/webhook-test/3d625327-069a-438c-8d34-47913e9062cf";
@@ -431,7 +431,7 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
                   }}
                 >
                   <span className="relative z-10">Start Application</span>
-                  <ArrowRight className="w-5 h-5 relative z-10 transition-transform group-hover:translate-x-1" />
+                  <ChevronRight className="w-5 h-5 relative z-10 transition-transform group-hover:translate-x-1" />
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                 </motion.button>
               </div>
@@ -535,7 +535,7 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
                   }`}
                 >
                   Submit
-                  <ArrowRight className="w-5 h-5" />
+                  <ChevronRight className="w-5 h-5" />
                 </motion.button>
               </div>
 
@@ -624,7 +624,7 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
                     }`}
                   >
                     Continue
-                    <ArrowRight className="w-5 h-5" />
+                    <ChevronRight className="w-5 h-5" />
                   </motion.button>
                 )}
               </div>
@@ -686,7 +686,7 @@ const SnapCutsForm = ({ onClose }: SnapCutsFormProps) => {
                   }}
                 >
                   Join the SnapCuts Discord Community
-                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                  <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                 </motion.button>
               </div>
             </motion.div>

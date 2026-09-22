@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Target, PenTool, Share2, ArrowRight } from "lucide-react";
+import { Target, PenTool, Share2, ChevronRight } from "lucide-react";
 
 const CoreStory = () => {
   return (
@@ -92,7 +92,7 @@ const CoreStory = () => {
             <div className="text-center pt-8">
               <Button size="lg" asChild>
                 <Link to="/create-suite">
-                  See The System In Action <ArrowRight className="ml-2" size={20} />
+                  See The System In Action <ChevronRight className="ml-2" size={20} />
                 </Link>
               </Button>
             </div>
