@@ -1,37 +1,21 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Target, Film, Share2, Rocket } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BrandMarquee from "@/components/BrandMarquee";
+import signalImage from "@/assets/home-signal-green.webp.asset.json";
+import storyImage from "@/assets/home-story-yellow.webp.asset.json";
+import presenceImage from "@/assets/home-presence-purple.webp.asset.json";
+import compoundImage from "@/assets/home-compound-red.webp.asset.json";
 
 
 const Home = () => {
   const systemSteps = [
-    {
-      icon: Target,
-      step: "01",
-      title: "Find the Signal",
-      description: "We find the ideas, stories and perspectives worth owning.",
-    },
-    {
-      icon: Film,
-      step: "02",
-      title: "Shape the Story",
-      description: "We turn them into content people actually want to watch, read and remember.",
-    },
-    {
-      icon: Share2,
-      step: "03",
-      title: "Build the Presence",
-      description: "We put those ideas consistently in front of the people who matter.",
-    },
-    {
-      icon: Rocket,
-      step: "04",
-      title: "Compound It",
-      description: "One conversation becomes weeks of content. Every piece builds on the last.",
-    },
+    { image: signalImage.url, title: "Find the Signal" },
+    { image: storyImage.url, title: "Shape the Story" },
+    { image: presenceImage.url, title: "Build the Presence" },
+    { image: compoundImage.url, title: "Compound It" },
   ];
 
   return (
@@ -53,7 +37,7 @@ const Home = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button size="lg" asChild>
                 <Link to="/visionlab">
-                  Start Your Project <ArrowRight className="ml-2" size={20} />
+                  Start Your Project <ChevronRight className="ml-2" size={20} />
                 </Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
@@ -109,7 +93,7 @@ const Home = () => {
           <div className="text-center mt-12">
             <Button size="lg" asChild>
               <Link to="/create-suite">
-                See How It Works <ArrowRight className="ml-2" size={20} />
+                See How It Works <ChevronRight className="ml-2" size={20} />
               </Link>
             </Button>
           </div>
@@ -159,7 +143,7 @@ const Home = () => {
               </p>
               <Button size="lg" asChild>
                 <Link to="/discover">
-                  Get started <ArrowRight className="ml-2" size={20} />
+                  Get started <ChevronRight className="ml-2" size={20} />
                 </Link>
               </Button>
         </div>

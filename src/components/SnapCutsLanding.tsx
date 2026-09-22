@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Users, Zap, Target, Shield, Rocket, CheckCircle } from "lucide-react";
+import { ChevronRight, Users, Zap, Target, Shield, Rocket, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface SnapCutsLandingProps {
@@ -60,7 +60,7 @@ const SnapCutsLanding = ({ onJoinClick }: SnapCutsLandingProps) => {
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Button size="lg" onClick={onJoinClick} className="px-10 py-5 text-lg">
                 <span>Join SnapCuts</span>
-                <ArrowRight className="w-5 h-5 ml-2" />
+                <ChevronRight className="w-5 h-5 ml-2" />
               </Button>
             </motion.div>
           </motion.div>
@@ -200,7 +200,7 @@ const SnapCutsLanding = ({ onJoinClick }: SnapCutsLandingProps) => {
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Button size="lg" onClick={onJoinClick} className="px-10 py-5 text-lg">
                 <span>Join SnapCuts</span>
-                <ArrowRight className="w-5 h-5 ml-2" />
+                <ChevronRight className="w-5 h-5 ml-2" />
               </Button>
             </motion.div>
           </motion.div>
