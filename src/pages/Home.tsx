@@ -1,37 +1,21 @@
 import { Link } from "react-router-dom";
-import { ChevronRight, Target, Film, Share2, Rocket } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BrandMarquee from "@/components/BrandMarquee";
+import signalImage from "@/assets/home-signal-green.webp.asset.json";
+import storyImage from "@/assets/home-story-yellow.webp.asset.json";
+import presenceImage from "@/assets/home-presence-purple.webp.asset.json";
+import compoundImage from "@/assets/home-compound-red.webp.asset.json";
 
 
 const Home = () => {
   const systemSteps = [
-    {
-      icon: Target,
-      step: "01",
-      title: "Find the Signal",
-      description: "We find the ideas, stories and perspectives worth owning.",
-    },
-    {
-      icon: Film,
-      step: "02",
-      title: "Shape the Story",
-      description: "We turn them into content people actually want to watch, read and remember.",
-    },
-    {
-      icon: Share2,
-      step: "03",
-      title: "Build the Presence",
-      description: "We put those ideas consistently in front of the people who matter.",
-    },
-    {
-      icon: Rocket,
-      step: "04",
-      title: "Compound It",
-      description: "One conversation becomes weeks of content. Every piece builds on the last.",
-    },
+    { image: signalImage.url, title: "Find the Signal" },
+    { image: storyImage.url, title: "Shape the Story" },
+    { image: presenceImage.url, title: "Build the Presence" },
+    { image: compoundImage.url, title: "Compound It" },
   ];
 
   return (
