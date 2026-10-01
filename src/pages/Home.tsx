@@ -86,7 +86,7 @@ const Home = () => {
                   role="img"
                   aria-label={step.title}
                 >
-                  <div className="absolute inset-x-0 top-0 z-10 flex justify-center pt-5">
+                  <div className="absolute inset-x-0 bottom-0 z-10 flex justify-center pb-5">
                     <span className="rounded-full bg-primary px-5 py-2 text-sm md:text-base font-semibold text-white whitespace-nowrap">
                       {step.title}
                     </span>
