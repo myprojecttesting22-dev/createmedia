@@ -9,7 +9,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { Check, ChevronLeft } from "lucide-react";
 
-const CALENDAR_URL = "https://cal.com/vansh-h-qgd2lm/30min";
+const CALENDAR_URL = "https://cal.com/ronnie-h/30min";
 const MIN_CHARS = 50;
 const MAX_CHARS = 1000;
 

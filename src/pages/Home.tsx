@@ -4,18 +4,15 @@ import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BrandMarquee from "@/components/BrandMarquee";
-import signalImage from "/home-signal-green.webp";
-import storyImage from "/home-story-yellow.webp";
-import presenceImage from "/home-presence-purple.webp";
-import compoundImage from "/home-compound-red.webp";
+import systemWave from "/home-system-wave.webp";
 
 
 const Home = () => {
   const systemSteps = [
-    { image: signalImage, title: "Find the Signal" },
-    { image: storyImage, title: "Shape the Story" },
-    { image: presenceImage, title: "Build the Presence" },
-    { image: compoundImage, title: "Compound It" },
+    { title: "Find the Signal", position: "0% 50%" },
+    { title: "Shape the Story", position: "33.3333% 50%" },
+    { title: "Build the Presence", position: "66.6667% 50%" },
+    { title: "Compound It", position: "100% 50%" },
   ];
 
   return (
@@ -78,16 +75,19 @@ const Home = () => {
                 to="/create-suite"
                 className="group block overflow-hidden"
               >
-                <div className="relative aspect-[4/5] w-full bg-card">
-                  <img
-                    src={step.image}
-                    alt={step.title}
-                    loading="lazy"
-                    decoding="async"
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                  />
+                <div
+                  className="relative aspect-[4/5] w-full bg-card"
+                  style={{
+                    backgroundImage: `url(${systemWave})`,
+                    backgroundSize: "400% 100%",
+                    backgroundPosition: step.position,
+                    backgroundRepeat: "no-repeat",
+                  }}
+                  role="img"
+                  aria-label={step.title}
+                >
                   <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/40 to-transparent pb-5 pt-14 px-5">
-                    <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground">
+                    <h3 className="whitespace-nowrap text-lg md:text-xl lg:text-2xl font-bold tracking-tight text-foreground">
                       {step.title}
                     </h3>
                   </div>
