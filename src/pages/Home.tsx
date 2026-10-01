@@ -12,10 +12,10 @@ import compoundImage from "/home-compound-red.webp";
 
 const Home = () => {
   const systemSteps = [
-    { image: signalImage.url, title: "Find the Signal" },
-    { image: storyImage.url, title: "Shape the Story" },
-    { image: presenceImage.url, title: "Build the Presence" },
-    { image: compoundImage.url, title: "Compound It" },
+    { image: signalImage, title: "Find the Signal" },
+    { image: storyImage, title: "Shape the Story" },
+    { image: presenceImage, title: "Build the Presence" },
+    { image: compoundImage, title: "Compound It" },
   ];
 
   return (
