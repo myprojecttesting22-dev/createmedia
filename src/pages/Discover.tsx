@@ -22,7 +22,7 @@ const Discover = () => {
             className="overflow-hidden rounded-lg border border-primary/20 bg-card/40 p-px shadow-[0_0_24px_hsl(var(--primary)/0.08)]"
           >
             <iframe
-              src="https://cal.com/vansh-h-qgd2lm/30min?embed=true&theme=dark&layout=month_view"
+              src="https://cal.com/ronnie-h/30min?embed=true&theme=dark&layout=month_view"
               title="Schedule a discovery call with Create Media"
               className="h-[720px] w-full border-0 bg-background"
               loading="lazy"
