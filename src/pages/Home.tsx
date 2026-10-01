@@ -71,22 +71,28 @@ const Home = () => {
       {/* 4-Step System Grid */}
       <section className="py-12 px-6">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {systemSteps.map((step, index) => (
-              <div
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {systemSteps.map((step) => (
+              <Link
                 key={step.title}
-                className="depth-card p-8 animate-slide-up"
-                style={{ animationDelay: `${index * 100}ms` }}
+                to="/create-suite"
+                className="group block overflow-hidden"
               >
-                <div className="flex items-center gap-3 mb-6 relative z-10">
-                  <div className="depth-icon">
-                    <step.icon size={20} />
+                <div className="relative aspect-[4/5] w-full bg-card">
+                  <img
+                    src={step.image}
+                    alt={step.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/40 to-transparent pb-5 pt-14 px-5">
+                    <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground">
+                      {step.title}
+                    </h3>
                   </div>
-                  <span className="depth-subtext font-mono text-xs">{step.step}</span>
                 </div>
-                <h3 className="text-2xl font-bold mb-3 depth-title relative z-10">{step.title}</h3>
-                <p className="depth-text text-sm leading-relaxed relative z-10">{step.description}</p>
-              </div>
+              </Link>
             ))}
           </div>
 
