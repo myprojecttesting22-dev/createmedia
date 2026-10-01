@@ -73,10 +73,10 @@ const Home = () => {
               <Link
                 key={step.title}
                 to="/create-suite"
-                className="group block overflow-hidden"
+                className="group block"
               >
                 <div
-                  className="relative aspect-[4/5] w-full bg-card"
+                  className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border-2 border-white/70 bg-card"
                   style={{
                     backgroundImage: `url(${systemWave})`,
                     backgroundSize: "400% 100%",
@@ -86,10 +86,10 @@ const Home = () => {
                   role="img"
                   aria-label={step.title}
                 >
-                  <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/40 to-transparent pb-5 pt-14 px-5">
-                    <h3 className="whitespace-nowrap text-lg md:text-xl lg:text-2xl font-bold tracking-tight text-foreground">
+                  <div className="absolute inset-x-0 top-0 z-10 flex justify-center pt-5">
+                    <span className="rounded-full bg-primary px-5 py-2 text-sm md:text-base font-semibold text-white whitespace-nowrap">
                       {step.title}
-                    </h3>
+                    </span>
                   </div>
                 </div>
               </Link>
