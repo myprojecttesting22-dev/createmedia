@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BrandMarquee from "@/components/BrandMarquee";
-import signalImage from "@/assets/home-signal-green.webp.asset.json";
-import storyImage from "@/assets/home-story-yellow.webp.asset.json";
-import presenceImage from "@/assets/home-presence-purple.webp.asset.json";
-import compoundImage from "@/assets/home-compound-red.webp.asset.json";
+import signalImage from "/home-signal-green.webp";
+import storyImage from "/home-story-yellow.webp";
+import presenceImage from "/home-presence-purple.webp";
+import compoundImage from "/home-compound-red.webp";
 
 
 const Home = () => {
