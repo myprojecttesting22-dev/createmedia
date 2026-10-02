@@ -1,6 +1,24 @@
 import { Link } from "react-router-dom";
 import { Mail, Linkedin, Twitter, Instagram, Youtube } from "lucide-react";
 
+const studioServices = [
+  "Guest Sourcing",
+  "Guest Research",
+  "Podcast Production",
+  "Short Form",
+  "Trailers",
+  "Thumbnails",
+  "Writing",
+  "Distribution",
+];
+
+const brands = [
+  { name: "SnapCuts", path: "/snapcuts" },
+  { name: "VisionLab", path: "/visionlab" },
+  { name: "Trust", path: "/trust" },
+  { name: "Connect", path: "/connect" },
+];
+
 const Footer = () => {
   return (
     <footer className="bg-muted border-t border-border mt-20">
@@ -14,59 +32,33 @@ const Footer = () => {
               <span className="text-lg font-bold">CREATE MEDIA</span>
             </Link>
             <p className="text-sm text-muted-foreground">
-              Creating, repurposing, and automating content for ambitious brands.
+              Creating, repurposing, and distributing content for ambitious companies.
             </p>
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">Services</h3>
+            <h3 className="font-semibold mb-4">Studio</h3>
             <ul className="space-y-2">
-              <li>
-                <Link to="/create-suite" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  CineFlow
-                </Link>
-              </li>
-              <li>
-                <Link to="/create-suite" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  BrandSync
-                </Link>
-              </li>
-              <li>
-                <Link to="/create-suite" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  ReachLift
-                </Link>
-              </li>
-              <li>
-                <Link to="/create-suite" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  AdPulse
-                </Link>
-              </li>
+              {studioServices.map((service) => (
+                <li key={service}>
+                  <Link to="/studio" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    {service}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">Company</h3>
+            <h3 className="font-semibold mb-4">Brand</h3>
             <ul className="space-y-2">
-              <li>
-                <Link to="/core-story" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/trust-frame" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Testimonials
-                </Link>
-              </li>
-              <li>
-                <Link to="/visionlab" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Custom Projects
-                </Link>
-              </li>
-              <li>
-                <Link to="/connect" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Contact
-                </Link>
-              </li>
+              {brands.map((brand) => (
+                <li key={brand.name}>
+                  <Link to={brand.path} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    {brand.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

@@ -98,7 +98,7 @@ const Home = () => {
 
           <div className="text-center mt-12">
             <Button size="lg" asChild>
-              <Link to="/create-suite">
+              <Link to="/studio">
                 See How It Works <ChevronRight className="ml-2" size={20} />
               </Link>
             </Button>
