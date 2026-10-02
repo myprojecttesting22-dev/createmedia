@@ -79,12 +79,9 @@ const Home = () => {
                 className="group block"
               >
                 <div
-                  className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border-2 border-white/70 bg-card"
+                  className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border-2 border-white/70 bg-cover bg-center"
                   style={{
-                    backgroundImage: `url(${systemWave})`,
-                    backgroundSize: "400% 100%",
-                    backgroundPosition: step.position,
-                    backgroundRepeat: "no-repeat",
+                    backgroundImage: `url(${step.image})`,
                   }}
                   role="img"
                   aria-label={step.title}
