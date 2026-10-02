@@ -26,12 +26,11 @@ const Navigation = () => {
 
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "Core Story", path: "/core-story" },
-    { name: "Create Suite", path: "/create-suite" },
-    { name: "VisionLab", path: "/visionlab" },
+    { name: "Studio", path: "/studio" },
     { name: "SnapCuts", path: "/snapcuts" },
-    { name: "Trust Frame", path: "/trust-frame" },
-    { name: "Connect Line", path: "/connect" },
+    { name: "VisionLab", path: "/visionlab" },
+    { name: "Trust", path: "/trust" },
+    { name: "Connect", path: "/connect" },
   ];
 
   return (

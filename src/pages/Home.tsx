@@ -41,7 +41,7 @@ const Home = () => {
                 </Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <Link to="/core-story">Learn More</Link>
+                <Link to="/studio">Learn More</Link>
               </Button>
             </div>
           </div>
@@ -75,7 +75,7 @@ const Home = () => {
             {systemSteps.map((step) => (
               <Link
                 key={step.title}
-                to="/create-suite"
+                to="/studio"
                 className="group block"
               >
                 <div
