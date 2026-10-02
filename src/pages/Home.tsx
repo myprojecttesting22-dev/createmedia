@@ -4,15 +4,18 @@ import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BrandMarquee from "@/components/BrandMarquee";
-import systemWave from "/home-system-wave.webp";
+import card1 from "/home-card-1.webp";
+import card2 from "/home-card-2.webp";
+import card3 from "/home-card-3.webp";
+import card4 from "/home-card-4.webp";
 
 
 const Home = () => {
   const systemSteps = [
-    { title: "Find the Signal", position: "0% 50%" },
-    { title: "Shape the Story", position: "33.3333% 50%" },
-    { title: "Build the Presence", position: "66.6667% 50%" },
-    { title: "Compound It", position: "100% 50%" },
+    { title: "Find the Signal", image: card1 },
+    { title: "Shape the Story", image: card2 },
+    { title: "Build the Presence", image: card3 },
+    { title: "Compound It", image: card4 },
   ];
 
   return (
@@ -76,12 +79,9 @@ const Home = () => {
                 className="group block"
               >
                 <div
-                  className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border-2 border-white/70 bg-card"
+                  className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border-2 border-white/70 bg-cover bg-center"
                   style={{
-                    backgroundImage: `url(${systemWave})`,
-                    backgroundSize: "400% 100%",
-                    backgroundPosition: step.position,
-                    backgroundRepeat: "no-repeat",
+                    backgroundImage: `url(${step.image})`,
                   }}
                   role="img"
                   aria-label={step.title}
