@@ -5,29 +5,28 @@ import { Star } from "lucide-react";
 import { useState } from "react";
 import StatCircle from "@/components/StatCircle";
 
-const TrustFrame = () => {
+const Trust = () => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  
+
   const testimonials = [
-    { name: "Sarah Mitchell", company: "Skyline Properties", role: "CEO", content: "CREATE MEDIA transformed our brand presence. Their AI-driven content strategy increased our engagement by 300% in just three months. The team's creativity and technical expertise are unmatched.", rating: 5 },
+    { name: "Sarah Mitchell", company: "Skyline Properties", role: "CEO", content: "CREATE MEDIA transformed our brand presence. Their content strategy increased our engagement by 300% in just three months. The team's creativity and technical expertise are unmatched.", rating: 5 },
     { name: "Michael Chen", company: "Urban Real Estate Group", role: "Marketing Director", content: "Working with CREATE MEDIA has been transformative. The marketing systems they built for us save countless hours while delivering consistent, high-quality content across all platforms.", rating: 5 },
     { name: "Jennifer Rodriguez", company: "Coastal Realty", role: "Brand Manager", content: "The VisionLab custom project exceeded all expectations. CREATE MEDIA understood our brand vision perfectly and delivered a comprehensive content ecosystem that drives real results.", rating: 5 },
-    { name: "David Thompson", company: "Premier Estates", role: "Founder", content: "CineFlow's editing quality is exceptional. Every video they produce captures the essence of our properties and tells compelling stories that resonate with our target audience.", rating: 5 },
-    { name: "Emily Watson", company: "Metropolitan Homes", role: "Chief Marketing Officer", content: "BrandSync helped us achieve perfect consistency across all our marketing channels. The visual identity system they created elevated our brand to compete with the biggest players in our market.", rating: 5 },
-    { name: "Robert Kim", company: "Horizon Real Estate", role: "VP of Operations", content: "ReachLift's organic growth strategies delivered impressive results. Our social media engagement and website traffic have increased significantly, leading to more qualified leads.", rating: 5 },
+    { name: "David Thompson", company: "Premier Estates", role: "Founder", content: "Their editing quality is exceptional. Every video they produce captures the essence of our properties and tells compelling stories that resonate with our target audience.", rating: 5 },
+    { name: "Emily Watson", company: "Metropolitan Homes", role: "Chief Marketing Officer", content: "CREATE MEDIA helped us achieve perfect consistency across all our marketing channels. The visual identity system they created elevated our brand to compete with the biggest players in our market.", rating: 5 },
+    { name: "Robert Kim", company: "Horizon Real Estate", role: "VP of Operations", content: "Their organic growth strategies delivered impressive results. Our social media engagement and website traffic have increased significantly, leading to more qualified leads.", rating: 5 },
   ];
 
   return (
     <div className="min-h-screen">
       <Navigation />
-      
+
       <section className="pt-32 pb-20 px-6">
         <div className="container mx-auto">
           <div className="text-center mb-16 animate-fade-in">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">Trust Frame</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Success stories from ambitious brands that trust us to amplify their
-              presence and drive growth
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">Trust</h1>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Results from the companies that work with us.
             </p>
           </div>
 
@@ -52,11 +51,11 @@ const TrustFrame = () => {
                     <Star key={i} className="text-yellow-400 fill-yellow-400" size={18} />
                   ))}
                 </div>
-                
+
                 <p className="depth-text mb-6 leading-relaxed relative z-10">
                   "{testimonial.content}"
                 </p>
-                
+
                 <div className="border-t border-white/10 pt-4 relative z-10">
                   <p className="font-semibold text-white">{testimonial.name}</p>
                   <p className="text-sm text-white/60">{testimonial.role}</p>
@@ -72,14 +71,14 @@ const TrustFrame = () => {
             <div className="max-w-5xl mx-auto">
               <div className="depth-card overflow-hidden">
                 <div className="p-8 md:p-12 relative z-10">
-                  <AspectRatio 
-                    ratio={16 / 9} 
+                  <AspectRatio
+                    ratio={16 / 9}
                     className="rounded-lg overflow-hidden relative group cursor-pointer"
                     onClick={() => setIsVideoPlaying(true)}
                   >
                     {!isVideoPlaying ? (
                       <>
-                        <img 
+                        <img
                           src="https://img.youtube.com/vi/oc4uk_fTdO8/maxresdefault.jpg"
                           alt="Active Lanes Testimonial Video Thumbnail"
                           className="w-full h-full object-cover"
@@ -103,7 +102,7 @@ const TrustFrame = () => {
                     )}
                   </AspectRatio>
                   <h3 className="text-2xl md:text-3xl font-bold mt-8 text-center leading-relaxed text-white">
-                    Trusted by High-Impact Innovators — Harman, Founder of Active Lanes
+                    Harman, Founder of Active Lanes, on working with CREATE MEDIA
                   </h3>
                 </div>
               </div>
@@ -111,14 +110,7 @@ const TrustFrame = () => {
           </div>
 
           <div className="mt-16 text-center">
-            <div className="depth-cta max-w-3xl mx-auto">
-              <div className="py-12 px-6 relative z-10">
-                <h2 className="text-3xl font-bold mb-4 text-white">Your Story Could Be Next</h2>
-                <p className="text-lg text-white/85 mb-6">
-                  Ready to make what you're building impossible to overlook?
-                </p>
-              </div>
-            </div>
+            <h2 className="text-3xl font-bold mb-4 text-white">Your Story Could Be Next</h2>
           </div>
         </div>
       </section>
@@ -128,4 +120,4 @@ const TrustFrame = () => {
   );
 };
 
-export default TrustFrame;
+export default Trust;

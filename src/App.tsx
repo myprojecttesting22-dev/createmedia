@@ -6,11 +6,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollArrow from "@/components/ScrollArrow";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import Home from "./pages/Home";
-import CoreStory from "./pages/CoreStory";
-import CreateSuite from "./pages/CreateSuite";
+import Studio from "./pages/Studio";
 import VisionLab from "./pages/VisionLab";
 import Discover from "./pages/Discover";
-import TrustFrame from "./pages/TrustFrame";
+import Trust from "./pages/Trust";
 import Connect from "./pages/Connect";
 import SnapCuts from "./pages/SnapCuts";
 import NotFound from "./pages/NotFound";
@@ -28,11 +27,10 @@ const App = () => (
           <ScrollArrow />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/core-story" element={<CoreStory />} />
-            <Route path="/create-suite" element={<CreateSuite />} />
+            <Route path="/studio" element={<Studio />} />
             <Route path="/visionlab" element={<VisionLab />} />
             <Route path="/discover" element={<Discover />} />
-            <Route path="/trust-frame" element={<TrustFrame />} />
+            <Route path="/trust" element={<Trust />} />
             <Route path="/connect" element={<Connect />} />
             <Route path="/snapcuts" element={<SnapCuts />} />
             <Route path="/admin-assets" element={<AdminAssets />} />

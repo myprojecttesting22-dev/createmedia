@@ -4,11 +4,10 @@ import { animate, motion, useMotionValue, useReducedMotion } from "framer-motion
 
 const OPTIONS = [
   { path: "/", label: "Home" },
-  { path: "/core-story", label: "Core Story" },
-  { path: "/create-suite", label: "Create Suite" },
-  { path: "/visionlab", label: "VisionLab" },
+  { path: "/studio", label: "Studio" },
   { path: "/snapcuts", label: "SnapCuts" },
-  { path: "/trust-frame", label: "Trust Frame" },
+  { path: "/visionlab", label: "VisionLab" },
+  { path: "/trust", label: "Trust" },
   { path: "/connect", label: "Connect" },
 ];
 
