@@ -372,6 +372,58 @@ All colors MUST be HSL.
       inset 0 1px 0 rgba(255, 255, 255, 0.14);
   }
 
+  /* System statement — copy stays on black, artwork remains a separate field */
+  .home-attention-section {
+    overflow: hidden;
+    padding-block: 5rem;
+  }
+
+  .home-attention-section__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+    align-items: center;
+    min-height: 520px;
+  }
+
+  .home-attention-section__copy {
+    position: relative;
+    z-index: 1;
+    max-width: 42rem;
+    padding: 4rem 2rem 4rem max(1.5rem, calc((100vw - 72rem) / 2));
+  }
+
+  .home-attention-section__art {
+    align-self: stretch;
+    min-height: 520px;
+    background-image: url('/home-attention-black-hole.webp');
+    background-position: center;
+    background-size: cover;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 100%);
+  }
+
+  @media (max-width: 767px) {
+    .home-attention-section {
+      padding-block: 3rem;
+    }
+
+    .home-attention-section__inner {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+
+    .home-attention-section__copy {
+      padding: 3rem 1.5rem;
+      text-align: center;
+    }
+
+    .home-attention-section__art {
+      min-height: 320px;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
+    }
+  }
+
   /* Full-width Earth CTA */
   .home-earth-cta {
     position: relative;
