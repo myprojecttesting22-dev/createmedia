@@ -73,29 +73,27 @@ const VisionLab = () => {
       
       <section className="pt-32 pb-20 px-6">
         <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-16 animate-fade-in">
+          <div className="mb-16 animate-fade-in">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">VisionLab</h1>
             <p className="text-xl text-muted-foreground">
-              Custom creative solutions tailored to your brand's unique vision
+              Strategy, positioning, and creative direction — the thinking behind the work.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
             <div className="animate-slide-up">
               <h2 className="text-3xl font-bold mb-6 text-foreground">
-                Transform Your Vision Into Reality
+                How It Works
               </h2>
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                Every brand has a unique story to tell. VisionLab is where we bring your
-                creative vision to life through custom projects designed specifically for
-                your needs.
+                VisionLab is where we decide what your company should be known for, then build the content plan around it.
               </p>
-              
+
               <div className="space-y-4">
                 {[
-                  { title: "Tailored Solutions", desc: "Custom content strategies designed around your brand's goals and target audience." },
-                  { title: "Expert Collaboration", desc: "Work directly with our creative team to develop innovative solutions for your brand." },
-                  { title: "End-to-End Support", desc: "From concept to execution, we guide you through every step of your custom project." },
+                  { title: "Positioning", desc: "Define what your company should be known for." },
+                  { title: "Creative Direction", desc: "Set the tone, story and look before anything is produced." },
+                  { title: "Content Planning", desc: "A clear plan for what gets made and when." },
                 ].map((item) => (
                   <div key={item.title} className="depth-card p-4">
                     <h3 className="font-semibold mb-2 text-white relative z-10">{item.title}</h3>
