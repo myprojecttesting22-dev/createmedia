@@ -398,8 +398,14 @@ All colors MUST be HSL.
     background-image: url('/home-attention-black-hole.webp');
     background-position: center;
     background-size: cover;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 100%);
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 0%, black 15%, black 100%),
+      linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to right, transparent 0%, black 15%, black 100%),
+      linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%);
+    mask-composite: intersect;
   }
 
   @media (max-width: 767px) {
@@ -420,7 +426,9 @@ All colors MUST be HSL.
     .home-attention-section__art {
       min-height: 320px;
       -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
+      -webkit-mask-composite: initial;
       mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
+      mask-composite: initial;
     }
   }
 
