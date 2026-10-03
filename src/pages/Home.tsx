@@ -53,18 +53,23 @@ const Home = () => {
       <BrandMarquee />
 
       {/* System Introduction */}
-      <section className="py-20 px-6">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight text-foreground">
+      <section className="home-attention-section">
+        <div className="home-attention-section__inner">
+          <div className="home-attention-section__copy">
+            <h2 className="text-4xl font-bold leading-tight text-foreground md:text-6xl">
               We don't hope for attention
               <br />
               <span className="text-primary">We control it</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              A four-part system for turning what you know into what people know you for.
+            <p className="mt-7 text-xl font-semibold text-foreground md:text-2xl">
+              We turn expertise into attention that compounds.
             </p>
           </div>
+          <div
+            className="home-attention-section__art"
+            role="img"
+            aria-label="A stream of information flowing around a black hole"
+          />
         </div>
       </section>
 
