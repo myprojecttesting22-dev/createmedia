@@ -23,7 +23,7 @@ const Footer = () => {
   return (
     <footer className="bg-muted border-t border-border mt-20">
       <div className="container mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-[1.15fr_2fr_0.8fr_1.2fr] md:gap-10">
           <div className="col-span-1">
             <Link to="/" className="flex items-center gap-3 mb-4">
               <span className="h-10 w-10 shrink-0 overflow-hidden rounded-full border border-primary/35 bg-primary/20">
@@ -38,7 +38,7 @@ const Footer = () => {
 
           <div>
             <h3 className="font-semibold mb-4">Studio</h3>
-            <ul className="space-y-2">
+            <ul className="grid grid-cols-2 gap-x-8 gap-y-2">
               {studioServices.map((service) => (
                 <li key={service}>
                   <Link to="/studio" className="text-sm text-muted-foreground hover:text-primary transition-colors">
