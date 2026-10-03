@@ -375,7 +375,7 @@ All colors MUST be HSL.
   /* System statement — copy stays on black, artwork remains a separate field */
   .home-attention-section {
     overflow: hidden;
-    padding-block: 5rem;
+    padding-block: 1.5rem 5rem;
   }
 
   .home-attention-section__inner {
@@ -410,7 +410,7 @@ All colors MUST be HSL.
 
   @media (max-width: 767px) {
     .home-attention-section {
-      padding-block: 3rem;
+      padding-block: 1rem 3rem;
     }
 
     .home-attention-section__inner {

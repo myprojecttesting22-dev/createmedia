@@ -23,7 +23,7 @@ const Home = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-8 px-6">
+      <section className="pt-32 pb-0 px-6">
         <div className="container mx-auto text-center">
           <div className="animate-fade-in">
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-foreground">
@@ -34,7 +34,7 @@ const Home = () => {
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
               We build stories people remember and brands people can't ignore — for startups, founders, capital firms, fintech companies, & real estate brands.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" asChild>
                 <Link to="/visionlab">
                   Start Your Project <ChevronRight className="ml-2" size={20} />
@@ -49,8 +49,6 @@ const Home = () => {
       </section>
 
 
-      {/* Brand Marquee */}
-      <BrandMarquee />
 
       {/* System Introduction */}
       <section className="home-attention-section">
@@ -62,7 +60,7 @@ const Home = () => {
               <span className="text-primary">We control it</span>
             </h2>
             <p className="mt-7 text-xl font-semibold text-foreground md:text-2xl">
-              We turn expertise into attention that compounds.
+              The right guests, the right story, and the right people seeing it
             </p>
           </div>
           <div
