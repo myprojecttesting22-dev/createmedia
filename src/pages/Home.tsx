@@ -31,7 +31,7 @@ const Home = () => {
               <span className="text-primary">and distribute</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-              We build stories people remember and brands people can't ignore — for startups, founders, capital firms, fintech companies, & real estate brands.
+              We build stories people remember and brands people can't ignore for startups, founders, capital firms, fintech companies, & real estate brands.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" asChild>
