@@ -49,15 +49,6 @@ const Home = () => {
 
 
 
-      {/* Full-width artwork */}
-      <section className="home-attention-section">
-        <div
-          className="home-attention-section__art"
-          role="img"
-          aria-label="A stream of information flowing around a black hole"
-        />
-      </section>
-
       {/* 4-Step System Grid */}
       <section className="py-12 px-6">
         <div className="container mx-auto">
