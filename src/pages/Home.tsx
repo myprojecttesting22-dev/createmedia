@@ -49,30 +49,27 @@ const Home = () => {
 
 
 
-      {/* System Introduction */}
+      {/* Full-width artwork */}
       <section className="home-attention-section">
-        <div className="home-attention-section__inner">
-          <div className="home-attention-section__copy">
-            <h2 className="text-4xl font-bold leading-tight text-foreground md:text-6xl">
-              We don't hope for attention
-              <br />
-              <span className="text-primary">We control it</span>
-            </h2>
-            <p className="mt-7 text-xl font-semibold text-foreground md:text-2xl">
-              The right guests, the right story, and the right people seeing it
-            </p>
-          </div>
-          <div
-            className="home-attention-section__art"
-            role="img"
-            aria-label="A stream of information flowing around a black hole"
-          />
-        </div>
+        <div
+          className="home-attention-section__art"
+          role="img"
+          aria-label="A stream of information flowing around a black hole"
+        />
       </section>
 
       {/* 4-Step System Grid */}
       <section className="py-12 px-6">
         <div className="container mx-auto">
+          <div className="mb-12 text-center">
+            <h2 className="display-headline text-4xl text-foreground md:text-6xl">
+              We don't hope for attention.{" "}
+              <span className="display-gradient">We control it.</span>
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground md:text-xl">
+              The right guests, the right story, and the right people seeing it
+            </p>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {systemSteps.map((step) => (
               <Link
