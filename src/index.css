@@ -372,33 +372,6 @@ All colors MUST be HSL.
       inset 0 1px 0 rgba(255, 255, 255, 0.14);
   }
 
-  /* Full-width artwork section */
-  .home-attention-section {
-    overflow: hidden;
-    padding-top: 1.5rem;
-  }
-
-  .home-attention-section__art {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    max-height: 760px;
-    background-image: url('/home-attention-black-hole.webp');
-    background-position: center;
-    background-size: cover;
-    -webkit-mask-image:
-      linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%),
-      linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%);
-    -webkit-mask-composite: source-in;
-    mask-image:
-      linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%),
-      linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%);
-    mask-composite: intersect;
-  }
-
-  @media (max-width: 767px) {
-    .home-attention-section { padding-top: 1rem; }
-    .home-attention-section__art { aspect-ratio: 4 / 3; }
-  }
 
   /* Display headline — heavy, tightly tracked */
   .display-headline {
