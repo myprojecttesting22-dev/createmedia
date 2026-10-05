@@ -38,14 +38,14 @@ const Navigation = () => {
       className={`fixed top-4 left-4 right-4 z-50 transition-all duration-400 ease-in-out ${navVisible ? 'navbar-visible' : 'navbar-hidden'}`}
       ref={navRef}
     >
-      <div className="container mx-auto px-4 sm:px-6 py-3 navbar-pill navbar-pill--dark">
-        <div className="flex items-center justify-between gap-4">
+      <div className="flex justify-center px-3 sm:px-4">
+        <div className="navbar-pill navbar-pill--dark flex items-center gap-3 px-3 sm:px-4 py-2">
           {/* Brand */}
-          <Link to="/" className="flex items-center gap-2 sm:gap-3 hover-lift shrink-0">
-            <span className="h-10 w-10 sm:h-12 sm:w-12 shrink-0 overflow-hidden rounded-full border border-primary/35 bg-primary/20 shadow-[0_0_18px_hsl(var(--primary)/0.18)]">
+          <Link to="/" className="flex items-center gap-2 hover-lift shrink-0">
+            <span className="h-9 w-9 shrink-0 overflow-hidden rounded-full border border-primary/35 bg-primary/20 shadow-[0_0_18px_hsl(var(--primary)/0.18)]">
               <img src="/create-media-logo.webp" alt="CREATE MEDIA" width="256" height="256" loading="eager" decoding="async" className="h-full w-full rounded-full object-cover" />
             </span>
-            <span className="text-lg sm:text-xl font-bold whitespace-nowrap nav-brand">CREATE MEDIA</span>
+            <span className="text-base sm:text-lg font-bold whitespace-nowrap nav-brand">CREATE MEDIA</span>
           </Link>
 
           {/* Desktop slider nav */}
@@ -53,7 +53,7 @@ const Navigation = () => {
 
           <Link
             to="/discover"
-            className="hidden lg:inline-flex text-sm font-semibold px-5 py-2 rounded-xl whitespace-nowrap shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 transition-all"
+            className="hidden lg:inline-flex text-sm font-semibold px-4 py-1.5 rounded-xl whitespace-nowrap shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 transition-all"
           >
             Get Started
           </Link>
@@ -63,7 +63,7 @@ const Navigation = () => {
             className="md:hidden p-2 text-white"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
