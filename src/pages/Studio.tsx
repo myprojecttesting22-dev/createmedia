@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
+import shuttle from "@/assets/studio-shuttle.webp.asset.json";
 
 const services = [
   {
@@ -44,10 +45,17 @@ const Studio = () => {
     <div className="min-h-screen">
       <Navigation />
 
-      <section className="pt-32 pb-20 px-6">
+      <section className="cosmic-studio" aria-labelledby="studio-art-headline">
+        <img src={shuttle.url} alt="A shuttle ascending over Earth's blue horizon" width={1672} height={941} loading="eager" decoding="async" />
+        <h1 id="studio-art-headline" className="space-headline cosmic-studio__headline text-foreground">
+          Escape velocity<br />for your brand.
+        </h1>
+      </section>
+
+      <section className="pt-16 md:pt-24 pb-20 px-6">
         <div className="container mx-auto max-w-4xl">
           <div className="mb-16 animate-fade-in">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">Studio</h1>
+            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">Studio</h2>
             <p className="text-xl text-muted-foreground">
               Everything it takes to run a show end to end — from finding guests to getting it watched.
             </p>

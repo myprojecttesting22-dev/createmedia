@@ -373,7 +373,88 @@ All colors MUST be HSL.
   }
 
 
-  /* Display headline — heavy, tightly tracked */
+  /* Shared typography for the two space pages. */
+  .space-headline {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 4.5rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.1;
+  }
+
+  .cosmic-home {
+    padding-top: 5.5rem;
+  }
+
+  .cosmic-home__scene {
+    position: relative;
+  }
+
+  .cosmic-home__image,
+  .cosmic-studio > img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .cosmic-home__headline {
+    position: absolute;
+    top: 5%;
+    inset-inline: 1.5rem;
+    text-align: center;
+    z-index: 1;
+  }
+
+  .cosmic-home__action {
+    position: absolute;
+    bottom: 7%;
+    inset-inline: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .cosmic-studio {
+    position: relative;
+    margin-top: 5.5rem;
+  }
+
+  .cosmic-studio__headline {
+    position: absolute;
+    top: 18%;
+    left: 6%;
+    max-width: 48%;
+  }
+
+  @media (max-width: 1023px) {
+    .space-headline {
+      font-size: 3rem;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .space-headline {
+      font-size: 2rem;
+      line-height: 1.15;
+    }
+
+    .cosmic-home__headline {
+      position: relative;
+      inset: auto;
+      padding: 2.5rem 1rem 1rem;
+    }
+
+    .cosmic-home__action {
+      bottom: 4%;
+    }
+
+    .cosmic-studio__headline {
+      top: 10%;
+      max-width: 62%;
+      font-size: 1.75rem;
+    }
+  }
+
+  /* Display headline — heavy */
   .display-headline {
     font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 800;

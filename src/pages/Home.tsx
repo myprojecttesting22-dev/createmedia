@@ -7,6 +7,7 @@ import card1 from "/home-card-1.webp";
 import card2 from "/home-card-2.webp";
 import card3 from "/home-card-3.webp";
 import card4 from "/home-card-4.webp";
+import astronaut from "@/assets/home-astronaut.webp.asset.json";
 
 
 const Home = () => {
@@ -22,40 +23,34 @@ const Home = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-32 px-6">
-        <div className="container mx-auto text-center">
-          <div className="animate-fade-in">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-foreground">
+      <section className="cosmic-home" aria-labelledby="home-headline">
+        <div className="cosmic-home__scene">
+            <h1 id="home-headline" className="space-headline cosmic-home__headline text-foreground">
               We create, repurpose,
               <br />
               <span className="text-primary">and distribute</span>
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-              We build stories people remember and brands people can't ignore for startups, founders, capital firms, fintech companies, & real estate brands.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <img className="cosmic-home__image" src={astronaut.url} alt="An astronaut floating between two luminous blue cosmic horizons" width={1672} height={941} loading="eager" decoding="async" />
+            <div className="cosmic-home__action">
               <Button size="lg" asChild>
-                <Link to="/visionlab">
-                  Start Your Project <ChevronRight className="ml-2" size={20} />
+                <Link to="/discover">
+                  Get Started <ChevronRight className="ml-2" size={20} />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link to="/studio">Learn More</Link>
-              </Button>
             </div>
-          </div>
         </div>
       </section>
 
 
 
       {/* 4-Step System Grid */}
-      <section className="py-12 px-6">
+      <section className="pt-24 pb-12 px-6 md:pt-32">
         <div className="container mx-auto">
-        <div className="mb-16 text-center">
-          <h2 className="display-headline text-4xl text-foreground md:text-6xl">
-              We don't hope for attention.{" "}
-              <span className="display-gradient">We control it.</span>
+        <div className="mb-20 md:mb-24 text-center">
+          <h2 className="space-headline text-foreground">
+              We don't hope for attention.
+              <br />
+              <span className="text-primary">We control it.</span>
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground md:text-xl">
               The right guests, the right story, and the right people seeing it
