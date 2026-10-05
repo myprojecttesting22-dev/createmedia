@@ -420,9 +420,21 @@ All colors MUST be HSL.
 
   .cosmic-studio__headline {
     position: absolute;
-    top: 18%;
-    left: 6%;
+    top: 15%;
+    left: 4%;
     max-width: 48%;
+  }
+
+  /* Fade the shuttle artwork's edges into the page background */
+  .cosmic-studio > img {
+    -webkit-mask-image:
+      linear-gradient(to bottom, transparent 0%, #000 12%, #000 92%, transparent 100%),
+      linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to bottom, transparent 0%, #000 12%, #000 92%, transparent 100%),
+      linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    mask-composite: intersect;
   }
 
   @media (max-width: 1023px) {
