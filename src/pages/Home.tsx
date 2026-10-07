@@ -7,8 +7,6 @@ import card1 from "/home-card-1.webp";
 import card2 from "/home-card-2.webp";
 import card3 from "/home-card-3.webp";
 import card4 from "/home-card-4.webp";
-import astronaut from "@/assets/home-astronaut.webp.asset.json";
-
 
 const Home = () => {
   const systemSteps = [
@@ -30,7 +28,7 @@ const Home = () => {
               <br />
               <span className="text-primary">and distribute</span>
             </h1>
-            <img className="cosmic-home__image" src={astronaut.url} alt="An astronaut floating between two luminous blue cosmic horizons" width={1672} height={941} loading="eager" decoding="async" />
+            <img className="cosmic-home__image" src="/astronaut-hero.webp" alt="An astronaut floating between two luminous blue cosmic horizons" width={1672} height={941} loading="eager" decoding="async" />
             <div className="cosmic-home__action">
               <Button size="lg" asChild>
                 <Link to="/discover">

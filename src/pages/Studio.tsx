@@ -3,7 +3,6 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
-import shuttle from "@/assets/studio-shuttle.webp.asset.json";
 
 const services = [
   {
@@ -46,7 +45,7 @@ const Studio = () => {
       <Navigation />
 
       <section className="cosmic-studio" aria-labelledby="studio-art-headline">
-        <img src={shuttle.url} alt="A shuttle ascending over Earth's blue horizon" width={1672} height={941} loading="eager" decoding="async" />
+        <img src="/studio-shuttle.webp" alt="A shuttle ascending over Earth's blue horizon" width={1672} height={941} loading="eager" decoding="async" />
         <h1 id="studio-art-headline" className="space-headline cosmic-studio__headline text-foreground">
           Escape velocity<br /><span className="text-primary">for your brand.</span>
         </h1>
