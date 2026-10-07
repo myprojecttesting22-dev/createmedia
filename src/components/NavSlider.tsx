@@ -199,7 +199,7 @@ const NavSlider = () => {
             type="button"
             onClick={() => handleItemClick(idx)}
             aria-current={isActive ? "page" : undefined}
-            className={`nav-tab-item relative z-10 px-3 py-1.5 bg-transparent border-none outline-none cursor-pointer whitespace-nowrap text-sm font-semibold tracking-wide transition-colors duration-200 ${
+            className={`nav-tab-item relative z-10 px-2 py-1.5 lg:px-3 lg:py-2.5 bg-transparent border-none outline-none cursor-pointer whitespace-nowrap text-sm lg:text-base font-semibold tracking-wide transition-colors duration-200 ${
               isActive ? "text-white" : "text-white/55"
             }`}
           >
