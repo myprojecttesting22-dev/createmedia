@@ -34,7 +34,7 @@ All colors MUST be HSL.
     --popover: 0 0% 4%;
     --popover-foreground: 0 0% 100%;
 
-    /* Brand Primary: #02AAF5 = hsl(199, 98%, 48%) */
+    /* Create Media blue accent */
     --primary: 199 98% 48%;
     --primary-foreground: 0 0% 100%;
     
@@ -137,6 +137,13 @@ All colors MUST be HSL.
     transition: background 300ms ease, color 300ms ease;
   }
 
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.045em;
+    line-height: 1.08;
+  }
+
   .dark body,
   body {
     background: #000000;
@@ -167,27 +174,23 @@ All colors MUST be HSL.
   /* ========================================
      UNIFIED 3D DEPTH SYSTEM
      iOS-inspired glossy, dimensional cards/buttons/pills
-     Brand: #02AAF5 = hsl(199, 98%, 48%)
+     Create Media blue on a black canvas
      ======================================== */
 
-  /* 3D Card — vivid brand blue gradient with gloss */
+  /* Quiet, dark cards with Create Media blue edges */
   .depth-card {
     background: linear-gradient(
-      160deg,
-      hsl(199, 98%, 42%) 0%,
-      hsl(199, 98%, 35%) 40%,
-      hsl(199, 98%, 28%) 100%
+      145deg,
+      rgba(7, 30, 44, 0.9) 0%,
+      rgba(16, 12, 22, 0.98) 45%,
+      rgba(8, 8, 10, 0.98) 100%
     );
-    border-radius: 20px;
-    border: 1px solid hsla(199, 90%, 55%, 0.3);
+    border-radius: 24px;
+    border: 1px solid hsla(199, 96%, 70%, 0.28);
     position: relative;
     overflow: hidden;
     color: #FFFFFF;
-    box-shadow:
-      0 20px 40px rgba(2, 170, 245, 0.3),
-      0 8px 16px rgba(0, 0, 0, 0.25),
-      inset 0 1px 0 rgba(255, 255, 255, 0.15),
-      inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.06);
     transition: transform 0.35s ease, box-shadow 0.35s ease;
   }
 
@@ -211,11 +214,7 @@ All colors MUST be HSL.
 
   .depth-card:hover {
     transform: translateY(-6px);
-    box-shadow:
-      0 28px 60px rgba(2, 170, 245, 0.4),
-      0 12px 24px rgba(0, 0, 0, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.18),
-      inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.48), 0 0 32px hsla(199, 96%, 62%, 0.14);
   }
 
   /* Text inside depth cards */
@@ -239,7 +238,7 @@ All colors MUST be HSL.
   .depth-icon {
     width: 48px;
     height: 48px;
-    border-radius: 14px;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -280,25 +279,22 @@ All colors MUST be HSL.
     z-index: 1;
   }
 
-  /* 3D Button — unified for ALL buttons */
+  /* Violet capsule buttons */
   .depth-button {
     background: linear-gradient(
-      160deg,
-      hsl(199, 98%, 45%) 0%,
-      hsl(199, 98%, 38%) 50%,
-      hsl(199, 98%, 30%) 100%
+      135deg,
+      hsl(199, 96%, 54%) 0%,
+      hsl(199, 96%, 46%) 100%
     );
     color: #FFFFFF;
     font-weight: 600;
-    border: 1px solid hsla(199, 90%, 55%, 0.35);
-    border-radius: 14px;
+    border: 1px solid hsla(199, 90%, 65%, 0.35);
+    border-radius: 9999px;
     position: relative;
     overflow: hidden;
     box-shadow:
-      0 10px 25px rgba(2, 170, 245, 0.35),
-      0 4px 10px rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.15),
-      inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+      0 8px 24px hsla(199, 96%, 50%, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.16);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
@@ -321,31 +317,22 @@ All colors MUST be HSL.
   .depth-button:hover {
     transform: translateY(-3px);
     box-shadow:
-      0 18px 40px rgba(2, 170, 245, 0.45),
-      0 8px 16px rgba(0, 0, 0, 0.25),
-      inset 0 1px 0 rgba(255, 255, 255, 0.18),
-      inset 0 -1px 2px rgba(0, 0, 0, 0.1),
-      0 0 30px rgba(2, 170, 245, 0.2);
+      0 12px 32px hsla(199, 96%, 50%, 0.38),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 
-  /* 3D Pill — for service tags */
+  /* Compact labels */
   .depth-pill {
-    background: linear-gradient(
-      160deg,
-      hsl(199, 98%, 42%) 0%,
-      hsl(199, 98%, 34%) 100%
-    );
+    background: rgba(2, 170, 245, 0.16);
     color: #FFFFFF;
     font-weight: 500;
-    border-radius: 12px;
-    border: 1px solid hsla(199, 90%, 55%, 0.25);
+    border-radius: 9999px;
+    border: 1px solid hsla(199, 96%, 70%, 0.32);
     position: relative;
     overflow: hidden;
     box-shadow:
-      0 6px 16px rgba(2, 170, 245, 0.3),
-      0 2px 6px rgba(0, 0, 0, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.12),
-      inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+      0 8px 24px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
@@ -367,9 +354,8 @@ All colors MUST be HSL.
   .depth-pill:hover {
     transform: translateY(-3px);
     box-shadow:
-      0 12px 28px rgba(2, 170, 245, 0.4),
-      0 4px 10px rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.14);
+      0 12px 28px rgba(2, 170, 245, 0.22),
+      0 4px 10px rgba(0, 0, 0, 0.24);
   }
 
 
@@ -383,11 +369,14 @@ All colors MUST be HSL.
   }
 
   .cosmic-home {
-    padding-top: 5.5rem;
+    padding-top: 0;
   }
 
   .cosmic-home__scene {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .cosmic-home__image,
@@ -397,32 +386,48 @@ All colors MUST be HSL.
     height: auto;
   }
 
+  .cosmic-home__image {
+    order: 0;
+  }
+
   .cosmic-home__headline {
-    position: absolute;
-    top: 5%;
-    inset-inline: 1.5rem;
+    order: 1;
+    position: relative;
+    inset: auto;
+    width: min(100%, 72rem);
+    margin: 2rem auto 0;
+    padding-inline: 1.5rem;
     text-align: center;
     z-index: 1;
+    font-size: clamp(2.75rem, 6vw, 5.5rem);
+    letter-spacing: -0.06em;
   }
 
   .cosmic-home__action {
-    position: absolute;
-    bottom: 7%;
-    inset-inline: 0;
+    order: 2;
+    position: relative;
+    margin-top: 1.75rem;
     display: flex;
     justify-content: center;
   }
 
   .cosmic-studio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: relative;
-    margin-top: 5.5rem;
+    margin-top: 0;
   }
 
   .cosmic-studio__headline {
-    position: absolute;
-    top: 15%;
-    left: 4%;
-    max-width: 48%;
+    position: relative;
+    top: auto;
+    left: auto;
+    max-width: min(100% - 3rem, 72rem);
+    margin: 1.5rem auto 0;
+    text-align: center;
+    font-size: clamp(2.5rem, 5.5vw, 5rem);
+    letter-spacing: -0.06em;
   }
 
   /* Fade the shuttle artwork's edges into the page background */
@@ -452,16 +457,18 @@ All colors MUST be HSL.
     .cosmic-home__headline {
       position: relative;
       inset: auto;
-      padding: 2.5rem 1rem 1rem;
+      margin-top: 1.25rem;
+      padding: 0 1rem;
     }
 
     .cosmic-home__action {
-      bottom: 4%;
+      bottom: auto;
+      margin-top: 1.25rem;
     }
 
     .cosmic-studio__headline {
-      top: 10%;
-      max-width: 62%;
+      top: auto;
+      max-width: calc(100% - 2rem);
       font-size: 1.75rem;
     }
   }
@@ -526,18 +533,18 @@ All colors MUST be HSL.
   /* Secondary button */
   .depth-button-secondary {
     background: transparent;
-    color: hsl(199, 98%, 48%);
+    color: hsl(199, 96%, 72%);
     font-weight: 600;
-    border: 2px solid hsl(199, 98%, 48%);
-    border-radius: 14px;
-    box-shadow: 0 4px 12px rgba(2, 170, 245, 0.15);
+    border: 1px solid hsla(199, 96%, 70%, 0.55);
+    border-radius: 9999px;
+    box-shadow: 0 4px 18px hsla(199, 96%, 50%, 0.12);
     transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   }
 
   .depth-button-secondary:hover {
     transform: translateY(-2px);
-    background: hsla(199, 98%, 48%, 0.1);
-    box-shadow: 0 8px 20px rgba(2, 170, 245, 0.25);
+    background: hsla(199, 96%, 62%, 0.12);
+    box-shadow: 0 8px 24px hsla(199, 96%, 50%, 0.24);
   }
 
   /* Liquid glass — subtle version */
@@ -725,23 +732,16 @@ All colors MUST be HSL.
     overflow: hidden;
   }
 
-  /* 3D Liquid Glass Navbar — deep refractive depth */
+  /* Black capsule navigation with a restrained blue edge */
   .navbar-pill--dark {
-    background: linear-gradient(
-      135deg,
-      rgba(1, 80, 130, 0.85) 0%,
-      rgba(2, 170, 245, 0.5) 40%,
-      rgba(1, 60, 100, 0.8) 100%
-    );
-    backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
-    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
-    border: 1.5px solid rgba(2, 170, 245, 0.2);
+    background: rgba(7, 6, 10, 0.9);
+    backdrop-filter: blur(24px) saturate(145%);
+    -webkit-backdrop-filter: blur(24px) saturate(145%);
+    border: 1px solid rgba(2, 170, 245, 0.3);
     box-shadow:
-      0 8px 32px rgba(0, 0, 0, 0.55),
-      0 2px 8px rgba(0, 0, 0, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1),
-      inset 0 -1px 0 rgba(255, 255, 255, 0.03),
-      0 0 0 0.5px rgba(255, 255, 255, 0.06);
+      0 12px 36px rgba(0, 0, 0, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 0 28px rgba(2, 170, 245, 0.08);
   }
 
   .navbar-pill--dark::before {
@@ -778,9 +778,9 @@ All colors MUST be HSL.
       var(--nav-glow-angle, 0deg),
       transparent 0%,
       transparent 30%,
-      rgba(2, 170, 245, 0.5) 45%,
-      rgba(30, 190, 255, 0.7) 50%,
-      rgba(2, 170, 245, 0.5) 55%,
+      rgba(2, 170, 245, 0.18) 45%,
+      rgba(30, 190, 255, 0.32) 50%,
+      rgba(2, 170, 245, 0.18) 55%,
       transparent 70%,
       transparent 100%
     );
@@ -788,8 +788,8 @@ All colors MUST be HSL.
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
-    animation: nav-glow-sweep 6s linear infinite;
-    filter: drop-shadow(0 0 8px rgba(2, 170, 245, 0.4));
+    animation: nav-glow-sweep 10s linear infinite;
+    filter: drop-shadow(0 0 5px rgba(2, 170, 245, 0.18));
   }
 
   @property --nav-glow-angle {
@@ -812,7 +812,7 @@ All colors MUST be HSL.
   }
 
   .nav-link-liquid:hover {
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(2, 170, 245, 0.16);
     transform: scale(1.04);
   }
 
@@ -848,17 +848,17 @@ All colors MUST be HSL.
     display: none;
   }
 
-  /* Mobile panel — liquid glass */
+  /* Mobile menu — dark capsule panel */
   .navbar-mobile-panel {
     background: linear-gradient(
       135deg,
-      rgba(1, 80, 130, 0.95) 0%,
-      rgba(2, 170, 245, 0.75) 100%
+      rgba(7, 30, 44, 0.98) 0%,
+      rgba(6, 10, 16, 0.98) 100%
     );
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);
     border-radius: 24px;
-    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(2, 170, 245, 0.28);
     box-shadow:
       0 12px 40px rgba(0, 0, 0, 0.5),
       inset 0 1px 0 rgba(255, 255, 255, 0.08);

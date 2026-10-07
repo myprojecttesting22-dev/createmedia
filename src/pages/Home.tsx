@@ -62,7 +62,7 @@ const Home = () => {
                 className="group block"
               >
                 <div
-                  className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border-2 border-white/70 bg-cover bg-center"
+                  className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-primary/35 bg-cover bg-center shadow-[0_18px_48px_rgba(0,0,0,0.35)]"
                   style={{
                     backgroundImage: `url(${step.image})`,
                   }}

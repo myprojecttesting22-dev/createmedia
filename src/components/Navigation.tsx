@@ -53,7 +53,7 @@ const Navigation = () => {
 
           <Link
             to="/discover"
-            className="hidden lg:inline-flex text-sm lg:text-base font-semibold px-4 lg:px-5 py-1.5 lg:py-2.5 rounded-xl whitespace-nowrap shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 transition-all"
+            className="hidden lg:inline-flex text-sm lg:text-base font-semibold px-4 lg:px-5 py-1.5 lg:py-2.5 rounded-full whitespace-nowrap shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 transition-all"
           >
             Get Started
           </Link>
@@ -77,7 +77,7 @@ const Navigation = () => {
                 key={link.path}
                 to={link.path}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-sm font-medium nav-link-liquid px-4 py-3 rounded-xl"
+                className="text-sm font-medium nav-link-liquid px-4 py-3 rounded-full"
               >
                 {link.name}
               </Link>
@@ -86,7 +86,7 @@ const Navigation = () => {
             <Link 
               to="/discover" 
               onClick={() => setIsMobileMenuOpen(false)}
-              className="text-sm font-semibold px-5 py-3 rounded-xl text-center bg-primary text-primary-foreground hover:bg-primary/90 transition-all mt-2"
+              className="text-sm font-semibold px-5 py-3 rounded-full text-center bg-primary text-primary-foreground hover:bg-primary/90 transition-all mt-2"
             >
               Get Started
             </Link>
